@@ -1,21 +1,22 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
-    private PlayerController _playerController; 
-    
+    private Vector2 _velocity = Vector2.zero;
+
     void Start()
     {
-        _playerController = player.GetComponent<PlayerController>();
     }
 
     void FixedUpdate()
     {
         Vector2 playerPos = player.transform.position;
 
-        Vector2 newCameraPos = Vector2.Lerp(transform.position, playerPos, (_playerController.MaxSpeed - 5) * Time.fixedDeltaTime);
+        Vector2 newCameraPos = Vector2.SmoothDamp(transform.position, playerPos, ref _velocity, 0.3f, Mathf.Infinity, Time.fixedDeltaTime);
+        
         transform.position = new Vector3(newCameraPos.x, newCameraPos.y, -10);
     }
 }
