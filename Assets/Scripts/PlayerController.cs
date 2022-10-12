@@ -5,11 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float maxSpeed;
 
     private Rigidbody2D _rb;
     
     private Vector2 _movement;
+
+    public float MaxSpeed => maxSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + _movement * (MaxSpeed * Time.fixedDeltaTime));
     }
 
     public void OnMove(InputValue value)
