@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Soda
+  - Enemy
+  - Exit
+  - Food
   layers:
   - Default
   - TransparentFX
@@ -40,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 2741653669
+    locked: 0
+  - name: Items
+    uniqueID: 2987085781
+    locked: 0
+  - name: Player
+    uniqueID: 223884021
     locked: 0
