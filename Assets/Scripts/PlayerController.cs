@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     public float MaxSpeed => maxSpeed;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + _movement * (MaxSpeed * Time.fixedDeltaTime));
     }
