@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +7,23 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float maxSpeed;
+    public float MaxSpeed => maxSpeed;
 
-    private Rigidbody2D _rb;
+    private Inventory _inventory;
     
-    private Vector2 _movement;
+    private Rigidbody2D _rb;
 
-    public float MaxSpeed => _maxSpeed;
+    private Vector2 _movement;
 
     int coins = 0;
 
     public TextMeshProUGUI coinText;
+
+    private void Awake()
+    {
+        _inventory = new Inventory();
+    }
 
     // Start is called before the first frame update
     private void Start()
