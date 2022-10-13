@@ -12,7 +12,7 @@ public class ratController : MonoBehaviour
 
     public GameObject coins;
 
-    float timer = 10.0f;
+    float timer = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
