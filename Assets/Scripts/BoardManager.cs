@@ -56,6 +56,11 @@ public class BoardManager : MonoBehaviour
 	//Sets up the outer walls and floor (background) of the game board.
 	void BoardSetup ()
 	{
+        Debug.Log(cornerPositions[0]);
+        Debug.Log(cornerPositions[1]);
+        Debug.Log(cornerPositions[2]);
+        Debug.Log(cornerPositions[3]);
+
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
 			
@@ -70,8 +75,12 @@ public class BoardManager : MonoBehaviour
 				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
 					toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+				}
 
-					for (int i = 0; i < cornerPositions.Count; i++)
+
+				for (int i = 0; i < cornerPositions.Count; i++)
+				{
+					if (x == -1 || x == columns || y == -1 || y == rows)
 					{
 						if (x != cornerPositions[i].x && y != cornerPositions[i].y)
 						{
@@ -93,6 +102,13 @@ public class BoardManager : MonoBehaviour
 		BoardSetup();
 
 		Vector3 exitPos = outerWallPositions[Random.Range(0, outerWallPositions.Count)];
+		for (int i = 0; i < cornerPositions.Count; i++)
+		{
+			if (exitPos.x == cornerPositions[i].x && exitPos.y == cornerPositions[i].y)
+			{
+				exitPos = outerWallPositions[Random.Range(0, outerWallPositions.Count)];
+			}
+		}
 
 		Instantiate (exit, exitPos, Quaternion.identity);
 
