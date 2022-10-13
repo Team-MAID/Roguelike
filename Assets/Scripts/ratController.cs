@@ -9,6 +9,10 @@ public class ratController : MonoBehaviour
     public float maxDistance;
 
     Vector2 wayPoints;
+
+    public GameObject coins;
+
+    float timer = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +27,25 @@ public class ratController : MonoBehaviour
         {
             setNewDestination();
         }
+
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+            Destroy(gameObject);
+        }
     }
 
-    void setNewDestination()
+    void setNewDestination() // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
     {
         wayPoints = new Vector2(Random.Range(-maxDistance, maxDistance), Random.Range(-maxDistance, maxDistance));
+    }
+
+    void OnDestroy() // drop coins when destroyed 
+    {
+        Instantiate(coins, transform.position, coins.transform.rotation);
     }
 }
