@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,10 +14,16 @@ public class PlayerController : MonoBehaviour
 
     public float MaxSpeed => maxSpeed;
 
+    int coins = 0;
+
+    public TextMeshProUGUI coinText;
+
     // Start is called before the first frame update
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        setCoinsText();
     }
 
     // Update is called once per frame
@@ -31,5 +38,21 @@ public class PlayerController : MonoBehaviour
         
         _movement.x = movementVector.x;
         _movement.y = movementVector.y;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Coin"))
+        {
+            coins++;
+            Destroy(other.gameObject);
+
+            setCoinsText();
+        }
+    }
+
+    void setCoinsText()
+    {
+        coinText.text = "Coins : " + coins.ToString();
     }
 }
