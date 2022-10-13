@@ -116,6 +116,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Bow",
+            "id": "cb849146-d6b0-4e81-8a99-ed1f6e63c4dc",
+            "actions": [
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "a642cedc-fc60-45d6-b8d1-d1a02823298f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7969279e-30bb-47fd-9138-1cc4f8982698",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
