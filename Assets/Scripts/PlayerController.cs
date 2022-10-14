@@ -2,23 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float maxSpeed;
 
     private Rigidbody2D _rb;
     
     private Vector2 _movement;
 
+    public float MaxSpeed => maxSpeed;
+
+    int coins = 0;
+
+    public TextMeshProUGUI coinText;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        setCoinsText();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
 
@@ -37,14 +46,30 @@ public class PlayerController : MonoBehaviour
         _deltaRot = new Vector3(0, 0, -_angle);
 
         this.transform.rotation = Quaternion.Euler(_deltaRot);
+
     }
 
     public void OnMove(InputValue value)
     {
-        Debug.Log("Input");
         Vector2 movementVector = value.Get<Vector2>();
         
         _movement.x = movementVector.x;
         _movement.y = movementVector.y;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Coin"))
+        {
+            coins++;
+            Destroy(other.gameObject);
+
+            setCoinsText();
+        }
+    }
+
+    void setCoinsText()
+    {
+        coinText.text = "Coins : " + coins.ToString();
     }
 }
