@@ -34,4 +34,11 @@ public class Projectile_Controller : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D _other)
+    {
+        Debug.Log("Trigger Enter");
+
+        Destroy(_other.gameObject);
+    }
 }
