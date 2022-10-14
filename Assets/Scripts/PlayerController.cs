@@ -22,13 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
 
-        Vector3 _mPos;
-        _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //_mPos.z = Camera.main.nearClipPlane;
-
-        //Debug.Log("_mPos.x: " + _mPos.x);
-        //Debug.Log("_mPos.y: " + _mPos.y);
-
+        Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
         Rotate(_mPos);
     }
 
