@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void setCoinsText()
     {
+        if (coinText == null) return;
         coinText.text = "Coins : " + coins.ToString();
     }
 }
