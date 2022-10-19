@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Projectile_Player
+  - Weapon_Player
   - Soda
   - Enemy
   - Exit
