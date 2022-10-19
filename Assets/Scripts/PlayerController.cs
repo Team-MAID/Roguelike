@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using InventorySystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -8,6 +9,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed;
+    [SerializeField] private UIInventory uiInventory;
     public float MaxSpeed => maxSpeed;
 
     private Inventory _inventory;
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _inventory = new Inventory();
+        uiInventory.Inventory = _inventory;
+        
+        ItemWorld.SpawnItemWorld(new Vector2(10f, 5f), new Item() { itemType = Item.ItemType.Beef, amount = 1});
     }
 
     // Start is called before the first frame update
@@ -64,12 +69,19 @@ public class PlayerController : MonoBehaviour
         _movement.y = movementVector.y;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if(other.gameObject.CompareTag("Coin"))
+        var itemWorld = col.GetComponent<ItemWorld>();
+        if (itemWorld != null)
+        {
+            _inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
+        
+        if(col.gameObject.CompareTag("Coin"))
         {
             coins++;
-            Destroy(other.gameObject);
+            Destroy(col.gameObject);
 
             setCoinsText();
         }
