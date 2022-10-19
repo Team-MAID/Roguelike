@@ -37,8 +37,11 @@ public class Projectile_Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D _other)
     {
-        Debug.Log("Trigger Enter");
+        //Debug.Log("Trigger Enter");
 
-        Destroy(_other.gameObject);
+        if (_other.tag == "Enemy")
+        {
+            Destroy(_other.gameObject);
+        }   
     }
 }

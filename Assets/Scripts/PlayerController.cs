@@ -6,13 +6,13 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float maxSpeed;
+    [SerializeField] private float _maxSpeed;
 
     private Rigidbody2D _rb;
     
     private Vector2 _movement;
 
-    public float MaxSpeed => maxSpeed;
+    public float MaxSpeed => _maxSpeed;
 
     int coins = 0;
 

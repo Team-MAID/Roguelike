@@ -8,29 +8,33 @@ public class Sword_Contoller : MonoBehaviour
     public int _HitboxDuration;
     private int _HB_Lifetime;
     private Collider2D _HB;
+    private Rigidbody2D _rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _HB = GetComponent<Collider2D>();
         _HB_Lifetime = _HitboxDuration;
+        _HB.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // _rb.transform.position = GetComponentInParent<Rigidbody2D>().transform.position;
+        // _rb.rotation = GetComponentInParent<Rigidbody2D>().rotation;
+
         if (Input.GetMouseButtonDown(0) && !_HB.enabled)
         {
-            Debug.Log("LeftClick");
+            //Debug.Log("LeftClick");
             _HB.enabled = true;
         }
-
-       
     }
 
     void FixedUpdate()
     {
-         if (_HB.enabled)
+        if (_HB.enabled)
         {
             _HB_Lifetime--;
             if (_HB_Lifetime <= 0)
@@ -43,8 +47,11 @@ public class Sword_Contoller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D _other)
     {
-        Debug.Log("Trigger Enter");
+        //Debug.Log("Trigger Enter");
 
-        Destroy(_other.gameObject);
+        if (_other.tag == "Enemy")
+        {
+            Destroy(_other.gameObject);
+        }
     }
 }
