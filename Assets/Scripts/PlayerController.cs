@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
     {
         _inventory = new Inventory();
         uiInventory.Inventory = _inventory;
-        
-        ItemWorld.SpawnItemWorld(new Vector2(10f, 5f), new Item() { itemType = Item.ItemType.Beef, amount = 1});
     }
 
     // Start is called before the first frame update

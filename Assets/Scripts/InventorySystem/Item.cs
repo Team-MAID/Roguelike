@@ -1,46 +1,51 @@
 using System;
-using InventorySystem;
 using UnityEngine;
 
-[Serializable]
-public class Item
+namespace InventorySystem
 {
-    public enum ItemType
+    /// <summary>
+    /// A stackable item that can be used with the Inventory system
+    /// </summary>
+    [Serializable]
+    public class Item
     {
-        Beef,
-        RedBook,
-        BlueBook,
-        Candy,
-        Log,
-    }
-
-    public ItemType itemType;
-    public int amount;
-
-    public Sprite GetSprite()
-    {
-        switch (itemType)
+        public enum ItemType
         {
-            default:
-            case ItemType.Beef: return ItemAssets.Instance.BeefSprite;
-            case ItemType.RedBook: return ItemAssets.Instance.RedBookSprite;
-            case ItemType.BlueBook: return ItemAssets.Instance.BlueBookSprite;
-            case ItemType.Candy: return ItemAssets.Instance.CandySprite;
-            case ItemType.Log: return ItemAssets.Instance.LogSprite;
+            Beef,
+            RedBook,
+            BlueBook,
+            Candy,
+            Log,
         }
-    }
 
-    public bool IsStackable()
-    {
-        switch (itemType)
+        public ItemType itemType;
+        public int amount;
+
+        public Sprite GetSprite()
         {
-            case ItemType.Beef:
-            case ItemType.Candy:
-            case ItemType.BlueBook:
-            case ItemType.RedBook:
-                return true;
-            default:
-                return false;
+            switch (itemType)
+            {
+                default:
+                case ItemType.Beef: return ItemAssets.Instance.BeefSprite;
+                case ItemType.RedBook: return ItemAssets.Instance.RedBookSprite;
+                case ItemType.BlueBook: return ItemAssets.Instance.BlueBookSprite;
+                case ItemType.Candy: return ItemAssets.Instance.CandySprite;
+                case ItemType.Log: return ItemAssets.Instance.LogSprite;
+            }
+        }
+
+        public bool IsStackable()
+        {
+            switch (itemType)
+            {
+                case ItemType.Beef:
+                case ItemType.Candy:
+                case ItemType.BlueBook:
+                case ItemType.RedBook:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace InventorySystem
 {
+    /// <summary>
+    /// Store and manage the <see cref="Item" />s in the inventory.
+    /// </summary>
     public class Inventory
     {
         public event EventHandler OnItemListChanged;
@@ -12,9 +15,9 @@ namespace InventorySystem
         {
             ItemList = new List<Item>();
         
-            AddItem(new Item{ itemType = Item.ItemType.RedBook, amount = 1});
+            /*AddItem(new Item{ itemType = Item.ItemType.RedBook, amount = 1});
             AddItem(new Item{ itemType = Item.ItemType.Beef, amount = 1});
-            AddItem(new Item{ itemType = Item.ItemType.Candy, amount = 1});
+            AddItem(new Item{ itemType = Item.ItemType.Candy, amount = 1});*/
         }
 
         public void AddItem(Item item)

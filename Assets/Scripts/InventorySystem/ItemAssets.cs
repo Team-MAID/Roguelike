@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace InventorySystem
 {
+    /// <summary>
+    /// Store sprites for each <see cref="Item" /> in the game
+    /// </summary>
+    /// <remarks>
+    /// This class is a Singleton
+    /// </remarks>
     public class ItemAssets : MonoBehaviour
     {
         public static ItemAssets Instance { get; private set; }
