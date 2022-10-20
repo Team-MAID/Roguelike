@@ -26,7 +26,7 @@ namespace InventorySystem
 
         private void RefreshInventoryItems()
         {
-            // Delete all the items from the UI
+            // Remove all the items from the UI
             foreach (Transform child in _itemSlotContainer)
             {
                 if (child == _itemSlotTemplate) continue;
@@ -52,17 +52,14 @@ namespace InventorySystem
                 }
             }
         }
-        
-        public Inventory Inventory
-        {
-            set
-            {
-                _inventory = value;
 
-                _inventory.OnItemListChanged += (sender, args) => RefreshInventoryItems();
+        public void SetInventory(Inventory inventory)
+        {
+            _inventory = inventory;
+
+            _inventory.OnItemListChanged += (sender, args) => RefreshInventoryItems();
                 
-                RefreshInventoryItems();
-            }
+            RefreshInventoryItems();
         }
     }
 }
