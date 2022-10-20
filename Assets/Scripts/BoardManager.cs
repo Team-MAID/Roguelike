@@ -20,7 +20,7 @@ public class BoardManager : MonoBehaviour
 
     private const int MinRoomSize = 4;
     private const int MaxRoomSize = 8;
-    
+
     private int _columns;
     private int _rows;
 
@@ -68,14 +68,13 @@ public class BoardManager : MonoBehaviour
         _cornerPositions.Add(new Vector2(offsetX + _columns, offsetY + _rows));
     }
 
-
-    //Sets up the outer walls and floor (background) of the game board.
+    // Sets up the outer walls and floor (background) of the game board.
     void BoardSetup(int boardNr, int boardOffsetX, int boardOffsetY)
     {
         int boardOriginX = boardOffsetX;
         int boardOriginY = boardOffsetY;
 
-        //Instantiate Board and set boardHolder to its transform.
+        // Instantiate Board and set boardHolder to its transform.
         _boardHolder = new GameObject("Board").transform;
 
         /*if (boardNr != 0)
@@ -88,10 +87,10 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = -1 + boardOriginY; y < _rows + 1 + boardOriginY; y++)
             {
-                //Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
+                // Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
 
-                //Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
+                // Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
                 if (x == -1 + boardOriginX || x == _columns + boardOriginX || y == -1 + boardOriginY ||
                     y == _rows + boardOriginY)
                 {
@@ -123,7 +122,7 @@ public class BoardManager : MonoBehaviour
     public void SetupScene()
     {
         int maxRoomNumber = Random.Range(2, 3); // Return only 2
-        
+
         // Offset between rooms (so room does not overlap)
         int offsetX = 0;
         int offsetY = 0;
@@ -169,7 +168,7 @@ public class BoardManager : MonoBehaviour
             }
 
             Debug.Log(exitSide.ToString());
-    
+
             clearExit(exitPos);
             if (j != 0)
             {
