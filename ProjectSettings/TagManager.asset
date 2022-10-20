@@ -12,6 +12,8 @@ TagManager:
   - Food
   - Coin
   - HeartContainer
+  - GhostDetectionCollider
+  - Ghost
   layers:
   - Default
   - TransparentFX

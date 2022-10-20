@@ -23,4 +23,9 @@ public class Ghost_Collider : MonoBehaviour
             Destroy(_other.gameObject);
         }
     }
+
+    void OnDestroy()
+    {
+        Destroy(transform.parent.gameObject);
+    }
 }
