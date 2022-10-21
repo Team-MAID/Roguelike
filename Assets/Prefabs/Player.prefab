@@ -77,14 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 223884021
-<<<<<<< HEAD
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-=======
->>>>>>> bb142e604016ec27bb50b7db53b84d3bf1b8a650
   m_SortingLayer: 4
   m_SortingOrder: 1
->>>>>>> b57ba39 (Added a limit on the spider nest. 5 spiders can spawn at a time. decreased size of spiders. All spiders now follow the player correctly. Added collision so spiders cannot go through the room walls. Spiders no longer overlap.)
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -138,19 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c28bb785bda4844799d5aa1749cb408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-<<<<<<< HEAD
   maxSpeed: 5
   uiInventory: {fileID: 0}
-=======
-  _maxSpeed: 10
->>>>>>> 4a9188d (Added a spider enemy, Gave it an attack radius, when the player is in this radius the spider will follow the player, otherwise the spider will stop. Need to fix my co routine so vector.distance isn't called every frame. Also had to make changes to the player prefab as health ui was removed along with health system scripts on the main scene. made Health Ui a prefab. Pickups work now in main too after putting the script back on player)
-=======
-  _maxSpeed: 5
->>>>>>> 83a15fa (Addeed Spider nest as a spawner. Spawns a spider every five seconds. Each spider follows the player if the player is within attack range. Spider and spider nest saved as prefabs. Added a spider nest spawner script)
-=======
-  _maxSpeed: 5
->>>>>>> bb142e604016ec27bb50b7db53b84d3bf1b8a650
   coinText: {fileID: 0}
 --- !u!50 &5620541980126186935
 Rigidbody2D:
@@ -164,7 +147,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -224,4 +207,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a2cc3d8ed202648bddd8d4681338d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spider: {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
