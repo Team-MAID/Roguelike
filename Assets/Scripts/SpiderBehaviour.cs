@@ -9,6 +9,11 @@ public class SpiderBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private GameObject spawner;
+
+    public int health = 2;
+
     Transform playerTransform;
     private Vector2 movement;
     public float attackRange = 5.0f;
@@ -24,17 +29,36 @@ public class SpiderBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Checks());
-        if (following)
+        if (isAlive())
         {
-            movement = playerTransform.position - transform.position;
-            movement = movement.normalized;
-            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+            StartCoroutine(Checks());
+            if (following)
+            {
+                movement = playerTransform.position - transform.position;
+                movement = movement.normalized;
+                rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+            }
         }
         else
-        { 
-
+        {
+            Destroy(this.gameObject);
         }
+    }
+
+    public void DecreaseHealth()
+    {
+            health--;
+            Debug.Log("Spider Health Down");
+    }
+
+    bool isAlive()
+    {
+        if (health <= 0)
+        {
+            return false;
+        }
+        //Debug.Log("Alive");
+        return true;
     }
 
     bool CheckDistance()
