@@ -19,13 +19,13 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
 
-        if (health >= currentMaxHealth)
+        if (health > currentMaxHealth)
         {
             Debug.Log("Health Already Full");
             health = currentMaxHealth;
         }
 
-        if (currentMaxHealth >= upperHealthLimit)
+        if (currentMaxHealth > upperHealthLimit)
         {
             Debug.Log("Max health Limit reached");
             currentMaxHealth = upperHealthLimit;
