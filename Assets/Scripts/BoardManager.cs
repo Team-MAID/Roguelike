@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public enum CardinalPoint
+/*public enum CardinalPoint
 {
     None,
     North,
     South,
     East,
     West,
-}
+}*/
 
 public class BoardManager : MonoBehaviour
 {
@@ -126,7 +126,7 @@ public class BoardManager : MonoBehaviour
         // Offset between rooms (so room does not overlap)
         int offsetX = 0;
         int offsetY = 0;
-        CardinalPoint exitSide = CardinalPoint.None;
+        CardinalPoint exitSide = CardinalPoint.North;
 
         Vector2 exitPos = new Vector2(0, 0);
 

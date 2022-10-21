@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = System.Numerics.Vector2;
 
 public class Room
 {
@@ -16,6 +17,7 @@ public class Room
     public List<Vector2Int> CornerPositions { get; } = new();
     public List<Vector2Int> OuterWallPositions { get; } = new();
 
+    public Vector2Int ExitPosition { get; private set; }
 
     private GameObject _roomHolder;
 
@@ -44,17 +46,20 @@ public class Room
         {
             for (var y = 0; y <= Rows; y++)
             {
-                if ((x > 0 && x < Columns && (y == 0 || y == Rows)) || 
+                if ((x > 0 && x < Columns && (y == 0 || y == Rows)) ||
                     (y > 0 && y < Rows && (x == 0 || x == Columns)))
                 {
                     OuterWallPositions.Add(new Vector2Int(x, y));
                 }
-                
+
                 if (x != 0 && x != Columns && y != 0 && y != Rows)
                 {
                     GridPositions.Add(new Vector2Int(x, y));
                 }
             }
         }
+        
+        ExitPosition = OuterWallPositions[Random.Range(0, OuterWallPositions.Count - 1)];
+        OuterWallPositions.Remove(ExitPosition);
     }
 }
