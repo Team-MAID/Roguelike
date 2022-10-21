@@ -8,7 +8,7 @@ public class SpiderBehaviour : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
-
+    Transform playerTransform;
     private Vector2 movement;
     public float attackRange = 5.0f;
     public int speed = 2;
@@ -17,7 +17,7 @@ public class SpiderBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class SpiderBehaviour : MonoBehaviour
         StartCoroutine(Checks());
         if (following)
         {
-            movement = player.transform.position - transform.position;
+            movement = playerTransform.position - transform.position;
             movement = movement.normalized;
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
@@ -39,7 +39,7 @@ public class SpiderBehaviour : MonoBehaviour
     bool CheckDistance()
     {
         // loop through enemies
-        if (Vector2.Distance(transform.position, player.transform.position) < attackRange)
+        if (Vector2.Distance(transform.position, playerTransform.position) < attackRange)
         {
             return true;
         }
