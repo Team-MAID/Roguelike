@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-
-    [SerializeField]
-    GameObject Spider;
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("knock Back ?");
@@ -16,6 +12,9 @@ public class Collision : MonoBehaviour
         {
             Debug.Log("knock Back ?");
             GetComponent<HealthSystem>().decreaseHealth();
+
+            // Temporary to test decreasing health and enemy destruction. Will decrease on weapon collision later
+            collision.gameObject.GetComponent<SpiderBehaviour>().DecreaseHealth();
         }
     }
 
@@ -26,6 +25,8 @@ public class Collision : MonoBehaviour
         {
             Debug.Log("collidede with enemy");
             GetComponent<HealthSystem>().decreaseHealth();
+
+
 
             //    if (GetComponent<HealthSystem>().health <= 0)
             //    {

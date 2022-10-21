@@ -105,3 +105,4 @@ MonoBehaviour:
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
   spiderNest: {fileID: 7031763060367958703}
   spawnInterval: 5
+  counter: 0

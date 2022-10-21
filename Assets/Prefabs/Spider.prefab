@@ -147,5 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  spawner: {fileID: 7031763060367958703, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+  health: 2
   attackRange: 3
   speed: 2
