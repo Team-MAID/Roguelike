@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         
         _inventory = new Inventory();
-        uiInventory.SetInventory(_inventory);
+        if (uiInventory != null) 
+            uiInventory.SetInventory(_inventory);
 
         setCoinsText();
     }
