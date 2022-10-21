@@ -81,6 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
 =======
+>>>>>>> bb142e604016ec27bb50b7db53b84d3bf1b8a650
   m_SortingLayer: 4
   m_SortingOrder: 1
 >>>>>>> b57ba39 (Added a limit on the spider nest. 5 spiders can spawn at a time. decreased size of spiders. All spiders now follow the player correctly. Added collision so spiders cannot go through the room walls. Spiders no longer overlap.)
@@ -147,6 +148,9 @@ MonoBehaviour:
 =======
   _maxSpeed: 5
 >>>>>>> 83a15fa (Addeed Spider nest as a spawner. Spawns a spider every five seconds. Each spider follows the player if the player is within attack range. Spider and spider nest saved as prefabs. Added a spider nest spawner script)
+=======
+  _maxSpeed: 5
+>>>>>>> bb142e604016ec27bb50b7db53b84d3bf1b8a650
   coinText: {fileID: 0}
 --- !u!50 &5620541980126186935
 Rigidbody2D:
