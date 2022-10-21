@@ -8,6 +8,7 @@ public class SpiderBehaviour : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+
     Transform playerTransform;
     private Vector2 movement;
     public float attackRange = 5.0f;
@@ -53,7 +54,7 @@ public class SpiderBehaviour : MonoBehaviour
     IEnumerator Checks()
     {
         //loop
-        Debug.Log("Coroutine Ran");
+       // Debug.Log("Coroutine Ran");
         if(CheckDistance())
         {
             following = true;
@@ -62,6 +63,6 @@ public class SpiderBehaviour : MonoBehaviour
         {
             following = false;
         }
-        yield return new WaitForSeconds(5.1f);
+        yield return new WaitForSeconds(4.0f);
     }
 }

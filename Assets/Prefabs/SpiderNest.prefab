@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1637852733
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0.6280323, b: 0.6280323, a: 1}
@@ -97,6 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244006d5c6b82fc439c4809673f205ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spiderPrefab: {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  spiderPrefab:
+  - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
   spiderNest: {fileID: 7031763060367958703}
   spawnInterval: 5

@@ -77,8 +77,13 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 223884021
+<<<<<<< HEAD
   m_SortingLayer: 3
   m_SortingOrder: 0
+=======
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+>>>>>>> b57ba39 (Added a limit on the spider nest. 5 spiders can spawn at a time. decreased size of spiders. All spiders now follow the player correctly. Added collision so spiders cannot go through the room walls. Spiders no longer overlap.)
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,7 +160,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -215,3 +220,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a2cc3d8ed202648bddd8d4681338d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spider: {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}

@@ -5,18 +5,32 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
 
+    [SerializeField]
+    GameObject Spider;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("knock Back ?");
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("knock Back ?");
+            GetComponent<HealthSystem>().decreaseHealth();
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
             Debug.Log("collidede with enemy");
             GetComponent<HealthSystem>().decreaseHealth();
 
-            if (GetComponent<HealthSystem>().health <= 0)
-            {
-                //Destroy(gameObject);
-            }
+            //    if (GetComponent<HealthSystem>().health <= 0)
+            //    {
+            //        //Destroy(gameObject);
+            //    }
         }
 
         if (collision.gameObject.CompareTag("Food"))
