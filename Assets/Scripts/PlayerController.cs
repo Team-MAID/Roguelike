@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed;
     [SerializeField] private UIInventory uiInventory;
-    public float MaxSpeed => maxSpeed;
 
     private Inventory _inventory;
     
@@ -22,16 +21,13 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI coinText;
 
-    private void Awake()
-    {
-        _inventory = new Inventory();
-        uiInventory.Inventory = _inventory;
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
+        _inventory = new Inventory();
+        uiInventory.SetInventory(_inventory);
 
         setCoinsText();
     }
@@ -39,7 +35,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + _movement * maxSpeed * Time.fixedDeltaTime);
 
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
         Rotate(_mPos);
