@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -29,14 +29,15 @@ public class RoomManager : MonoBehaviour
 
     void SetupScene()
     {
-        var maxRoomNumber = Random.Range(5, 5);
+        //var maxRoomNumber = Random.Range(2, 2);
+        var maxRoomNumber = 2;
 
         var offsetX = 0;
         var offsetY = 0;
 
         for (int roomNumber = 1; roomNumber <= maxRoomNumber; roomNumber++)
         {
-            var room = CreateRoom(roomNumber, ref offsetX, ref offsetY);
+            var room = CreateRoom(roomNumber);
             _rooms.Add(room);
 
             // CardinalPoint randomDir = (CardinalPoint) Random.Range(0, Enum.GetNames(typeof(CardinalPoint)).Length);
@@ -53,7 +54,7 @@ public class RoomManager : MonoBehaviour
             {
                 offsetX -= room.Columns;
                 offsetY -= Random.Range(-room.Rows, room.Rows);
-            }*/
+            }#1#
         }
     }
 
@@ -61,39 +62,47 @@ public class RoomManager : MonoBehaviour
     /// Instantiate the tiles in the Scene to create the room
     /// </summary>
     /// <remarks>May be refactored as a Factory?</remarks>
-    private Room CreateRoom(int roomNumber, ref int offsetX, ref int offsetY)
+    /*private Room CreateRoom(int roomNumber)
     {
-        Room room = new Room();
+        Room room;
+        if (_rooms.Count == 0)
+            room = new Room();
+        else
+        {
+            
+            
+            room = new Room(new Vector2Int(10, 15));
+        }
 
         /*if (roomNumber > 1)
         {
             offsetX += room.Columns / 2;
             offsetY += room.Rows / 2;
-        }*/
+        }#2#
 
         _roomHolder = new GameObject($"Room {roomNumber} | ({room.Columns}x{room.Rows})");
 
-        foreach (Vector2Int position in room.OuterWallPositions)
+        foreach (Vector2Int position in room.WorldOuterWallPositions)
         {
-            InstantiateOuterWall(position.x + offsetX, position.y + offsetY);
+            InstantiateOuterWall(position.x, position.y);
         }
 
-        foreach (Vector2Int position in room.GridPositions)
+        foreach (Vector2Int position in room.WorldGridPositions)
         {
-            InstantiateFloor(position.x + offsetX, position.y + offsetY);
+            InstantiateFloor(position.x, position.y);
         }
 
-        foreach (Vector2Int position in room.CornerPositions)
+        foreach (Vector2Int position in room.WorldCornerPositions)
         {
-            InstantiateOuterWall(position.x + offsetX, position.y + offsetY);
+            InstantiateOuterWall(position.x, position.y);
         }
 
-        var floor = Instantiate(exitTile, new Vector2(room.ExitPosition.x + offsetX, room.ExitPosition.y + offsetY),
+        var floor = Instantiate(exitTile, new Vector2(room.WorldExitPosition.x, room.WorldExitPosition.y),
             Quaternion.identity);
         floor.transform.SetParent(_roomHolder.transform);
 
         return room;
-    }
+    }#1#
 
     private void InstantiateFloor(int x, int y)
     {
@@ -110,4 +119,4 @@ public class RoomManager : MonoBehaviour
         var outerWall = Instantiate(toInstantiate, new Vector2(x, y), Quaternion.identity);
         outerWall.transform.SetParent(_roomHolder.transform);
     }
-}
+}*/

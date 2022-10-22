@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-/*public enum CardinalPoint
+public enum CardinalPoint
 {
     None,
     North,
     South,
     East,
     West,
-}*/
+}
 
 public class BoardManager : MonoBehaviour
 {
