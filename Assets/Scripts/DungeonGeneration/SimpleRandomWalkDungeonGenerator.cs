@@ -8,19 +8,19 @@ namespace DungeonGeneration
     public class SimpleRandomWalkDungeonGenerator : DungeonGenerator
     {
         [SerializeField]
-        private SimpleRandomWalkScriptableObject randomWalkParameters;
+        protected SimpleRandomWalkScriptableObject randomWalkParameters;
 
         protected override void RunProceduralGeneration()
         {
-            HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters);
+            HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
             tilemapVisualizer.Clear();
             tilemapVisualizer.PaintFloorTiles(floorPositions);
             WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
         }
 
-        protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkScriptableObject parameters)
+        protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkScriptableObject parameters, Vector2Int position)
         {
-            var currentPosition = startPosition;
+            var currentPosition = position;
 
             var floorPositions = new HashSet<Vector2Int>();
 
