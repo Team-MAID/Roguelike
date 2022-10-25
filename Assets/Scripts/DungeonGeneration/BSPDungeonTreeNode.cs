@@ -41,7 +41,7 @@ namespace DungeonGeneration
         /// <summary>
         /// Actual Room boundary
         /// </summary>
-        public HashSet<Vector2Int> floors { get; }
+        public List<Vector2Int> Floors { get; } = new();
 
         public BSPDungeonTreeNode(RectInt boundary, BSPDungeonTreeNode parent = null)
         {
