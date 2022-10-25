@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI coinText;
 
+    bool isHiding = false;
+
+    bool nearCloset = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -25,11 +29,19 @@ public class PlayerController : MonoBehaviour
 
         setCoinsText();
     }
+    
+    private void Update()
+    {
+        hidingKeyPress();
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
+        if(!isHiding)
+        {
+            _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
+        }
 
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
         Rotate(_mPos);
@@ -46,7 +58,6 @@ public class PlayerController : MonoBehaviour
         _deltaRot = new Vector3(0, 0, -_angle);
 
         this.transform.rotation = Quaternion.Euler(_deltaRot);
-
     }
 
     public void OnMove(InputValue value)
@@ -55,6 +66,8 @@ public class PlayerController : MonoBehaviour
         
         _movement.x = movementVector.x;
         _movement.y = movementVector.y;
+
+        isHiding = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -66,11 +79,29 @@ public class PlayerController : MonoBehaviour
 
             setCoinsText();
         }
+
+        if (other.gameObject.CompareTag("Closet"))
+        {
+            nearCloset = true;
+        }
     }
 
     void setCoinsText()
     {
         if (coinText == null) return;
         coinText.text = "Coins : " + coins.ToString();
+    }
+
+    public bool getHidingStatus()
+    {
+        return isHiding;
+    }
+
+    void hidingKeyPress()
+    {
+        if(Input.GetKey("h") && nearCloset)
+        {
+            isHiding = true;
+        }
     }
 }

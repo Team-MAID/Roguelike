@@ -9,6 +9,8 @@ public class Ghost_Controller : MonoBehaviour
     public int _speed;
     private Rigidbody2D _rb;
 
+    public PlayerController _player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class Ghost_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_target != null) // If the Ghost has found a target, follow it.
+        if (_target != null && !_player.getHidingStatus()) // If the Ghost has found a target, follow it.
         {
             _movement = _target.transform.position - transform.position;
             _movement = _movement.normalized;
