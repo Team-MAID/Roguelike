@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         _movement.x = movementVector.x;
         _movement.y = movementVector.y;
 
-        isHiding = false;
+        //isHiding = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -86,6 +86,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Closet"))
+        {
+            nearCloset = false;
+        }
+    }
+
     void setCoinsText()
     {
         if (coinText == null) return;
@@ -99,9 +107,9 @@ public class PlayerController : MonoBehaviour
 
     void hidingKeyPress()
     {
-        if(Input.GetKey("h") && nearCloset)
+        if(Input.GetKeyUp("h") && nearCloset)
         {
-            isHiding = true;
+            isHiding = !isHiding;
         }
     }
 }
