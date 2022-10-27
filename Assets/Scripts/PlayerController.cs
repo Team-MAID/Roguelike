@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using InventorySystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private UIInventory uiInventory;
 
-    private Rigidbody2D _rb;
+    private Inventory _inventory;
     
-    private Vector2 _movement;
+    private Rigidbody2D _rb;
 
-    public float MaxSpeed => _maxSpeed;
+    private Vector2 _movement;
 
     int coins = 0;
 
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
+        _inventory = new Inventory();
+        if (uiInventory != null) 
+            uiInventory.SetInventory(_inventory);
 
         setCoinsText();
     }
@@ -40,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!isHiding)
         {
-            _rb.MovePosition(_rb.position + _movement * _maxSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(_rb.position + _movement * maxSpeed * Time.fixedDeltaTime);
         }
 
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
@@ -66,29 +73,34 @@ public class PlayerController : MonoBehaviour
         
         _movement.x = movementVector.x;
         _movement.y = movementVector.y;
-
-        //isHiding = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if(other.gameObject.CompareTag("Coin"))
+        var itemWorld = col.GetComponent<ItemWorld>();
+        if (itemWorld != null)
+        {
+            _inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
+        
+        if(col.gameObject.CompareTag("Coin"))
         {
             coins++;
-            Destroy(other.gameObject);
+            Destroy(col.gameObject);
 
             setCoinsText();
         }
 
-        if (other.gameObject.CompareTag("Closet"))
+        if (col.gameObject.CompareTag("Closet"))
         {
             nearCloset = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D col)
     {
-        if (other.gameObject.CompareTag("Closet"))
+        if (col.gameObject.CompareTag("Closet"))
         {
             nearCloset = false;
         }
