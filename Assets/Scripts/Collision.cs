@@ -4,46 +4,39 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D _otherCollider)
+    //{
+    //    Debug.Log("knock Back ?");
+
+    //    if (_otherCollider.gameObject.tag == "Enemy")
+    //    {
+    //        Debug.Log("knock Back ?");
+    //        GetComponent<HealthSystem>().decreaseHealth();
+
+    //        // Temporary to test decreasing health and enemy destruction. Will decrease on weapon collision later
+    //       // collision.gameObject.GetComponent<SpiderBehaviour>().DecreaseHealth();
+    //    }
+    //}
+
+
+    private void OnTriggerEnter2D(Collider2D _otherColldier)
     {
-        Debug.Log("knock Back ?");
-
-        if (collision.gameObject.tag == "Enemy")
+        if (_otherColldier.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("knock Back ?");
+            Debug.Log("collided with enemy");
             GetComponent<HealthSystem>().decreaseHealth();
-
-            // Temporary to test decreasing health and enemy destruction. Will decrease on weapon collision later
-            collision.gameObject.GetComponent<SpiderBehaviour>().DecreaseHealth();
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("collidede with enemy");
-            GetComponent<HealthSystem>().decreaseHealth();
-
-
-
-            //    if (GetComponent<HealthSystem>().health <= 0)
-            //    {
-            //        //Destroy(gameObject);
-            //    }
         }
 
-        if (collision.gameObject.CompareTag("Food"))
+        if (_otherColldier.gameObject.CompareTag("Food"))
         {
-            Destroy(collision.gameObject);
+            Destroy(_otherColldier.gameObject);
             GetComponent<HealthSystem>().increaseHealth();
             Debug.Log("collided with food");
         }
 
-        if (collision.gameObject.CompareTag("HeartContainer"))
+        if (_otherColldier.gameObject.CompareTag("HeartContainer"))
         {
-            Destroy(collision.gameObject);
+            Destroy(_otherColldier.gameObject);
             GetComponent<HealthSystem>().increaseMaxHealth();
             Debug.Log("collided with heartContainer");
         }

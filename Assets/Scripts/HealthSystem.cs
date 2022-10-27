@@ -31,6 +31,11 @@ public class HealthSystem : MonoBehaviour
             currentMaxHealth = upperHealthLimit;
         }
 
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         for (int i = 0; i < hearts.Length; i++)
         {
 
