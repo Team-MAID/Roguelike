@@ -692,6 +692,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
   m_PrefabInstance: {fileID: 1474902726}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1483263839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133884, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233184551225133887, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+      propertyPath: m_Name
+      value: ShopDude
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
 --- !u!114 &1522428353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6210232471701574389, guid: 10f734d994849f242ac812469228eb64, type: 3}
