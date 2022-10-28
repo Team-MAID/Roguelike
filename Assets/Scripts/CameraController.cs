@@ -13,10 +13,13 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 playerPos = player.transform.position;
+        if (player != null)
+        {
+            Vector2 playerPos = player.transform.position;
 
-        Vector2 newCameraPos = Vector2.SmoothDamp(transform.position, playerPos, ref _velocity, 0.3f, Mathf.Infinity, Time.fixedDeltaTime);
-        
-        transform.position = new Vector3(newCameraPos.x, newCameraPos.y, -10);
+            Vector2 newCameraPos = Vector2.SmoothDamp(transform.position, playerPos, ref _velocity, 0.3f, Mathf.Infinity, Time.fixedDeltaTime);
+
+            transform.position = new Vector3(newCameraPos.x, newCameraPos.y, -10);
+        }
     }
 }

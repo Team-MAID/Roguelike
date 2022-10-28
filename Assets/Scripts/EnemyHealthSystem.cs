@@ -15,16 +15,14 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         if (_health <= 0)
         {
+            Debug.Log("Enemy Destroyed by Health System");
             Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D _other)
     {
-        if (_other.CompareTag("Player"))
-        {
-            decreaseHealth();
-        }
+        
     }
     public void decreaseHealth()
     {
