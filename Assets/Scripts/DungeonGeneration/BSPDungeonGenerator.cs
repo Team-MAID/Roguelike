@@ -26,11 +26,10 @@ namespace DungeonGeneration
         [SerializeField] [Range(0, 10)] [Tooltip("Room offset from the border of the node")]
         private int offset = 2;
 
-        [SerializeField]
-        private bool displayDebugGizmos = true;
+        [SerializeField] private bool displayDebugGizmos = true;
 
         private BSPDungeonTree _bspDungeonTree;
-        
+
         private GameObject _roomHolder;
 
 
@@ -60,18 +59,18 @@ namespace DungeonGeneration
         private HashSet<Vector2Int> ConnectRooms()
         {
             var corridors = new HashSet<Vector2Int>();
-            
+
             // Get centre position of each room
             var roomCentroids = new List<Vector2Int>();
             foreach (var leaf in _bspDungeonTree.Leafs)
             {
                 roomCentroids.Add(leaf.GetRoomCentroid());
             }
-            
+
             // Get a random room center from the centroid list
             var currentRoomCenter = roomCentroids[Random.Range(0, roomCentroids.Count)];
             roomCentroids.Remove(currentRoomCenter);
-            
+
             while (roomCentroids.Count > 0)
             {
                 // Find closest room center to the current room
@@ -81,7 +80,7 @@ namespace DungeonGeneration
                 // Create a corridor between the current and the closeset room
                 HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
                 currentRoomCenter = closest;
-                
+
                 // Merge this corridor's floor with all the other corridors
                 corridors.UnionWith(newCorridor);
             }
@@ -195,11 +194,13 @@ namespace DungeonGeneration
         {
             foreach (BSPDungeonTreeNode node in _bspDungeonTree.Leafs)
             {
+                #if UNITY_EDITOR
                 GUIStyle style = new GUIStyle();
                 style.alignment = TextAnchor.MiddleCenter;
                 style.normal.textColor = Color.red;
 
                 //Handles.Label(node.Boundary.center, node.ID.ToString(), style);
+                #endif
 
                 // bottom/left -> top/left
                 Gizmos.DrawLine(
@@ -238,6 +239,7 @@ namespace DungeonGeneration
         {
             Gizmos.color = Color.blue;
 
+#if UNITY_EDITOR
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;
             style.normal.textColor = Color.red;
@@ -245,6 +247,7 @@ namespace DungeonGeneration
             Handles.Label(
                 new Vector2(node.Boundary.center.x / style.fontSize, node.Boundary.center.y / style.fontSize),
                 node.ID.ToString(), style);
+#endif
 
             // bottom/left -> top/left
             Gizmos.DrawLine(
@@ -273,7 +276,7 @@ namespace DungeonGeneration
             if (node.LeftChild != null) DrawDebugTree(node.LeftChild);
             if (node.RightChild != null) DrawDebugTree(node.RightChild);
         }
-        
+
         // Validate the values in the Inspector (experimental, the conditions might needs to be tweaked, but it works)
         private void OnValidate()
         {
@@ -282,7 +285,7 @@ namespace DungeonGeneration
             {
                 minimumRoomSize.x = minimumNodeSize.x;
             }
-            
+
             if (minimumRoomSize.y > minimumRoomSize.y)
             {
                 minimumRoomSize.y = minimumNodeSize.y;
@@ -296,7 +299,7 @@ namespace DungeonGeneration
 
             if (splitPosition.min < 0) splitPosition.min = 0;
             if (splitPosition.max < 0) splitPosition.max = 0;
-            
+
             if (splitPosition.min > 1) splitPosition.min = 1;
             if (splitPosition.max > 1) splitPosition.max = 1;
         }
