@@ -34,7 +34,7 @@ public class Bat_Controller : MonoBehaviour
         {
             _enabled = true;
             _batManger.ActivateTheBats();
-            FindObjectsOfType<Bat_Controller>()
+            FindObjectsOfType<Bat_Controller>();
         }
     }
 }
