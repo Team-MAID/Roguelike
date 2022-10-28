@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
+    /// <summary>
+    /// BSP Tree storing the dungeon and sub-dungeons (nodes)
+    /// </summary>
     public class BSPDungeonTree
     {
         public BSPDungeonTreeNode Root { get; }
@@ -31,7 +34,7 @@ namespace DungeonGeneration
             // Build BSP from Root
             BuildTree(Root);
         }
-
+        
         private void BuildTree(BSPDungeonTreeNode node)
         {
             bool split = node.Split(_minNodeWidth, _minNodeHeight, _minSplitPosition, _maxSplitPosition);
@@ -47,41 +50,10 @@ namespace DungeonGeneration
             BuildTree(node.RightChild);
         }
 
-        private void GenerateRoom()
-        {
-            // Generate room positions for each leaf
-            foreach (BSPDungeonTreeNode leaf in Leafs)
-            {
-                RectInt subDungeon = leaf.Boundary;
-
-                Vector2Int randomOrigin = new Vector2Int(
-                    Random.Range(subDungeon.xMin + 1, Mathf.FloorToInt(subDungeon.center.x)),
-                    Random.Range(subDungeon.yMin + 1, Mathf.FloorToInt(subDungeon.center.y))
-                );
-
-                Vector2Int size = new Vector2Int(
-                    Mathf.FloorToInt((subDungeon.xMax - randomOrigin.x) * 0.8f),
-                    Mathf.FloorToInt((subDungeon.yMax - randomOrigin.y) * 0.8f)
-                );
-
-                //leaf.Room = new RectInt(randomOrigin, size);
-
-                /*Vector2Int randomSize = new Vector2Int(
-                    Random.Range(10, subDungeon.width - 2),
-                    Random.Range(10, subDungeon.height - 2)
-                );
-
-                Vector2Int randomOrigin = new Vector2Int(
-                    Random.Range(1, subDungeon.width - randomSize.x - 1),
-                    Random.Range(1, subDungeon.height - randomSize.y - 1)
-                );
-
-
-                leaf.Room = new Room(subDungeon.x + randomOrigin.x, subDungeon.y + randomOrigin.y, randomSize.x,
-                    randomSize.y);*/
-            }
-        }
-
+        /*
+         * Utils method to traverse the tree
+         */
+        
         /// <summary>
         /// Traverse the tree from Root node
         /// </summary>

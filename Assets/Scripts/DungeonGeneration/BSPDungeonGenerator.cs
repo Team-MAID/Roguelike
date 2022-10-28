@@ -1,58 +1,46 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
-    [Serializable]
-    internal struct MinMax
-    {
-        [Min(0.1f)] public float min;
-        public float max;
-    }
-
+    /// <summary>
+    /// Setup and generate a dungeon on a tilemap component
+    /// </summary>
     public class BSPDungeonGenerator : DungeonGenerator
     {
-        [SerializeField] [Tooltip("Minimum/Maximum percentage to split node at a random position")]
-        private MinMax splitPositionRange = new() {min = 0.3f, max = 0.6f};
+        [SerializeField] [Tooltip("Size of the root tree containing each node and room")]
+        private Vector2Int dungeonSize = new() {x = 200, y = 200};
 
-        [SerializeField] [Tooltip("Minimum width of node")]
-        private int minNodeWidth = 10;
+        [SerializeField] [Tooltip("Split a node between a two random values")]
+        private MinMax splitPosition = new() {min = 0.3f, max = 0.6f};
 
-        [SerializeField] [Tooltip("Minimum height of node")]
-        private int minNodeHeight = 10;
+        [SerializeField] [Tooltip("Minimum size of the node in width and height")]
+        private Vector2Int minimumNodeSize = new() {x = 40, y = 40};
 
-        [SerializeField] [Tooltip("Minimum room size")]
-        private int minRoomWidth = 4;
+        [SerializeField] [Tooltip("Minimum size of a room inside a node (cannot be larger than the node size")]
+        private Vector2Int minimumRoomSize = new() {x = 20, y = 20};
 
-        [SerializeField] [Tooltip("Minimum room size")]
-        private int minRoomHeight = 4;
+        [SerializeField] [Range(0, 10)] [Tooltip("Room offset from the border of the node")]
+        private int offset = 2;
 
-        [SerializeField] [Tooltip("Root node width")]
-        private int dungeonWidth = 100;
-
-        [SerializeField] [Tooltip("Root node height")]
-        private int dungeonHeight = 100;
-
-        [SerializeField] [Range(0, 10)] private int offset = 2;
+        [SerializeField]
+        private bool displayDebugGizmos = true;
 
         private BSPDungeonTree _bspDungeonTree;
+        
         private GameObject _roomHolder;
 
-        private List<Vector2Int> _roomCentroids;
 
         protected override void RunProceduralGeneration()
         {
-            RectInt rootBoundary = new RectInt(startPosition, new Vector2Int(dungeonWidth, dungeonHeight));
+            RectInt rootBoundary = new RectInt(startPosition, new Vector2Int(dungeonSize.x, dungeonSize.y));
             _bspDungeonTree = new BSPDungeonTree(
                 rootBoundary,
-                minNodeWidth,
-                minNodeHeight,
-                splitPositionRange.min,
-                splitPositionRange.max
+                minimumNodeSize.x, minimumNodeSize.y,
+                splitPosition.min, splitPosition.max
             );
 
             CreateRooms();
@@ -62,34 +50,9 @@ namespace DungeonGeneration
         {
             HashSet<Vector2Int> floorPositions = CreateSimpleRooms();
 
-            _roomCentroids = new List<Vector2Int>();
-            foreach (var leaf in _bspDungeonTree.Leafs)
-            {
-                var roomFloors = leaf.Floors;
-                
-                // Centroid formula for a set of points: https://math.stackexchange.com/questions/1801867/finding-the-centre-of-an-abritary-set-of-points-in-two-dimensions
-                int xSum = 0;
-                int ySum = 0;
-
-                // Get the summation of X and Y for every points
-                for (int i = xSum; i < roomFloors.Count; i++)
-                {
-                    // Summation of X values
-                    xSum += roomFloors[i].x;
-                    // Summation of Y values
-                    ySum += roomFloors[i].y;
-                }
-
-                // Calculate average X and Y (which give us the centroid of the points)
-                var centroidX = xSum / roomFloors.Count;
-                var centroidY = ySum / roomFloors.Count;
-
-                _roomCentroids.Add(new Vector2Int(centroidX, centroidY));
-            }
-
             HashSet<Vector2Int> corridors = ConnectRooms();
             floorPositions.UnionWith(corridors);
-            
+
             tilemapVisualizer.PaintFloorTiles(floorPositions);
             WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
         }
@@ -98,16 +61,28 @@ namespace DungeonGeneration
         {
             var corridors = new HashSet<Vector2Int>();
             
-            var currentRoomCenter = _roomCentroids[Random.Range(0, _roomCentroids.Count)];
-            _roomCentroids.Remove(currentRoomCenter);
-            
-            while (_roomCentroids.Count > 0)
+            // Get centre position of each room
+            var roomCentroids = new List<Vector2Int>();
+            foreach (var leaf in _bspDungeonTree.Leafs)
             {
-                Vector2Int closest = FindClosestPointTo(currentRoomCenter, _roomCentroids);
-                _roomCentroids.Remove(closest);
+                roomCentroids.Add(leaf.GetRoomCentroid());
+            }
+            
+            // Get a random room center from the centroid list
+            var currentRoomCenter = roomCentroids[Random.Range(0, roomCentroids.Count)];
+            roomCentroids.Remove(currentRoomCenter);
+            
+            while (roomCentroids.Count > 0)
+            {
+                // Find closest room center to the current room
+                Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCentroids);
+                roomCentroids.Remove(closest);
 
+                // Create a corridor between the current and the closeset room
                 HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
                 currentRoomCenter = closest;
+                
+                // Merge this corridor's floor with all the other corridors
                 corridors.UnionWith(newCorridor);
             }
 
@@ -119,7 +94,7 @@ namespace DungeonGeneration
             var corridor = new HashSet<Vector2Int>();
             var position = currentRoomCenter;
             corridor.Add(position);
-            
+
             while (position.y != destination.y)
             {
                 if (destination.y > position.y)
@@ -133,7 +108,7 @@ namespace DungeonGeneration
 
                 corridor.Add(position);
             }
-            
+
             while (position.x != destination.x)
             {
                 if (destination.x > position.x)
@@ -157,7 +132,7 @@ namespace DungeonGeneration
             float distance = float.MaxValue;
             foreach (var position in roomCenters)
             {
-                float currentDistance = Vector2Int.Distance(position, currentRoomCenter);
+                var currentDistance = Vector2Int.Distance(position, currentRoomCenter);
                 if (currentDistance < distance)
                 {
                     distance = currentDistance;
@@ -176,16 +151,19 @@ namespace DungeonGeneration
             {
                 var boundary = leaf.Boundary;
 
+                // Set a random origin point for the new room from offset to the center of the leaf node (in local coordinate for the node)
                 Vector2Int origin = new Vector2Int(
                     Random.Range(offset, boundary.size.x / 2),
                     Random.Range(offset, boundary.size.y / 2)
                 );
 
+                // Set a random size for the room that cannot be larger than the node, but cannot be lower than the minimum room size
                 Vector2Int randomSize = new Vector2Int(
-                    Random.Range(origin.x + minRoomWidth, boundary.size.x - offset),
-                    Random.Range(origin.y + minRoomHeight, boundary.size.y - offset)
+                    Random.Range(origin.x + minimumRoomSize.x, boundary.size.x - offset),
+                    Random.Range(origin.y + minimumRoomSize.y, boundary.size.y - offset)
                 );
 
+                // Generate the floor coordinate for each tiles of the room (scaled in global coordinate of the Scene)
                 for (int col = origin.x; col < randomSize.x; col++)
                 {
                     for (int row = origin.y; row < randomSize.y; row++)
@@ -193,7 +171,7 @@ namespace DungeonGeneration
                         Vector2Int position = boundary.min + new Vector2Int(col, row);
                         // Position for all the room floor's
                         floorPositions.Add(position);
-                        
+
                         // Add the position to this specific room
                         leaf.Floors.Add(position);
                     }
@@ -208,7 +186,7 @@ namespace DungeonGeneration
          */
         private void OnDrawGizmos()
         {
-            if (_bspDungeonTree == null) return;
+            if (_bspDungeonTree == null || !displayDebugGizmos) return;
 
             DrawDebugTreeLeafs();
         }
@@ -247,9 +225,9 @@ namespace DungeonGeneration
                     new Vector2(node.Boundary.xMin, node.Boundary.yMin)
                 );
             }
-            
-            /*Handles.color = Color.blue;
 
+            // This commented code is supposed to show the centre of each room. I keep it for reference for now
+            /*Handles.color = Color.blue;
             foreach (var centroid in roomCentroids)
             {
                 Handles.DrawSolidDisc((Vector2) centroid, Vector3.forward, 0.5f);
@@ -294,6 +272,33 @@ namespace DungeonGeneration
 
             if (node.LeftChild != null) DrawDebugTree(node.LeftChild);
             if (node.RightChild != null) DrawDebugTree(node.RightChild);
+        }
+        
+        // Validate the values in the Inspector (experimental, the conditions might needs to be tweaked, but it works)
+        private void OnValidate()
+        {
+            // Validate minimum room size
+            if (minimumRoomSize.x > minimumNodeSize.x)
+            {
+                minimumRoomSize.x = minimumNodeSize.x;
+            }
+            
+            if (minimumRoomSize.y > minimumRoomSize.y)
+            {
+                minimumRoomSize.y = minimumNodeSize.y;
+            }
+
+            // Validate split position
+            if (splitPosition.min > splitPosition.max)
+            {
+                splitPosition.min = splitPosition.max;
+            }
+
+            if (splitPosition.min < 0) splitPosition.min = 0;
+            if (splitPosition.max < 0) splitPosition.max = 0;
+            
+            if (splitPosition.min > 1) splitPosition.min = 1;
+            if (splitPosition.max > 1) splitPosition.max = 1;
         }
     }
 }

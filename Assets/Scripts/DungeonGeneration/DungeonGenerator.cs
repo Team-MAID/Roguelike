@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace DungeonGeneration
 {
+    /// <summary>
+    /// Common properties and methods to generate a procedural dungeon
+    /// </summary>
     public abstract class DungeonGenerator : MonoBehaviour
     {
         [SerializeField] protected TilemapVisualizer tilemapVisualizer;

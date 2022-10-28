@@ -4,6 +4,9 @@ using Utils;
 
 namespace DungeonGeneration
 {
+    /// <summary>
+    /// Implement different Random Walk algorithms that can be used to generate a dungeon
+    /// </summary>
     public static class RandomWalkAlgorithms
     {
         public static HashSet<Vector2Int> SimpleRandomWalk(Vector2Int startPosition, int walkLength)

@@ -1,28 +1,32 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
+    /// <summary>
+    /// Node of the BSP Tree, storing data related to a node and to the room stored in this node
+    /// </summary>
     public class BSPDungeonTreeNode
     {
+        // Global ID of the node, for debugging purposes only, must not be used for anything else than debugging
         private static int _globalID = -1;
-
-        public int ID { get; private set; }
+        public int ID { get; }
 
         /// <summary>
         /// If null, parent node is the root node
         /// </summary>
-        public BSPDungeonTreeNode Parent { get; set; }
+        public BSPDungeonTreeNode Parent { get; }
 
         /// <summary>
-        /// If null, parent node is a leaf
+        /// If null, this node is a leaf
         /// </summary>
         public BSPDungeonTreeNode LeftChild { get; private set; }
 
         /// <summary>
-        /// If null, parent node is a leaf
+        /// If null, this node is a leaf
         /// </summary>
         public BSPDungeonTreeNode RightChild { get; private set; }
 
@@ -32,14 +36,13 @@ namespace DungeonGeneration
         /// Node boundary
         /// </summary>
         /// <remarks>
-        /// X, Y origin of the rectangle = left, bottom
-        /// xMin, yMin = left, bottom
+        /// X, Y = left, bottom -equivalent to- xMin, yMin = left, bottom
         /// xMax, yMax = right, top
         /// </remarks>
         public RectInt Boundary { get; }
 
         /// <summary>
-        /// Actual Room boundary
+        /// Actual room boundary (floor positions)
         /// </summary>
         public List<Vector2Int> Floors { get; } = new();
 
@@ -133,6 +136,28 @@ namespace DungeonGeneration
             return false;
         }
 
+        public Vector2Int GetRoomCentroid()
+        {
+            return VectorUtils.GetCentroid(Floors);
+        }
+        
+        public bool IsLeaf()
+        {
+            return LeftChild == null || RightChild == null;
+        }
+
+
+        /// <summary>
+        /// Traverse the tree from Root node
+        /// </summary>
+        /// <param name="visitingNode">Action to make when visiting a node</param>
+        public void TraversePreOrder(Action<BSPDungeonTreeNode> visitingNode)
+        {
+            visitingNode(this);
+            LeftChild.TraversePreOrder(visitingNode);
+            RightChild.TraversePreOrder(visitingNode);
+        }
+
         private bool IsHorizontalSplit()
         {
             // If width is 25% larger than height, we split vertically
@@ -176,23 +201,6 @@ namespace DungeonGeneration
                 Boundary.width - subBoundary1.width, Boundary.height);
 
             return new[] {subBoundary1, subBoundary2};
-        }
-
-        public bool IsLeaf()
-        {
-            return LeftChild == null || RightChild == null;
-        }
-
-
-        /// <summary>
-        /// Traverse the tree from Root node
-        /// </summary>
-        /// <param name="visitingNode">Action to make when visiting a node</param>
-        public void TraversePreOrder(Action<BSPDungeonTreeNode> visitingNode)
-        {
-            visitingNode(this);
-            LeftChild.TraversePreOrder(visitingNode);
-            RightChild.TraversePreOrder(visitingNode);
         }
     }
 }
