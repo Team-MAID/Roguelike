@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class Ghost_Controller : MonoBehaviour
 {
-    private GameObject _target; // The object to follow (Player)
+    public GameObject _target; // The object to follow (Player)
     private Vector2 _movement; 
     public int _speed;
     private Rigidbody2D _rb;
 
     public PlayerController _player;
 
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_target != null && !_player.getHidingStatus()) // If the Ghost has found a target, follow it.
