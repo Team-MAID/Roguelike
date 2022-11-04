@@ -13,10 +13,8 @@ public class HealthSystem : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
-
-
-    // Update is called once per frame 
-    void Update()
+    
+    private void Update()
     {
 
         if (health > currentMaxHealth)
@@ -60,13 +58,13 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void decreaseHealth()
+    public void DecreaseHealth()
     {
         health--;
         Debug.Log("Health down");
     }
 
-    public void increaseHealth()
+    public void IncreaseHealth()
     {
         if (health < currentMaxHealth)
         {
@@ -75,7 +73,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void increaseMaxHealth()
+    public void IncreaseMaxHealth()
     {
         currentMaxHealth++;
         health = currentMaxHealth;

@@ -24,20 +24,20 @@ public class Collision : MonoBehaviour
         if (_otherColldier.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("collided with enemy");
-            GetComponent<HealthSystem>().decreaseHealth();
+            GetComponent<HealthSystem>().DecreaseHealth();
         }
 
         if (_otherColldier.gameObject.CompareTag("Food"))
         {
             Destroy(_otherColldier.gameObject);
-            GetComponent<HealthSystem>().increaseHealth();
+            GetComponent<HealthSystem>().IncreaseHealth();
             Debug.Log("collided with food");
         }
 
         if (_otherColldier.gameObject.CompareTag("HeartContainer"))
         {
             Destroy(_otherColldier.gameObject);
-            GetComponent<HealthSystem>().increaseMaxHealth();
+            GetComponent<HealthSystem>().IncreaseMaxHealth();
             Debug.Log("collided with heartContainer");
         }
     }
