@@ -296,9 +296,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7374765216110973054, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+      propertyPath: _range
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374765216110973054, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1022320851}
+    - target: {fileID: 7374765216110973054, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+      propertyPath: _chaseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374765216110973054, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+      propertyPath: _maxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374765216110973054, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+      propertyPath: _wanderSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374765216110973055, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+      propertyPath: m_Radius
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
 --- !u!114 &1022320851 stripped
@@ -621,13 +641,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1814196861 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9154216712139372069, guid: 1dbc2a57d05632e4ab24d29fa3a8a961, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2040884243551357632, guid: 1dbc2a57d05632e4ab24d29fa3a8a961, type: 3}
   m_PrefabInstance: {fileID: 2048564283}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10200b0325c06854a83fc743549bb3fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b554c6a5f84496594dbc50a0cbe9aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1997010538 stripped
@@ -668,6 +688,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1713902484}
+    - target: {fileID: 734497982426767335, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 1814196861}
     - target: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: m_Name
       value: Player
@@ -679,7 +703,7 @@ PrefabInstance:
     - target: {fileID: 5620541980126186932, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: uiInventory
       value: 
-      objectReference: {fileID: 1814196861}
+      objectReference: {fileID: 0}
     - target: {fileID: 5620541980126186934, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: m_RootOrder
       value: 1
