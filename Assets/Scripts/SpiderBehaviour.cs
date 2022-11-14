@@ -37,6 +37,15 @@ public class SpiderBehaviour : MonoBehaviour
                 movement = playerTransform.position - transform.position;
                 movement = movement.normalized;
                 rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
+                if (movement.x > 0)
+                {
+                    gameObject.transform.localScale = new Vector3(-1.2f, 1.2f, 1.0f);
+                }
+                else if (movement.x < 0)
+                {
+                    gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
+                }
             }
         }
         else

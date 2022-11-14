@@ -25,6 +25,15 @@ public class Bat_Controller : MonoBehaviour
             _movement = _target.transform.position - transform.position;
             _movement = _movement.normalized;
             _rb.MovePosition(_rb.position + _movement * _speed * Time.fixedDeltaTime);
+
+            if (_movement.x > 0)
+            {
+                gameObject.transform.localScale = new Vector3(-2.5f, 2.5f, 2.5f);
+            }
+            else if (_movement.x < 0)
+            {
+                gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+            }
         }
     }
 

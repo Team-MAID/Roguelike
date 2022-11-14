@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7374765216110973051}
   - component: {fileID: 7374765216110973055}
   - component: {fileID: 7374765216110973054}
+  - component: {fileID: 2297335911813851630}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: GhostDetectionCollider
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7374765216110973049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.56, y: -0.29, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7374765217046468212}
@@ -75,9 +76,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 223884021
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 589713132, guid: d9495fb63559bbb48a74bb36cb656793, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,7 +138,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18456e4bbf30fa9428e7b844323c026b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _player: {fileID: 0}
+  _target: {fileID: 0}
+  _maxDistance: 0
+  _range: 0
+  _chaseSpeed: 0
+  _wanderSpeed: 0
+--- !u!95 &2297335911813851630
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374765216110973049}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a89a52139424984985e7a6430b69ee4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7374765217046468211
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +176,7 @@ GameObject:
   - component: {fileID: 7374765217046468213}
   - component: {fileID: 7374765217046468214}
   - component: {fileID: 7374765217046468215}
+  - component: {fileID: 5053233086233901236}
   m_Layer: 0
   m_Name: Collider_Carrier
   m_TagString: Enemy
@@ -179,7 +206,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7374765217046468211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -229,3 +256,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &5053233086233901236
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374765217046468211}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.5}
+  m_EdgeRadius: 0
