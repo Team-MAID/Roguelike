@@ -1,12 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-
+public enum PlayerAnimStates
+{
+    Idle = 0,
+    Run= 1,
+    Jumping = 2,
+}
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed;
-    
+
+    public PlayerAnimStates playerAnimState;
+
     private Rigidbody2D _rb;
+    private Animator _animator;
+    private static readonly int State = Animator.StringToHash("State");
 
     private Vector2 _movement;
 
@@ -22,6 +31,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        playerAnimState = PlayerAnimStates.Idle;
+        _animator.SetInteger(State, (int)playerAnimState);
 
         setCoinsText();
     }
@@ -38,9 +50,30 @@ public class PlayerController : MonoBehaviour
         {
             _rb.MovePosition(_rb.position + _movement * maxSpeed * Time.fixedDeltaTime);
         }
+        int horizontalInput = (int)Input.GetAxisRaw("Horizontal");
+        int verticalInput = (int)Input.GetAxisRaw("Vertical");
 
-        Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  
-        Rotate(_mPos);
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+            playerAnimState = PlayerAnimStates.Idle;
+        }
+        else
+        {
+            playerAnimState = PlayerAnimStates.Run;
+            if (horizontalInput < 0)
+            {
+                gameObject.transform.localScale = new Vector3(-1.7f, 1.7f, 1.7f);
+            }
+            else if (horizontalInput > 0)
+            {
+                gameObject.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
+            }
+
+        }
+        Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Rotate(_mPos);
+        _animator.SetInteger(State, (int)playerAnimState);
+
     }
 
     private void Rotate(Vector3 _mPos)
