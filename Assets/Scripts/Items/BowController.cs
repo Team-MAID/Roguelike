@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BowController : WeaponItem
+public class BowController : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
 

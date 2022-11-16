@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordController : WeaponItem
+public class SwordController : MonoBehaviour
 {
     [SerializeField] private int hitboxDuration;
 

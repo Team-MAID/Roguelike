@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3515319935359598650}
   - component: {fileID: 5438643046204135668}
   - component: {fileID: 6137579662602476346}
+  - component: {fileID: 3089434633979144508}
+  - component: {fileID: 4986107894777101316}
   m_Layer: 0
   m_Name: Weapon Bow
   m_TagString: Weapon_Player
@@ -138,5 +140,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295a5d0903a2ced4f9507b8889307858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 94148c3596a3a8c419e0125a725a914b, type: 2}
   projectile: {fileID: 3044741921344223859, guid: d08aa4c4163d13e4fbe2ace095d5580b, type: 3}
+--- !u!50 &3089434633979144508
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137579662602476341}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &4986107894777101316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137579662602476341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 94148c3596a3a8c419e0125a725a914b, type: 2}
