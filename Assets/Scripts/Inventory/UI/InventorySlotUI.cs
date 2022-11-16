@@ -56,10 +56,16 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             ConsumableItemData consumableItemData = _item.Data as ConsumableItemData;
+            WeaponItemData weaponItemData = _item.Data as WeaponItemData;
             if (consumableItemData != null)
             {
                 consumableItemData.InvokeConsumeEvent();
-                consumableItemData.Prefab.GetComponent<ConsumableItem>().Consume(_item.Data);                
+                consumableItemData.Prefab.GetComponent<ConsumableItem>().Consume(_item.Data);
+            }
+            else if (weaponItemData != null)
+            {
+                weaponItemData.InvokeEquipEvent();
+                weaponItemData.Prefab.GetComponent<WeaponItem>().Equip(_item.Data);
             }
         }
 

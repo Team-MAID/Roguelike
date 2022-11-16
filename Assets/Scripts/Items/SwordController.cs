@@ -44,4 +44,9 @@ public class SwordController : WeaponItem
             Destroy(_other.gameObject);
         }
     }
+
+    public override void Equip(ItemData data)
+    {
+        Debug.Log("Sword Equipped");
+    }
 }

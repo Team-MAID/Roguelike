@@ -12,7 +12,7 @@ public abstract class Item : MonoBehaviour, ICollectable
     [SerializeField] protected ItemData itemData;
 
     /// <summary>
-    /// When the item is collected from the ground, its corresponding GameObject is destroyed and a event is invoked.
+    /// When the item is collected from the ground, its corresponding GameObject is destroyed and an event is invoked.
     /// </summary>
     public void Collect()
     {

@@ -18,7 +18,7 @@ public class ConsumableItemData : ItemData
 
         return builder.ToString();
     }
-    
+
     /// <summary>
     /// Invoke an event when this item is consumed by something
     /// </summary>

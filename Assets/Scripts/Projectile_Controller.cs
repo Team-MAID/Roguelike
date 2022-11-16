@@ -47,7 +47,7 @@ public class Projectile_Controller : MonoBehaviour
             }
             else
             {
-                Debug.Log("Object Destroyed by Drojectile");
+                Debug.Log("Object Destroyed by Projectile");
                 Destroy(_other.gameObject);
             }
 

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class BowController : WeaponItem
@@ -8,10 +9,13 @@ public class BowController : WeaponItem
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("LeftClick");
-
+            //Debug.Log("LeftClick");
             Instantiate(projectile, this.transform.position, Quaternion.identity);
-
         }
+    }
+
+    public override void Equip(ItemData data)
+    {
+        Debug.Log("Bow Equipped");
     }
 }
