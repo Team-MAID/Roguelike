@@ -7,7 +7,7 @@ public enum PlayerAnimStates
     Run= 1,
     Jumping = 2,
 }
-public class PlayerController : MonoBehaviour
+public class PlayerController : playerStats
 {
     [SerializeField] private float maxSpeed;
 
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int State = Animator.StringToHash("State");
 
     private Vector2 _movement;
-
+    
     int coins = 0;
 
     public TextMeshProUGUI coinText;
