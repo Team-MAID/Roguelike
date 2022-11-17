@@ -19,7 +19,7 @@ public class PlayerController : playerStats
 
     private Vector2 _movement;
     
-    int coins = 0;
+    public int coins = 0;
 
     public TextMeshProUGUI coinText;
 
@@ -30,6 +30,13 @@ public class PlayerController : playerStats
     // Start is called before the first frame update
     private void Start()
     {
+        baseAttack = attack;
+        baseDefense = defense;
+        baseHealth = health;
+        baseSpeed = speed;
+        isPotionActive = false;
+        isImmuneTodamage = false;
+        //Debug.Log("Speed" + baseSpeed);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         playerAnimState = PlayerAnimStates.Idle;
@@ -48,7 +55,7 @@ public class PlayerController : playerStats
     {
         if(!isHiding)
         {
-            _rb.MovePosition(_rb.position + _movement * maxSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
         }
         int horizontalInput = (int)Input.GetAxisRaw("Horizontal");
         int verticalInput = (int)Input.GetAxisRaw("Vertical");

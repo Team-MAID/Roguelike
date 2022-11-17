@@ -204,8 +204,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c28bb785bda4844799d5aa1749cb408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPotionActive: 0
+  isImmuneTodamage: 0
+  attack: 10
+  defense: 10
+  health: 3
+  speed: 4
+  potionCoolDown: 5
   maxSpeed: 5
   playerAnimState: 0
+  coins: 0
   coinText: {fileID: 0}
 --- !u!114 &-6658038687245331566
 MonoBehaviour:

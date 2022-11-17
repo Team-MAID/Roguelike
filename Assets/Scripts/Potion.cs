@@ -22,97 +22,102 @@ public class Potion : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
-    bool isPotionActive;
     string potionType;
     float m_multiplier;
 
     // Start is called before the first frame update
     void Start()
     {
+        potionType = this.gameObject.tag;
         player = GameObject.Find("Player");
     }
 
-    void useStandardPotion(string t_potionType)
+    public void useStandardPotion()
     {
-        if (!isPotionActive)
+        m_multiplier = 2.0f;
+        if (potionType == "SpeedUpPotion")
         {
-            // delegate int func;
-            isPotionActive = true;
-            m_multiplier = 2.0f;
-            if (t_potionType == "potionSpeedUp")
-            {
-                player.GetComponent<playerStats>().setSpeed(m_multiplier);
-                // func = player.GetComponent<playerStats>().setSpeed(m_multiplier);
-                //resetPotionEffects(m_multiplier);
-            }
-            else if (t_potionType == "potionDefenseUp")
-            {
-                player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
-            }
-            else if (t_potionType == "potionAttackUp")
-            {
-                player.GetComponent<playerStats>().setDefense(m_multiplier);
-            }
-            else if (t_potionType == "potionmaxHealth")
-            {
-               // player.GetComponent<playerStats>().setHealth();
-            }
+            player.GetComponent<playerStats>().setSpeed(m_multiplier);
+        }
+        else if (potionType == "DefenseUpPotion")
+        {
+            player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
+        }
+        else if (potionType == "AttackUpPotion")
+        {
+            player.GetComponent<playerStats>().setDefense(m_multiplier);
+        }
+        else if (potionType == "RefillHealthPotion")
+        {
+            player.GetComponent<HealthSystem>().IncreaseHealth();
+            player.GetComponent<playerStats>().isPotionActive = false;
         }
     }
 
-    void resetPotionEffects(float t_currentMultiplier)
+    void useMysteryPotion()
     {
-        player.GetComponent<playerStats>().setSpeed();
-        player.GetComponent<playerStats>().setDefense();
-        player.GetComponent<playerStats>().setDefense();
-    }
+        m_multiplier = 0.5f;
+        int temp_randomNumber = Random.Range(0, 8);
+        m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
 
-    void useMysteryPotion(string t_potionType)
-    {
-        if (!isPotionActive)
+        // for testing 
+        //m_mysteryPotionEffects = (mysteryPotionEffects)3;
+        //Debug.Log(temp_randomNumber);
+        if (m_mysteryPotionEffects == mysteryPotionEffects.loseHeart)
         {
-            isPotionActive = true;
-            m_multiplier = 0.5f;
-            int temp_randomNumber = Random.Range(0, 8);
-            m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
-            if (m_mysteryPotionEffects == mysteryPotionEffects.loseHeart)
-            {
-
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.defenseDown)
-            {
-                player.GetComponent<playerStats>().setDefense(m_multiplier);
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.attackDown)
-            {
-                player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.speedDown)
-            {
-                player.GetComponent<playerStats>().setSpeed(m_multiplier);
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.coins)
-            {
-
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
-            {
-
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.allBaseStatsUp)
-            {
-
-            }
-            else if (m_mysteryPotionEffects == mysteryPotionEffects.maxHealthUp)
-            {
-                //player.GetComponent<playerStats>().setHealth();
-            }
+            player.GetComponent<HealthSystem>().DecreaseHealth();
+            player.GetComponent<playerStats>().isPotionActive = false;
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.defenseDown)
+        {
+            player.GetComponent<playerStats>().setDefense(m_multiplier);
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.attackDown)
+        {
+            player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.speedDown)
+        {
+            player.GetComponent<playerStats>().setSpeed(m_multiplier);
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.coins)
+        {
+            player.GetComponent<PlayerController>().coins += 10;
+            player.GetComponent<playerStats>().isPotionActive = false;
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
+        {
+            player.GetComponent<PlayerController>().setImmunity();
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.allBaseStatsUp)
+        {
+            player.GetComponent<playerStats>().increaseAllStats();
+            player.GetComponent<playerStats>().isPotionActive = false;
+        }
+        else if (m_mysteryPotionEffects == mysteryPotionEffects.maxHealthUp)
+        {
+            GetComponent<HealthSystem>().IncreaseMaxHealth();
+            player.GetComponent<playerStats>().isPotionActive = false;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D _otherColldier)
     {
-
+        if (_otherColldier.gameObject.CompareTag("Player"))
+        {
+            if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
+            {
+                player.GetComponent<playerStats>().isPotionActive = true;
+                if (potionType != "MysteryPotion")
+                {
+                    useStandardPotion();
+                }
+                else
+                {
+                    useMysteryPotion();
+                }
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

@@ -4,45 +4,72 @@ using UnityEngine;
 
 public class playerStats : MonoBehaviour
 {
-    float baseAttack;
-    float baseDefense;
-    float baseHealth;
-    float baseSpeed;
+    public bool isPotionActive;
+    public bool isImmuneTodamage;
+
+    protected float baseAttack;
+    protected float baseDefense;
+    protected int baseHealth;
+    protected float baseSpeed;
 
     float weaponDamage;
     float armourDefense;
 
-    float attack;
-    float defense;
-    float health;
-    float speed;
+    [SerializeField]
+    protected float attack;
+    [SerializeField]
+    protected float defense;
+    [SerializeField]
+    protected int health;
+    [SerializeField]
+    protected float speed;
+    [SerializeField]
+    protected float potionCoolDown;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Increasing stats based on potion used
     public void setAttackDamage(float t_multiplier)
     {
         attack = baseAttack * t_multiplier + weaponDamage;
+        StartCoroutine(potionDuration());
     }
     public void setSpeed(float t_multiplier)
     {
-        Debug.Log(speed);
         speed = baseSpeed * t_multiplier;
-        Debug.Log(speed);
+        StartCoroutine(potionDuration());
     }
     public void setDefense(float t_multiplier)
     {
         defense = baseDefense * t_multiplier + armourDefense;
+        StartCoroutine(potionDuration());
     }
+    public void increaseAllStats()
+    {
+        baseAttack += 2;
+        baseSpeed += 0.5f;
+        baseDefense += 2;
+        setAttackDamage();
+        setDefense();
+        GetComponent<HealthSystem>().IncreaseMaxHealth();
+        setSpeed();
+    }
+
+    public void setImmunity()
+    {
+        isImmuneTodamage = true;
+        StartCoroutine(potionDuration());
+    }
+
+    IEnumerator potionDuration()
+    {
+        yield return new WaitForSeconds(potionCoolDown);
+        setSpeed();
+        setDefense();
+        setAttackDamage();
+        isImmuneTodamage = false;
+        isPotionActive = false;
+    }
+
+    // resetting to base stats after potion wears out
     public void setAttackDamage()
     {
         attack = baseAttack + weaponDamage;
@@ -55,8 +82,4 @@ public class playerStats : MonoBehaviour
     {
         defense = baseDefense + armourDefense;
     }
-    //void setHealth(float t_multiplier)
-    //{
-    //    health = baseHealth * t_multiplier;
-    //}
 }

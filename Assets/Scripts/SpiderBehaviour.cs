@@ -38,7 +38,22 @@ public class SpiderBehaviour : Enemy
         }
     }
 
-    bool CheckDistance(Transform playerTransform, Rigidbody2D rb)
+    public void DecreaseHealth()
+    {
+            health--;
+    }
+
+    bool isAlive()
+    {
+        if (health <= 0)
+        {
+            return false;
+        }
+        //Debug.Log("Alive");
+        return true;
+    }
+
+    bool CheckDistance()
     {
         // loop through enemies
         if (Vector2.Distance(rb.transform.position, playerTransform.position) < attackRange)

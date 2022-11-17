@@ -19,13 +19,11 @@ public class HealthSystem : MonoBehaviour
 
         if (health > currentMaxHealth)
         {
-            Debug.Log("Health Already Full");
             health = currentMaxHealth;
         }
 
         if (currentMaxHealth > upperHealthLimit)
         {
-            Debug.Log("Max health Limit reached");
             currentMaxHealth = upperHealthLimit;
         }
 
@@ -61,7 +59,6 @@ public class HealthSystem : MonoBehaviour
     public void DecreaseHealth()
     {
         health--;
-        Debug.Log("Health down");
     }
 
     public void IncreaseHealth()
@@ -69,15 +66,16 @@ public class HealthSystem : MonoBehaviour
         if (health < currentMaxHealth)
         {
             health++;
-            Debug.Log("Health recovered");
         }
     }
 
     public void IncreaseMaxHealth()
     {
-        currentMaxHealth++;
+        if (currentMaxHealth < upperHealthLimit)
+        {
+            currentMaxHealth++;
+        }
         health = currentMaxHealth;
-        Debug.Log("Max Health Increased");
     }
 } 
 
