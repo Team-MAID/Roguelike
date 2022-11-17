@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Vampire_Controller : MonoBehaviour
 {
@@ -11,30 +12,45 @@ public class Vampire_Controller : MonoBehaviour
     public int chaseSpeed;
 
     public float spawnBatTimer;
-    bool allowSpawnBats = true;
 
     public int batLimit = 0;
+
+    int maxHealth = 100;
+    int currentHealth;
+
+    public HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        healthBar.setMaxValue(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target != null) // If the Ghost has found a target, follow it.
+        if(currentHealth <= 0)
         {
-            spawnBatTimer -= Time.deltaTime;
-
-            if(spawnBatTimer < 0)
+            if (target != null) // If the Ghost has found a target, follow it.
             {
-                spawnBats();
-                spawnBatTimer = 5.0f;
+                spawnBatTimer -= Time.deltaTime;
+
+                if (spawnBatTimer < 0)
+                {
+                    spawnBats();
+                    spawnBatTimer = 5.0f;
+                }
+                movement = target.transform.position - transform.position;
+                movement = movement.normalized;
+                rb.MovePosition(rb.position + movement * chaseSpeed * Time.fixedDeltaTime);
             }
-            //movement = target.transform.position - transform.position;
-            //movement = movement.normalized;
-            //rb.MovePosition(rb.position + movement * chaseSpeed * Time.fixedDeltaTime);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                takeDamage(5);
+            }
         }
     }
 
@@ -53,4 +69,11 @@ public class Vampire_Controller : MonoBehaviour
 
         Debug.Log(batLimit);
    }
+
+    void takeDamage(int dmg)
+    {
+        currentHealth -= dmg;
+
+        healthBar.setHealth(currentHealth);
+    }
 }
