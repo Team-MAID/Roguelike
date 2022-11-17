@@ -17,20 +17,16 @@ public class AudioSystem : Observer
         if (notificationType == NotificationType.Hit && collValue != LayerMask.NameToLayer("Items"))
         {
             transform.Find("Hit").gameObject.GetComponent<AudioSource>().Play();
-            Debug.Log("HIT");
         }
         else if (notificationType == NotificationType.Hit && value.ToString() == "Player")
         {
             transform.Find("Collect").gameObject.GetComponent<AudioSource>().Play();
-            Debug.Log("COLLECT");
         }
 
         AudioSource walk = transform.Find("Walk").gameObject.GetComponent<AudioSource>();
 
         if (notificationType == NotificationType.Move)
-        {
-            Debug.Log("ah");
-           
+        {  
             if (!walk.isPlaying)
             {
                 walk.Play();
