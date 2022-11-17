@@ -15,11 +15,12 @@ TagManager:
   - GhostDetectionCollider
   - Ghost
   - Closet
+  - Shop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Items
   - Water
   - UI
   - 
