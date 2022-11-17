@@ -16,6 +16,12 @@ TagManager:
   - Ghost
   - Closet
   - Shop
+  - DefenseUpPotion
+  - KittyFood
+  - MysteryPotion
+  - SpeedUpPotion
+  - AttackUpPotion
+  - HealthRefillPotion
   layers:
   - Default
   - TransparentFX
@@ -23,8 +29,8 @@ TagManager:
   - Items
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Spider
   - 
   - 
   - 

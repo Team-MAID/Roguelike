@@ -53,7 +53,7 @@ public class SpiderBehaviour : Enemy
         return true;
     }
 
-    bool CheckDistance()
+    bool CheckDistance(Transform playerTransform, Rigidbody2D rb)
     {
         // loop through enemies
         if (Vector2.Distance(rb.transform.position, playerTransform.position) < attackRange)
