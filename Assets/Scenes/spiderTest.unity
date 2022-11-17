@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &82873604
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7031763060367958703, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_Name
+      value: SpiderNest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e8942e4490edf924883e278c27f4b890, type: 3}
 --- !u!1001 &439722781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -261,8 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff182172d726402b9e9eacdb89c9724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 5
-  rows: 5
   exit: {fileID: 110520, guid: cb0f3020bafec423aa31d0e491c4b811, type: 3}
   floorTiles:
   - {fileID: 106160, guid: 038998774947c4a8fa170d5b4492a7dd, type: 3}
@@ -304,63 +359,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &914077014
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7031763060367958703, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_Name
-      value: SpiderNest
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7031763060367958706, guid: e8942e4490edf924883e278c27f4b890, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e8942e4490edf924883e278c27f4b890, type: 3}
 --- !u!1001 &1074370864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,6 +366,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7725727702629954039, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6658038687245331566, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 

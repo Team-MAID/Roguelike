@@ -103,6 +103,13 @@ MonoBehaviour:
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
+  poisonSpiderPrefab:
+  - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
+  - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
+  - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
+  - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
+  - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
   spiderNest: {fileID: 7031763060367958703}
   spawnInterval: 5
   counter: 0
+  aliveTime: 0

@@ -2,36 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderBehaviour : MonoBehaviour
+public class SpiderBehaviour : Enemy
 {
     private bool following = false;
-
-    [SerializeField]
-    private GameObject player;
-
-    [SerializeField]
-    private GameObject spawner;
-
-    public int health = 2;
-
-    Transform playerTransform;
+    private float attackRange;
     private Vector2 movement;
-    public float attackRange = 5.0f;
-    public int speed = 2;
-    private Rigidbody2D rb;
+
     // Start is called before the first frame update
-    void Start()
+
+    public virtual void setAttackrange(float t_attackRange)
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        attackRange = t_attackRange;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void followMovement(ref Transform playerTransform, ref Rigidbody2D rb)
     {
         if (isAlive())
         {
-            StartCoroutine(Checks());
+            StartCoroutine(Checks(playerTransform, rb));
             if (following)
             {
                 movement = playerTransform.position - transform.position;
@@ -48,32 +36,12 @@ public class SpiderBehaviour : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
     }
 
-    public void DecreaseHealth()
-    {
-            health--;
-            Debug.Log("Spider Health Down");
-    }
-
-    bool isAlive()
-    {
-        if (health <= 0)
-        {
-            return false;
-        }
-        //Debug.Log("Alive");
-        return true;
-    }
-
-    bool CheckDistance()
+    bool CheckDistance(Transform playerTransform, Rigidbody2D rb)
     {
         // loop through enemies
-        if (Vector2.Distance(transform.position, playerTransform.position) < attackRange)
+        if (Vector2.Distance(rb.transform.position, playerTransform.position) < attackRange)
         {
             return true;
         }
@@ -84,11 +52,11 @@ public class SpiderBehaviour : MonoBehaviour
 
     }
 
-    IEnumerator Checks()
+    public IEnumerator Checks(Transform playerTransform, Rigidbody2D rb)
     {
         //loop
        // Debug.Log("Coroutine Ran");
-        if(CheckDistance())
+        if(CheckDistance(playerTransform, rb))
         {
             following = true;
         }
