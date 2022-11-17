@@ -8,10 +8,7 @@ public class BowController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("LeftClick");
-
             Instantiate(projectile, this.transform.position, Quaternion.identity);
-
         }
     }
 }
