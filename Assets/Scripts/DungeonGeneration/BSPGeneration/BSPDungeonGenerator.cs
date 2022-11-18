@@ -4,7 +4,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 
-namespace DungeonGeneration
+namespace DungeonGeneration.BSPGeneration
 {
     /// <summary>
     /// Setup and generate a dungeon on a tilemap component
@@ -28,7 +28,7 @@ namespace DungeonGeneration
 
         [SerializeField] private bool displayDebugGizmos = true;
 
-        private BSPDungeonTree _bspDungeonTree;
+        public BSPDungeonTree DungeonTree { get; private set; }
 
         private GameObject _roomHolder;
 
@@ -36,7 +36,7 @@ namespace DungeonGeneration
         protected override void RunProceduralGeneration()
         {
             RectInt rootBoundary = new RectInt(startPosition, new Vector2Int(dungeonSize.x, dungeonSize.y));
-            _bspDungeonTree = new BSPDungeonTree(
+            DungeonTree = new BSPDungeonTree(
                 rootBoundary,
                 minimumNodeSize.x, minimumNodeSize.y,
                 splitPosition.min, splitPosition.max
@@ -62,7 +62,7 @@ namespace DungeonGeneration
 
             // Get centre position of each room
             var roomCentroids = new List<Vector2Int>();
-            foreach (var leaf in _bspDungeonTree.Leafs)
+            foreach (var leaf in DungeonTree.Leafs)
             {
                 roomCentroids.Add(leaf.GetRoomCentroid());
             }
@@ -146,7 +146,7 @@ namespace DungeonGeneration
         {
             HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
 
-            foreach (var leaf in _bspDungeonTree.Leafs)
+            foreach (var leaf in DungeonTree.Leafs)
             {
                 var boundary = leaf.Boundary;
 
@@ -202,14 +202,14 @@ namespace DungeonGeneration
          */
         private void OnDrawGizmos()
         {
-            if (_bspDungeonTree == null || !displayDebugGizmos) return;
+            if (DungeonTree == null || !displayDebugGizmos) return;
 
             DrawDebugTreeLeafs();
         }
 
         private void DrawDebugTreeLeafs()
         {
-            foreach (BSPDungeonTreeNode node in _bspDungeonTree.Leafs)
+            foreach (BSPDungeonTreeNode node in DungeonTree.Leafs)
             {
 #if UNITY_EDITOR
                 GUIStyle style = new GUIStyle();

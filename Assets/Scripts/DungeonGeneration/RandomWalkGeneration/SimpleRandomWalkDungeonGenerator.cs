@@ -3,7 +3,7 @@ using System.Linq;
 using Data;
 using UnityEngine;
 
-namespace DungeonGeneration
+namespace DungeonGeneration.RandomWalkGeneration
 {
     public class SimpleRandomWalkDungeonGenerator : DungeonGenerator
     {
