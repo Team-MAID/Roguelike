@@ -24,6 +24,20 @@ namespace Utils
             new Vector2Int(1, -1), // DOWN-RIGHT
             new Vector2Int(-1, -1), // DOWN-LEFT
         };
+        
+        public static List<Vector2Int> AllDirections { get; } = new()
+        {
+            Vector2Int.up,
+            new Vector2Int(1, 1), // UP-RIGHT
+            Vector2Int.right,
+            new Vector2Int(1, -1), // DOWN-RIGHT
+            Vector2Int.down,
+            new Vector2Int(-1, -1), // DOWN-LEFT
+            Vector2Int.left,
+            new Vector2Int(-1, 1), // UP-LEFT
+        };
+        
+        
 
         public static Vector2Int GetRandomCardinalDirection()
         {
