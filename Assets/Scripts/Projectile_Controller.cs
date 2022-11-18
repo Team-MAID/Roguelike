@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile_Controller : MonoBehaviour
+public class ProjectileController : MonoBehaviour
 {
     public int _speed; // The projectil's speed.
     public int _lifetime; // The projectile's liftetime, gets destroyed at 0.
@@ -42,12 +42,12 @@ public class Projectile_Controller : MonoBehaviour
 
             if (_other.gameObject.GetComponent<EnemyHealthSystem>())
             {
-                Debug.Log("Enemy Health System Called");
+                //Debug.Log("Enemy Health System Called");
                 _other.gameObject.GetComponent<EnemyHealthSystem>().decreaseHealth();
             }
             else
             {
-                Debug.Log("Object Destroyed by Projectile");
+                //Debug.Log("Object Destroyed by Projectile");
                 Destroy(_other.gameObject);
             }
 

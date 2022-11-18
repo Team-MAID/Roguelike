@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost_Controller : MonoBehaviour
+public class GhostController : MonoBehaviour
 {
     public PlayerController _player;
     private Rigidbody2D     _rb;
@@ -20,6 +20,7 @@ public class Ghost_Controller : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()

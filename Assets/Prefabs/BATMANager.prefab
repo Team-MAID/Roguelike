@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 127571092915306476}
   - component: {fileID: 127571092915306477}
   m_Layer: 0
-  m_Name: BAT_MANager
+  m_Name: BATMANager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

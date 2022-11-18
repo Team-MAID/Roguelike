@@ -4,16 +4,16 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bat_Manager : MonoBehaviour
+public class BatManager : MonoBehaviour
 {
     public GameObject _batPrfb;
     public int _batCount;
-    private Bat_Controller[] _bats;
+    private BatController[] _bats;
     void Start()
     {
         for (int i = 0; i < _batCount; i++)
         {
-            Debug.Log("Loop " + i);
+            //Debug.Log("Loop " + i);
             Vector3 _offset = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
             Instantiate(_batPrfb, transform.position + _offset, Quaternion.identity, transform);
         }
@@ -26,10 +26,10 @@ public class Bat_Manager : MonoBehaviour
 
     public void ActivateTheBats()
     {
-       Debug.Log("ACTIVATE.....THE BATS!");
-       _bats = FindObjectsOfType<Bat_Controller>();
+       //Debug.Log("ACTIVATE.....THE BATS!");
+       _bats = FindObjectsOfType<BatController>();
 
-        foreach(Bat_Controller bat in _bats)
+        foreach(BatController bat in _bats)
         {
             bat._enabled = true;
         }
