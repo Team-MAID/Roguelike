@@ -30,7 +30,7 @@ public class Bat_Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D _other)
     {
-        if (!_enabled && (_other.CompareTag("Weapon_Player") || _other.CompareTag("Projectile_Player")))
+        if (!_enabled && (_other.CompareTag("PlayerWeaponSword") || _other.CompareTag("PlayerProjectileBow")))
         {
             _enabled = true;
             _batManger.ActivateTheBats();

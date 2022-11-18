@@ -6,18 +6,19 @@ public class SwordController : WeaponItem
 
     private int _hbLifetime;
     private Collider2D _hb;
-    private Rigidbody2D _rb;
-
+    private bool equipped;
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _hb = GetComponent<Collider2D>();
         _hbLifetime = hitboxDuration;
+
+        if (transform.parent != null && transform.parent.tag == "Player") { equipped = true; }
+        else { equipped = false; }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !_hb.enabled)
+        if (Input.GetMouseButtonDown(0) && !_hb.enabled && equipped)
         {
             //Debug.Log("LeftClick");
             _hb.enabled = true;
@@ -26,13 +27,12 @@ public class SwordController : WeaponItem
 
     private void FixedUpdate()
     {
-        // TODO: Find another way to deactivate the HitBox instead of deactivating the collider
         if (_hb.enabled)
         {
             _hbLifetime--;
             if (_hbLifetime <= 0)
             {
-                _hbLifetime = hitboxDuration;
+                _hbLifetime = hitboxDuration;            
             }
         }
     }
@@ -47,6 +47,20 @@ public class SwordController : WeaponItem
 
     public override void Equip(ItemData data)
     {
-        Debug.Log("Sword Equipped");
+        GameObject player = GameObject.FindWithTag("Player");
+        SwordController sword = player.GetComponentInChildren<SwordController>();
+
+        Vector3 offset = new Vector3(1.2f,0,0);
+
+        if (sword == null)
+        {
+            Instantiate(this, player.transform.position + offset, Quaternion.identity, player.transform);
+            Debug.Log("Sword Equipped");
+        }
+        else
+        {
+            Destroy(sword.gameObject);
+            Debug.Log("Sword Un-Equipped");
+        }
     }
 }

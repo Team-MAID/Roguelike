@@ -10,9 +10,9 @@ public class HealthSystem : MonoBehaviour
     public int currentMaxHealth;
     public int upperHealthLimit;
 
-    public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public Image[] hearts;
     
     private void Update()
     {

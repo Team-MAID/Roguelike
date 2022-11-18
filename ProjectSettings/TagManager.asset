@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Projectile_Player
-  - Weapon_Player
   - Soda
   - Enemy
   - Exit
@@ -15,6 +13,12 @@ TagManager:
   - GhostDetectionCollider
   - Ghost
   - Closet
+  - Shop
+  - Wall
+  - Floor
+  - PlayerWeaponBow
+  - PlayerWeaponSword
+  - PlayerProjectileBow
   layers:
   - Default
   - TransparentFX

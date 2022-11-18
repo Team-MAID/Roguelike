@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Manage everything related to an inventory
@@ -46,6 +47,7 @@ public class Inventory
         }
 
         InventoryChanged?.Invoke();
+
     }
 
     /// <summary>
