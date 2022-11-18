@@ -23,7 +23,7 @@ namespace DungeonGeneration
         [SerializeField] [Tooltip("Minimum size of a room inside a node (cannot be larger than the node size")]
         private Vector2Int minimumRoomSize = new() {x = 20, y = 20};
 
-        [SerializeField] [Range(0, 10)] [Tooltip("Room offset from the border of the node")]
+        [SerializeField] [Range(0, 5)] [Tooltip("Room offset from the border of the node")]
         private int offset = 2;
 
         [SerializeField] private bool displayDebugGizmos = true;
@@ -150,24 +150,41 @@ namespace DungeonGeneration
             {
                 var boundary = leaf.Boundary;
 
-                // Set a random origin point for the new room from offset to the center of the leaf node (in local coordinate for the node)
-                Vector2Int origin = new Vector2Int(
-                    Random.Range(offset, boundary.size.x / 2),
-                    Random.Range(offset, boundary.size.y / 2)
-                );
-
                 // Set a random size for the room that cannot be larger than the node, but cannot be lower than the minimum room size
                 Vector2Int randomSize = new Vector2Int(
-                    Random.Range(origin.x + minimumRoomSize.x, boundary.size.x - offset),
-                    Random.Range(origin.y + minimumRoomSize.y, boundary.size.y - offset)
+                    Random.Range(minimumRoomSize.x, boundary.size.x),
+                    Random.Range(minimumRoomSize.y, boundary.size.y)
                 );
 
-                // Generate the floor coordinate for each tiles of the room (scaled in global coordinate of the Scene)
-                for (int col = origin.x; col < randomSize.x; col++)
+                // Set a random origin point for the new room from offset to the center of the calculated room size node (in local coordinate node coordinates)
+                Vector2Int origin = new Vector2Int(
+                    Random.Range(offset, randomSize.x / 2),
+                    Random.Range(offset, randomSize.y / 2)
+                );
+
+                // Calculate the maximum X,Y positions of the room 
+                int xMax = origin.x + randomSize.x;
+                int yMax = origin.y + randomSize.y;
+
+                // If the maximum X,Y positions is larger than the size of the node's boundary,
+                // we set the maximum to be not larger that the boundary size, minus the offset
+                if (xMax >= boundary.size.x)
                 {
-                    for (int row = origin.y; row < randomSize.y; row++)
+                    xMax = xMax - origin.x - offset;
+                }
+
+                if (yMax >= boundary.size.y)
+                {
+                    yMax = yMax - origin.y - offset;
+                }
+
+                // Generate the floor coordinate for each tiles of the room (scaled in global coordinate of the Scene)
+                for (int col = origin.x; col < xMax - offset; col++)
+                {
+                    for (int row = origin.y; row < yMax - offset; row++)
                     {
                         Vector2Int position = boundary.min + new Vector2Int(col, row);
+                        //if (!boundary.Contains(position)) continue;
                         // Position for all the room floor's
                         floorPositions.Add(position);
 
@@ -194,13 +211,13 @@ namespace DungeonGeneration
         {
             foreach (BSPDungeonTreeNode node in _bspDungeonTree.Leafs)
             {
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 GUIStyle style = new GUIStyle();
                 style.alignment = TextAnchor.MiddleCenter;
                 style.normal.textColor = Color.red;
 
                 //Handles.Label(node.Boundary.center, node.ID.ToString(), style);
-                #endif
+#endif
 
                 // bottom/left -> top/left
                 Gizmos.DrawLine(

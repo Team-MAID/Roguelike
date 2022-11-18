@@ -71,28 +71,34 @@ namespace DungeonGeneration
         /// <param name="maxSplitPosition">Maximum position to split in the current (0.6 is a good value for heterogeneous)</param>
         public bool Split(float minNodeWidth, float minNodeHeight, float minSplitPosition, float maxSplitPosition)
         {
-            // Can't split a node that has already been split
-            //if (LeftChild != null || RightChild != null) return false;
-
-            RectInt subBoundary1;
-            RectInt subBoundary2;
+            // =====================
+            // WARNING: The minimum width and height does not work properly, because, even if the current size of the node
+            // is big enough, the position of the split can split in a position that make the new splitted rooms smaller
+            // than the minimum.
+            // I'd like to fix this problem, however, I do not have the time to do it. It does not cause too much issue, so I let it like that for now.
+            // Just something to keep in mind.
+            // =====================
 
             bool horizontal = IsHorizontalSplit();
 
             // Determine where it is going to split
             float splitPosition = Random.Range(minSplitPosition, maxSplitPosition);
 
-            if (Boundary.size.x >= minNodeWidth && Boundary.size.y >= minNodeHeight)
+
+            if (Boundary.size.x > minNodeWidth && Boundary.size.y > minNodeHeight)
             {
+                RectInt subBoundary1;
+                RectInt subBoundary2;
+
                 if (horizontal)
                 {
-                    if (Boundary.size.y >= minNodeHeight * 2)
+                    if (Boundary.size.y > minNodeHeight * 2)
                     {
                         var boundaries = SplitHorizontally(splitPosition);
                         subBoundary1 = boundaries[0];
                         subBoundary2 = boundaries[1];
                     }
-                    else if (Boundary.size.x >= minNodeWidth * 2)
+                    else if (Boundary.size.x > minNodeWidth * 2)
                     {
                         var boundaries = SplitVertically(splitPosition);
                         subBoundary1 = boundaries[0];
@@ -105,13 +111,13 @@ namespace DungeonGeneration
                 }
                 else
                 {
-                    if (Boundary.size.x >= minNodeWidth * 2)
+                    if (Boundary.size.x > minNodeWidth * 2)
                     {
                         var boundaries = SplitVertically(splitPosition);
                         subBoundary1 = boundaries[0];
                         subBoundary2 = boundaries[1];
                     }
-                    else if (Boundary.size.x >= minNodeHeight * 2)
+                    else if (Boundary.size.x > minNodeHeight * 2)
                     {
                         var boundaries = SplitHorizontally(splitPosition);
                         subBoundary1 = boundaries[0];
@@ -122,17 +128,18 @@ namespace DungeonGeneration
                         return false;
                     }
                 }
-                
+
+
                 LeftChild = new BSPDungeonTreeNode(subBoundary1, this);
                 RightChild = new BSPDungeonTreeNode(subBoundary2, this);
 
                 LeftChild.Sister = RightChild;
                 RightChild.Sister = LeftChild;
-                
-                return true;
 
+                return true;
             }
-            
+
+
             return false;
         }
 
@@ -140,7 +147,7 @@ namespace DungeonGeneration
         {
             return VectorUtils.GetCentroid(Floors);
         }
-        
+
         public bool IsLeaf()
         {
             return LeftChild == null || RightChild == null;
