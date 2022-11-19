@@ -19,6 +19,8 @@ public class Ghost_Controller : MonoBehaviour
 
     void Start()
     {
+        _player = FindObjectOfType<PlayerController>();
+        _target = _player.gameObject;
         _rb = GetComponent<Rigidbody2D>();
     }
 

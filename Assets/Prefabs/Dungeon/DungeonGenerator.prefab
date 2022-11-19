@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonGenerator: {fileID: 9151462466765492509}
-  playerPrefab: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  playerPrefab: {fileID: 0}
   batPrefab: {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
   ratPrefab: {fileID: 2314442898864716521, guid: 8ce9e8833eec1664f9dac67658ba9ce9, type: 3}
   ghostPrefab: {fileID: 7374765216110973049, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}

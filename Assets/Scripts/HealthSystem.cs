@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,13 @@ public class HealthSystem : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
-    
+
+    private void Start()
+    {
+        GameObject healthUI = GameObject.Find("HealthUI");
+        hearts = healthUI.GetComponentsInChildren<Image>();
+    }
+
     private void Update()
     {
 

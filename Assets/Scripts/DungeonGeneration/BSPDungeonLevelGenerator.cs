@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DungeonGeneration.BSPGeneration;
+using InventorySystem.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -114,7 +115,16 @@ namespace DungeonGeneration
             // Add 0.5 for the game object to be instantiated in the center of the tile
             randomFloorPosition += new Vector2(0.5f, 0.5f);
 
-            _player = Instantiate(playerPrefab, randomFloorPosition, Quaternion.identity);
+            //_player = Instantiate(playerPrefab, randomFloorPosition, Quaternion.identity);
+            playerPrefab.transform.position = randomFloorPosition;
+            playerPrefab.SetActive(true);
+            
+            /*var mainCamera = Camera.main;
+            if (mainCamera)
+            {
+                var cameraController = mainCamera.GetComponent<CameraController>();
+                cameraController.Player = playerPrefab;
+            }*/
         }
 
         private void SpawnItemsInRoom(BSPDungeonTreeNode dungeonNode)
