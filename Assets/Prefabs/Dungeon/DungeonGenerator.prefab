@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9151462466765492507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9151462466765492506}
+  - component: {fileID: 9151462466765492509}
+  - component: {fileID: 7717990776045722386}
+  m_Layer: 0
+  m_Name: DungeonGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9151462466765492506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151462466765492507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9151462466765492509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151462466765492507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71f23abef3e4a03824f97a1bf810887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapVisualizer: {fileID: 0}
+  startPosition: {x: 0, y: 0}
+  bspDungeonData: {fileID: 11400000, guid: ef0fd2f070a7e604e92d0174a3d73d3d, type: 2}
+  displayDebugGizmos: 1
+--- !u!114 &7717990776045722386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151462466765492507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613631c81a0d4992a300e57f78439849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonGenerator: {fileID: 9151462466765492509}
+  playerPrefab: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  batPrefab: {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  ratPrefab: {fileID: 2314442898864716521, guid: 8ce9e8833eec1664f9dac67658ba9ce9, type: 3}
+  ghostPrefab: {fileID: 7374765216110973049, guid: 7bc1f1ed35e977d4bacd3aa4ff3f998c, type: 3}
+  spiderNestPrefab: {fileID: 7031763060367958703, guid: e8942e4490edf924883e278c27f4b890, type: 3}
+  closetPrefab: {fileID: 1118723222277212276, guid: f149ab1d96eabf54c8572f05c5017f07, type: 3}
+  shopPrefab: {fileID: 233184551225133887, guid: 1b4e9069d6d6a474381cd9be760a2116, type: 3}
+  healthRefillPotionPrefab: {fileID: 5629341602598069770, guid: 98a97d454ace3164cbaf0fa7ae2aae42, type: 3}
+  attackUpPotionPrefab: {fileID: 6182048512241065415, guid: 18990bd85f8de9148848b417b18c370a, type: 3}
+  defenseUpPotionPrefab: {fileID: 5653664522429949210, guid: 5519b72aa35ec1844978212ccc97e917, type: 3}
+  mysteryPotionPrefab: {fileID: 7102261352777427429, guid: 171ff33e79bdf744cacb2abe8c656317, type: 3}
+  speedPotionPrefab: {fileID: 6722646109092365159, guid: c76913f3d2862394799287617832ea9b, type: 3}
+  swordPrefab: {fileID: 8953738396917018979, guid: 516d1db83c1272f46a0f92780032c5fb, type: 3}
+  bowPrefab: {fileID: 6137579662602476341, guid: c45fc3d926b9fad49af05ff9605538d5, type: 3}

@@ -11,20 +11,8 @@ namespace DungeonGeneration.BSPGeneration
     /// </summary>
     public class BSPDungeonGenerator : DungeonGenerator
     {
-        [SerializeField] [Tooltip("Size of the root tree containing each node and room")]
-        private Vector2Int dungeonSize = new() {x = 200, y = 200};
-
-        [SerializeField] [Tooltip("Split a node between a two random values")]
-        private MinMax splitPosition = new() {min = 0.3f, max = 0.6f};
-
-        [SerializeField] [Tooltip("Minimum size of the node in width and height")]
-        private Vector2Int minimumNodeSize = new() {x = 40, y = 40};
-
-        [SerializeField] [Tooltip("Minimum size of a room inside a node (cannot be larger than the node size")]
-        private Vector2Int minimumRoomSize = new() {x = 20, y = 20};
-
-        [SerializeField] [Range(0, 5)] [Tooltip("Room offset from the border of the node")]
-        private int offset = 2;
+        [SerializeField]
+        private BSPDungeonSO bspDungeonData;
 
         [SerializeField] private bool displayDebugGizmos = true;
 
@@ -35,11 +23,11 @@ namespace DungeonGeneration.BSPGeneration
 
         protected override void RunProceduralGeneration()
         {
-            RectInt rootBoundary = new RectInt(startPosition, new Vector2Int(dungeonSize.x, dungeonSize.y));
+            RectInt rootBoundary = new RectInt(startPosition, new Vector2Int(bspDungeonData.DungeonSize.x, bspDungeonData.DungeonSize.y));
             DungeonTree = new BSPDungeonTree(
                 rootBoundary,
-                minimumNodeSize.x, minimumNodeSize.y,
-                splitPosition.min, splitPosition.max
+                bspDungeonData.MinimumNodeSize.x, bspDungeonData.MinimumNodeSize.y,
+                bspDungeonData.SplitPosition.min, bspDungeonData.SplitPosition.max
             );
 
             CreateRooms();
@@ -152,14 +140,14 @@ namespace DungeonGeneration.BSPGeneration
 
                 // Set a random size for the room that cannot be larger than the node, but cannot be lower than the minimum room size
                 Vector2Int randomSize = new Vector2Int(
-                    Random.Range(minimumRoomSize.x, boundary.size.x),
-                    Random.Range(minimumRoomSize.y, boundary.size.y)
+                    Random.Range(bspDungeonData.MinimumRoomSize.x, boundary.size.x),
+                    Random.Range(bspDungeonData.MinimumRoomSize.y, boundary.size.y)
                 );
 
                 // Set a random origin point for the new room from offset to the center of the calculated room size node (in local coordinate node coordinates)
                 Vector2Int origin = new Vector2Int(
-                    Random.Range(offset, randomSize.x / 2),
-                    Random.Range(offset, randomSize.y / 2)
+                    Random.Range(bspDungeonData.Offset, randomSize.x / 2),
+                    Random.Range(bspDungeonData.Offset, randomSize.y / 2)
                 );
 
                 // Calculate the maximum X,Y positions of the room 
@@ -170,18 +158,18 @@ namespace DungeonGeneration.BSPGeneration
                 // we set the maximum to be not larger that the boundary size, minus the offset
                 if (xMax >= boundary.size.x)
                 {
-                    xMax = xMax - origin.x - offset;
+                    xMax = xMax - origin.x - bspDungeonData.Offset;
                 }
 
                 if (yMax >= boundary.size.y)
                 {
-                    yMax = yMax - origin.y - offset;
+                    yMax = yMax - origin.y - bspDungeonData.Offset;
                 }
 
                 // Generate the floor coordinate for each tiles of the room (scaled in global coordinate of the Scene)
-                for (int col = origin.x; col < xMax - offset; col++)
+                for (int col = origin.x; col < xMax - bspDungeonData.Offset; col++)
                 {
-                    for (int row = origin.y; row < yMax - offset; row++)
+                    for (int row = origin.y; row < yMax - bspDungeonData.Offset; row++)
                     {
                         Vector2Int position = boundary.min + new Vector2Int(col, row);
                         //if (!boundary.Contains(position)) continue;
@@ -292,33 +280,6 @@ namespace DungeonGeneration.BSPGeneration
 
             if (node.LeftChild != null) DrawDebugTree(node.LeftChild);
             if (node.RightChild != null) DrawDebugTree(node.RightChild);
-        }
-
-        // Validate the values in the Inspector (experimental, the conditions might needs to be tweaked, but it works)
-        private void OnValidate()
-        {
-            // Validate minimum room size
-            if (minimumRoomSize.x > minimumNodeSize.x)
-            {
-                minimumRoomSize.x = minimumNodeSize.x;
-            }
-
-            if (minimumRoomSize.y > minimumRoomSize.y)
-            {
-                minimumRoomSize.y = minimumNodeSize.y;
-            }
-
-            // Validate split position
-            if (splitPosition.min > splitPosition.max)
-            {
-                splitPosition.min = splitPosition.max;
-            }
-
-            if (splitPosition.min < 0) splitPosition.min = 0;
-            if (splitPosition.max < 0) splitPosition.max = 0;
-
-            if (splitPosition.min > 1) splitPosition.min = 1;
-            if (splitPosition.max > 1) splitPosition.max = 1;
         }
     }
 }

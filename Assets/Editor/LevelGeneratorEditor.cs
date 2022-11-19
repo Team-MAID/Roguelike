@@ -5,24 +5,24 @@ namespace Editor
     using UnityEditor;
     using DungeonGeneration;
     
-    [CustomEditor(typeof(LevelGenerator), true)]
+    [CustomEditor(typeof(BSPDungeonLevelGenerator), true)]
     public class LevelGeneratorEditor : Editor
     {
-        private LevelGenerator _generator;
+        private BSPDungeonLevelGenerator _generator;
 
         private void Awake()
         {
-            _generator = (LevelGenerator) target;
+            _generator = (BSPDungeonLevelGenerator) target;
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            if (GUILayout.Button("Generate Random Level"))
+            /*if (GUILayout.Button("Generate Random Level"))
             {
                 _generator.GenerateRandomLevel();
-            }
+            }*/
         }
     }
 }
