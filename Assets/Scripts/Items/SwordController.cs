@@ -4,15 +4,21 @@ public class SwordController : WeaponItem
 {
     [SerializeField] private int hitboxDuration;
 
-    private int _hbLifetime;
+    private int _slashLifetime;
     private Collider2D _hb;
+    private SwordSlash _slash;
+    private bool _slashTimer;
     private bool equipped;
     private void Start()
     {
         _hb = GetComponent<Collider2D>();
-        _hbLifetime = hitboxDuration;
+        _slash= transform.GetChild(0).GetComponent<SwordSlash>();
 
-        if (transform.parent != null && transform.parent.tag == "Player") { equipped = true; }
+        _slashLifetime = hitboxDuration;
+        _slashTimer= false;
+        _hb.enabled = true;
+        
+        if (transform.parent != null && transform.parent.tag == "Player") { equipped = true; _hb.enabled = false; }
         else { equipped = false; }
     }
 
@@ -21,27 +27,22 @@ public class SwordController : WeaponItem
         if (Input.GetMouseButtonDown(0) && !_hb.enabled && equipped)
         {
             //Debug.Log("LeftClick");
-            _hb.enabled = true;
+            _slash.SwitchCollider();
+            _slashTimer= true;
         }
     }
 
     private void FixedUpdate()
     {
-        if (_hb.enabled)
+        if (_slashTimer)
         {
-            _hbLifetime--;
-            if (_hbLifetime <= 0)
+            _slashLifetime--;
+            if (_slashLifetime <= 0)
             {
-                _hbLifetime = hitboxDuration;            
+                _slash.SwitchCollider();
+                _slashTimer = false;
+                _slashLifetime = hitboxDuration;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D _other)
-    {
-        if (_other.tag == "Enemy")
-        {
-            Destroy(_other.gameObject);
         }
     }
 
@@ -50,7 +51,7 @@ public class SwordController : WeaponItem
         GameObject player = GameObject.FindWithTag("Player");
         SwordController sword = player.GetComponentInChildren<SwordController>();
 
-        Vector3 offset = new Vector3(1.2f,0,0);
+        Vector3 offset = new Vector3(0.5f,0,0);
 
         if (sword == null)
         {

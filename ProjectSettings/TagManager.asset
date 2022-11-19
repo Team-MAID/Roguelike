@@ -19,6 +19,7 @@ TagManager:
   - PlayerWeaponBow
   - PlayerWeaponSword
   - PlayerProjectileBow
+  - PlayerSlashSword
   layers:
   - Default
   - TransparentFX
