@@ -14,15 +14,24 @@ TagManager:
   - HeartContainer
   - GhostDetectionCollider
   - Ghost
+  - Closet
+  - Shop
+  - DefenseUpPotion
+  - KittyFood
+  - MysteryPotion
+  - SpeedUpPotion
+  - AttackUpPotion
+  - HealthRefillPotion
+  - UIInventory
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Items
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Spider
   - 
   - 
   - 

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79640805ce9c446ebafaa43579bee542, type: 3}
+  m_Name: Weapon Sword
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Sword
+  <Description>k__BackingField: "Corp \xE0 Corp"
+  <IsStackable>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 21300000, guid: fbfed9c31db7c794b8d912191fcf60bf, type: 3}
+  prefab: {fileID: 8953738396917018979, guid: 516d1db83c1272f46a0f92780032c5fb, type: 3}
+  damage: 10

@@ -150,8 +150,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.4.3",
-      "depth": 0,
+      "version": "1.4.4",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
@@ -270,6 +270,16 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "me.deewens.2d.inventorysystem": {
+      "version": "https://github.com/Deewens/2D-Inventory-System.git?path=/Packages/me.deewens.2d.inventorysystem",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.4.4",
+        "com.unity.textmeshpro": "3.0.6"
+      },
+      "hash": "60ccb2c1588c41afceaac6faa8887bc29af8f960"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,21 +15,28 @@ public class HealthSystem : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    private void Start()
+    {
+        GameObject healthUI = GameObject.Find("HealthUI");
+        hearts = healthUI.GetComponentsInChildren<Image>();
+    }
 
-    // Update is called once per frame 
-    void Update()
+    private void Update()
     {
 
         if (health > currentMaxHealth)
         {
-            Debug.Log("Health Already Full");
             health = currentMaxHealth;
         }
 
         if (currentMaxHealth > upperHealthLimit)
         {
-            Debug.Log("Max health Limit reached");
             currentMaxHealth = upperHealthLimit;
+        }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
 
         for (int i = 0; i < hearts.Length; i++)
@@ -55,26 +63,26 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void decreaseHealth()
+    public void DecreaseHealth()
     {
         health--;
-        Debug.Log("Health down");
     }
 
-    public void increaseHealth()
+    public void IncreaseHealth()
     {
         if (health < currentMaxHealth)
         {
             health++;
-            Debug.Log("Health recovered");
         }
     }
 
-    public void increaseMaxHealth()
+    public void IncreaseMaxHealth()
     {
-        currentMaxHealth++;
+        if (currentMaxHealth < upperHealthLimit)
+        {
+            currentMaxHealth++;
+        }
         health = currentMaxHealth;
-        Debug.Log("Max Health Increased");
     }
 } 
 

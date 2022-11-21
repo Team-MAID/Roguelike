@@ -10,7 +10,6 @@ public class Projectile_Controller : MonoBehaviour
     private Vector2 _movement;
     private Vector2 _target; // The point toward which the projectile will be shot.
 
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -23,7 +22,6 @@ public class Projectile_Controller : MonoBehaviour
         _movement.Normalize(); // Normalise the movement vector.
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + _movement * _speed * Time.fixedDeltaTime); //  Movement.
@@ -41,7 +39,18 @@ public class Projectile_Controller : MonoBehaviour
 
         if (_other.tag == "Enemy" ) // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
         {
-            Destroy(_other.gameObject);
+
+            if (_other.gameObject.GetComponent<EnemyHealthSystem>())
+            {
+                Debug.Log("Enemy Health System Called");
+                _other.gameObject.GetComponent<EnemyHealthSystem>().decreaseHealth();
+            }
+            else
+            {
+                Debug.Log("Object Destroyed by Drojectile");
+                Destroy(_other.gameObject);
+            }
+
             Destroy(gameObject);
         }
     }
