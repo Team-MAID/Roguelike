@@ -13,7 +13,7 @@ namespace DungeonGeneration
         /// <param name="tilemapVisualizer">Wall will be painted on this tilemap</param>
         public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
         {
-            var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.CardinalDirections);
+            var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.AllDirections);
             foreach (var position in basicWallPositions)
             {
                 tilemapVisualizer.PaintSingleBasicWall(position);

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79640805ce9c446ebafaa43579bee542, type: 3}
   m_Name: Weapon Bow
   m_EditorClassIdentifier: 
-  displayName: Bow
-  description: Stay away from your enemies when using the bow!
-  isStackable: 0
-  icon: {fileID: 1062144892, guid: d0bea51b77d230443b142bef2212091f, type: 3}
+  <Name>k__BackingField: Bow
+  <Description>k__BackingField: Long-distance weapon
+  <IsStackable>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 1062144892, guid: d0bea51b77d230443b142bef2212091f, type: 3}
   prefab: {fileID: 6137579662602476341, guid: c45fc3d926b9fad49af05ff9605538d5, type: 3}
   damage: 5

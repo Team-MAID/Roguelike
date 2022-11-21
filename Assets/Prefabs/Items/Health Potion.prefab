@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 7681530131664009102}
   - component: {fileID: 7681530131664009103}
   - component: {fileID: 7681530131664009089}
-  - component: {fileID: -1185621303739338845}
+  - component: {fileID: -1460478817516269719}
+  - component: {fileID: -1571960135020985792}
+  - component: {fileID: -4554125834515255439}
   m_Layer: 0
   m_Name: Health Potion
   m_TagString: Untagged
@@ -104,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9375, y: 0.9375}
+    oldSize: {x: 0.75, y: 0.75}
     newSize: {x: 125, y: 125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,8 +127,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903e7caf64499e0418d9c256e39f7872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consumableItemData: {fileID: 11400000, guid: f4601964eabf6e241bb6c5ab3735ae17, type: 2}
+--- !u!50 &-1460478817516269719
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681530131664009091}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-1571960135020985792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681530131664009091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: f4601964eabf6e241bb6c5ab3735ae17, type: 2}
---- !u!114 &-1185621303739338845
+--- !u!114 &-4554125834515255439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,3 +174,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b1a9ebc5df4e33b16ba2915ef23b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothTime: 0.1

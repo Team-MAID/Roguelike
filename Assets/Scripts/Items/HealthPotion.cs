@@ -1,16 +1,24 @@
+using System;
+using InventorySystem;
 using UnityEngine;
 
 /// <summary>
 /// Item that heal the player when consumed
 /// </summary>
-public class HealthPotion : ConsumableItem
+public class HealthPotion : MonoBehaviour
 {
-    public override void Consume(ItemData data)
+    [SerializeField] private ConsumableItemSO consumableItemData;
+    private void Start()
     {
-        HealthSystem playerHealth = GameObject.FindWithTag("Player")?.GetComponent<HealthSystem>();
-        if (playerHealth != null)
+        consumableItemData.ConsumingItem += Consume;
+    }
+
+    public void Consume(GameObject consumer)
+    {
+        HealthSystem healthComponent = consumer.GetComponent<HealthSystem>();
+        if (healthComponent != null)
         {
-            playerHealth.IncreaseHealth();
+            healthComponent.IncreaseHealth();
         }
     }
 }

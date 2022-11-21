@@ -19,6 +19,8 @@ public class Ghost_Controller : MonoBehaviour
 
     void Start()
     {
+        _player = FindObjectOfType<PlayerController>();
+        _target = _player.gameObject;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -29,6 +31,15 @@ public class Ghost_Controller : MonoBehaviour
             _movement = _target.transform.position - transform.position;
             _movement = _movement.normalized;
             _rb.MovePosition(_rb.position + _movement * _chaseSpeed * Time.fixedDeltaTime);
+
+            if(_movement.x > 0)
+            {
+                gameObject.transform.localScale = new Vector3(-1.5f, 2.0f, 1.0f);
+            }
+            else if(_movement.x < 0)
+            {
+                gameObject.transform.localScale = new Vector3(1.5f, 2.0f, 1.0f);
+            }
         }
         else if (_target != null && _player.getHidingStatus()) // If the Ghost has found a target, follow it.
         {

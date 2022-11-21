@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BowController : WeaponItem
+public class BowController : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
 
@@ -8,10 +8,7 @@ public class BowController : WeaponItem
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("LeftClick");
-
             Instantiate(projectile, this.transform.position, Quaternion.identity);
-
         }
     }
 }
