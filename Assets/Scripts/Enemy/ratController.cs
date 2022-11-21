@@ -12,7 +12,6 @@ public class ratController : MonoBehaviour
 
     public GameObject coins;
 
-    float timer = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +27,6 @@ public class ratController : MonoBehaviour
         if(Vector2.Distance(transform.position,wayPoints) < range)
         {
             setNewDestination();
-        }
-
-        if(timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
-        else
-        {
-            timer = 0;
-            Destroy(gameObject);
         }
 
         if (transform.position.x > oldPosition)
