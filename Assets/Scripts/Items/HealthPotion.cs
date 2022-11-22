@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Item that heal the player when consumed
 /// </summary>
-public class HealthPotion : MonoBehaviour
+public class HealthPotion : MonoBehaviour, IConsumable
 {
     [SerializeField] private ConsumableItemSO consumableItemData;
     private void Start()
