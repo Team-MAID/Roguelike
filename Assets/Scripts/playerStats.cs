@@ -49,7 +49,7 @@ public class playerStats : MonoBehaviour
         baseDefense += 2;
         setAttackDamage();
         setDefense();
-        GetComponent<HealthSystem>().IncreaseMaxHealth();
+        GetComponent<HealthSystem>().IncreaseMaxHealth(20);
         setSpeed();
     }
 

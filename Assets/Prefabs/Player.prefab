@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4173747554306860944}
   - component: {fileID: 5213307381913479643}
   - component: {fileID: 1396519957066017627}
-  - component: {fileID: 716843727}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -228,17 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e97240cb0f61645a3b44f808de6f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  currentMaxHealth: 3
-  upperHealthLimit: 5
-  hearts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fullHeart: {fileID: 21300000, guid: 7c8e4650c1f901949b4585fd9e075099, type: 3}
-  emptyHeart: {fileID: 21300000, guid: 49bc66c14aec6c843a64332428211f04, type: 3}
+  health: 100
+  currentMaxHealth: 100
+  upperHealthLimit: 200
+  hud: {fileID: 812888105049909969, guid: b0af7521ff5af664e8c87e5433460d9a, type: 3}
 --- !u!114 &1862206765089679162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +263,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5620541980126186928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecd250f168924a958da320fd2d528a4c, type: 3}
   m_Name: 
@@ -303,7 +295,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5620541980126186928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2301ddc57c522554e95029f2b566139b, type: 3}
   m_Name: 
@@ -316,27 +308,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5620541980126186928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa617fc454e685c41be37c545fd6f1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &716843727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5620541980126186928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc972cbf2e285e4191022343b42fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPotionActive: 0
-  isImmuneTodamage: 0
-  attack: 0
-  defense: 0
-  health: 0
-  speed: 0
-  potionCoolDown: 0

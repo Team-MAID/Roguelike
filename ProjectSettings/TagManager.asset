@@ -21,8 +21,8 @@ TagManager:
   - MysteryPotion
   - SpeedUpPotion
   - AttackUpPotion
-  - HealthRefillPotion
   - UIInventory
+  - RefillHealthPotion
   layers:
   - Default
   - TransparentFX
