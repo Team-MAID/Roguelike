@@ -13,8 +13,6 @@ public class Vampire_Controller : MonoBehaviour
 
     public float spawnBatTimer;
 
-    public int batLimit = 0;
-
     int maxHealth = 100;
     int currentHealth;
 
@@ -31,9 +29,9 @@ public class Vampire_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth <= 0)
+        if(currentHealth > 0)
         {
-            if (target != null) // If the Ghost has found a target, follow it.
+            if (target != null) // If the Vampire has found a target, follow it.
             {
                 spawnBatTimer -= Time.deltaTime;
 
@@ -52,12 +50,20 @@ public class Vampire_Controller : MonoBehaviour
                 takeDamage(5);
             }
         }
+        else
+        {
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D _other)
     {
         if (_other.tag == "Player") 
         {
+            Debug.Log("hit");
             target = _other.gameObject;
         }
     }
@@ -66,8 +72,6 @@ public class Vampire_Controller : MonoBehaviour
    {
         bat_manager.spawnBats();
         bat_manager.ActivateTheBats();
-
-        Debug.Log(batLimit);
    }
 
     void takeDamage(int dmg)

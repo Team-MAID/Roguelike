@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
-  m_Name: New Consumable Item
+  m_Name: RedBook
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Beef
-  <Description>k__BackingField: Yeah
+  <Name>k__BackingField: Red Book
+  <Description>k__BackingField: 'Book but in red '
   <IsStackable>k__BackingField: 1
-  <Icon>k__BackingField: {fileID: 0}
-  prefab: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: a98f374a02736d54cb1b5082dd5dda13, type: 3}
+  prefab: {fileID: 981894868217892888, guid: 9d982291eab262940a0db357631a622a, type: 3}

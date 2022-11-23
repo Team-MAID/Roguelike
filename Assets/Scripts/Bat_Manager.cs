@@ -9,11 +9,10 @@ public class Bat_Manager : MonoBehaviour
     public GameObject _batPrfb;
     public int _batCount;
     private Bat_Controller[] _bats;
-    int batLimit = 15;
     
     void Start()
     {
-        spawnBats();    
+        //spawnBats();    
     }
 
     void Update()
@@ -34,13 +33,10 @@ public class Bat_Manager : MonoBehaviour
 
     public void spawnBats()
     {
-        if(_bats.Length <= batLimit)
+        for (int i = 0; i < _batCount; i++)
         {
-            for (int i = 0; i < _batCount; i++)
-            {
-                Vector3 _offset = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
-                Instantiate(_batPrfb, transform.position + _offset, Quaternion.identity, transform);
-            }
+            Vector3 _offset = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
+            Instantiate(_batPrfb, transform.position + _offset, Quaternion.identity, transform);
         }
     }
 }

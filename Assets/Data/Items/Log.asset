@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Log
+  <Description>k__BackingField: From a tree ? maybe ?..
+  <IsStackable>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: 37e68cf26732e014981d1f6644a68651, type: 3}
+  prefab: {fileID: 3016560884771292906, guid: 6ba1eefecf9365a43a19bdd1a8afcb66, type: 3}
