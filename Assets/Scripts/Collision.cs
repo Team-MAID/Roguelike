@@ -23,19 +23,19 @@ public class Collision : MonoBehaviour
     {
         if (_otherColldier.gameObject.CompareTag("Enemy"))
         {
-            GetComponent<HealthSystem>().DecreaseHealth();
+            GetComponent<HealthSystem>().DecreaseHealth(20);
         }
 
         if (_otherColldier.gameObject.CompareTag("Food"))
         {
             Destroy(_otherColldier.gameObject);
-            GetComponent<HealthSystem>().IncreaseHealth();
+            GetComponent<HealthSystem>().IncreaseHealth(20);
         }
 
         if (_otherColldier.gameObject.CompareTag("HeartContainer"))
         {
             Destroy(_otherColldier.gameObject);
-            GetComponent<HealthSystem>().IncreaseMaxHealth();
+            GetComponent<HealthSystem>().IncreaseMaxHealth(20);
         }
     }
 }

@@ -115,3 +115,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  hud: {fileID: 812888105049909969, guid: b0af7521ff5af664e8c87e5433460d9a, type: 3}

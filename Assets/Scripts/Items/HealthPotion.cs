@@ -18,7 +18,7 @@ public class HealthPotion : MonoBehaviour
         HealthSystem healthComponent = consumer.GetComponent<HealthSystem>();
         if (healthComponent != null)
         {
-            healthComponent.IncreaseHealth();
+            healthComponent.IncreaseHealth(20);
         }
     }
 }

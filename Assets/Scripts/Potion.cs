@@ -24,6 +24,7 @@ public class Potion : MonoBehaviour
     private GameObject player;
     string potionType;
     float m_multiplier;
+    public HUD hud;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,7 @@ public class Potion : MonoBehaviour
         }
         else if (potionType == "RefillHealthPotion")
         {
-            player.GetComponent<HealthSystem>().IncreaseHealth();
+            player.GetComponent<HealthSystem>().IncreaseHealth(20);
             player.GetComponent<playerStats>().isPotionActive = false;
         }
     }
@@ -58,14 +59,14 @@ public class Potion : MonoBehaviour
     {
         m_multiplier = 0.5f;
         int temp_randomNumber = Random.Range(0, 8);
-        m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
+        m_mysteryPotionEffects = (mysteryPotionEffects)4;
 
         // for testing 
         //m_mysteryPotionEffects = (mysteryPotionEffects)3;
         //Debug.Log(temp_randomNumber);
         if (m_mysteryPotionEffects == mysteryPotionEffects.loseHeart)
         {
-            player.GetComponent<HealthSystem>().DecreaseHealth();
+            player.GetComponent<HealthSystem>().DecreaseHealth(20);
             player.GetComponent<playerStats>().isPotionActive = false;
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.defenseDown)
@@ -84,6 +85,7 @@ public class Potion : MonoBehaviour
         {
             player.GetComponent<PlayerController>().coins += 10;
             player.GetComponent<playerStats>().isPotionActive = false;
+            hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
         {
@@ -96,7 +98,7 @@ public class Potion : MonoBehaviour
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.maxHealthUp)
         {
-            GetComponent<HealthSystem>().IncreaseMaxHealth();
+            player.GetComponent<HealthSystem>().IncreaseHealth(20);
             player.GetComponent<playerStats>().isPotionActive = false;
         }
     }
