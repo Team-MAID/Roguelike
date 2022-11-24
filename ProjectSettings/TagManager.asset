@@ -23,6 +23,7 @@ TagManager:
   - AttackUpPotion
   - HealthRefillPotion
   - UIInventory
+  - Companion
   layers:
   - Default
   - TransparentFX
