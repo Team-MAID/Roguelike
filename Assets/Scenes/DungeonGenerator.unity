@@ -29670,6 +29670,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7717990776045722386, guid: c74282685d7b2b842997b8e1146b751f, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+    - target: {fileID: 7717990776045722386, guid: c74282685d7b2b842997b8e1146b751f, type: 3}
+      propertyPath: staircasePrefab
+      value: 
+      objectReference: {fileID: 557354066322009834, guid: 4623f8b4925444844b0c4b4f34c7e98a, type: 3}
     - target: {fileID: 9151462466765492506, guid: c74282685d7b2b842997b8e1146b751f, type: 3}
       propertyPath: m_RootOrder
       value: 7

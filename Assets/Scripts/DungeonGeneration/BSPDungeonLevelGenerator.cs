@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DungeonGeneration.BSPGeneration;
+using ExtensionMethods;
 using InventorySystem.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -44,6 +45,10 @@ namespace DungeonGeneration
         [SerializeField] private GameObject swordPrefab;
 
         [SerializeField] private GameObject bowPrefab;
+
+        // Staircase
+        [Header("Staircase prefab")]
+        [SerializeField] private GameObject staircasePrefab;
 
         private List<GameObject> _potionPrefabs;
         private List<GameObject> _enemyPrefabs;
@@ -105,6 +110,8 @@ namespace DungeonGeneration
                 SpawnClosetInRoom(leaf);
                 SpawnEnemiesInRoom(leaf);
             }
+            
+            GenerateStaircase(generatedLeafs.GetRandomElement());
         }
 
         private void SpawnPlayerInRoom(BSPDungeonTreeNode dungeonNode)
@@ -257,6 +264,16 @@ namespace DungeonGeneration
                     return;
                 }
             }
+        }
+
+        private void GenerateStaircase(BSPDungeonTreeNode dungeonNode)
+        {
+            var roomFloors = dungeonNode.Floors;
+            Vector2 randomFloorPosition = roomFloors[Random.Range(0, roomFloors.Count - 1)];
+            // Add 0.5 for the game object to be instantiated in the center of the tile
+            randomFloorPosition += new Vector2(0.5f, 0.5f);
+
+            Instantiate(staircasePrefab, randomFloorPosition, Quaternion.identity);
         }
 
         private void ClearLevel()
