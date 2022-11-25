@@ -37,7 +37,7 @@ public class Bat_Controller : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D _other)
+    void OnCollisonEnter2D(Collider2D _other)
     {
         if (!_enabled && (_other.CompareTag("Weapon_Player") || _other.CompareTag("Projectile_Player")))
         {
