@@ -59,7 +59,7 @@ public class Potion : MonoBehaviour
     {
         m_multiplier = 0.5f;
         int temp_randomNumber = Random.Range(0, 8);
-        m_mysteryPotionEffects = (mysteryPotionEffects)4;
+        m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
 
         // for testing 
         //m_mysteryPotionEffects = (mysteryPotionEffects)3;
@@ -86,6 +86,7 @@ public class Potion : MonoBehaviour
             player.GetComponent<PlayerController>().coins += 10;
             player.GetComponent<playerStats>().isPotionActive = false;
             hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
+            hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
         {
