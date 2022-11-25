@@ -1,28 +1,42 @@
+using InventorySystem.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopScript : MonoBehaviour
 {
+    public ConsumableItemSO beef;
+    public ConsumableItemSO redBook;
+    public ConsumableItemSO blueBook;
+    public ConsumableItemSO candy;
+    public ConsumableItemSO log;
+
+    UIInventoryController inventoryController;
+
+    private void Start()
+    {
+        inventoryController = GameObject.FindWithTag("Player").GetComponent<UIInventoryController>();
+    }
+
     public void buyBeef()
     {
-        Debug.Log("Beef");
+        inventoryController.InventorySO.AddItem(beef);
     }
     public void buyRedBook()
     {
-        Debug.Log("RedBook");
+        inventoryController.InventorySO.AddItem(redBook);
     }
     public void buyBlueBook()
     {
-        Debug.Log("BlueBook");
+        inventoryController.InventorySO.AddItem(blueBook);
     }
     public void buyCandy()
     {
-        Debug.Log("Candy");
+        inventoryController.InventorySO.AddItem(candy);
     }
     public void buyLog()
     {
-        Debug.Log("Log");
+        inventoryController.InventorySO.AddItem(log);
     }
     public void exit()
     {

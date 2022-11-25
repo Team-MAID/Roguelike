@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -10,79 +9,61 @@ public class HealthSystem : MonoBehaviour
     public int health;
     public int currentMaxHealth;
     public int upperHealthLimit;
-
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
-
-    private void Start()
-    {
-        GameObject healthUI = GameObject.Find("HealthUI");
-        hearts = healthUI.GetComponentsInChildren<Image>();
-    }
+    public HUD hud;
 
     private void Update()
     {
-
         if (health > currentMaxHealth)
         {
             health = currentMaxHealth;
+            hud.UpdateCurrentHealth(health);
         }
 
         if (currentMaxHealth > upperHealthLimit)
         {
             currentMaxHealth = upperHealthLimit;
+            hud.UpdateCurrentMaxHealth(currentMaxHealth);
         }
 
         if (health <= 0)
         {
             Destroy(gameObject);
-        }
-
-        for (int i = 0; i < hearts.Length; i++)
-        {
-
-            if (i < health)
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-
-
-            if (i < currentMaxHealth)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            // load game over scene
         }
     }
 
-    public void DecreaseHealth()
+    public void DecreaseHealth(int t_decreaseHealth)
     {
-        health--;
+        Debug.Log("Health Decreased");
+        health -= t_decreaseHealth;
+        hud.UpdateCurrentHealth(health);
+        hud.UpdateHealthText(health, currentMaxHealth);
     }
 
-    public void IncreaseHealth()
+    public void IncreaseHealth(int t_increaseHealth)
     {
         if (health < currentMaxHealth)
         {
-            health++;
+            health += t_increaseHealth;
+            hud.UpdateCurrentHealth(health);
+            hud.UpdateHealthText(health, currentMaxHealth);
         }
     }
 
-    public void IncreaseMaxHealth()
+    public void IncreaseMaxHealth(int t_increaseMaxhealth)
     {
         if (currentMaxHealth < upperHealthLimit)
         {
-            currentMaxHealth++;
+            currentMaxHealth += t_increaseMaxhealth;
+            hud.UpdateCurrentMaxHealth(currentMaxHealth);
+            hud.UpdateHealthText(health, currentMaxHealth);
         }
-        health = currentMaxHealth;
+        if (health < currentMaxHealth)
+        {
+            health = currentMaxHealth;
+            hud.UpdateCurrentHealth(health);
+            hud.UpdateHealthText(health, currentMaxHealth);
+        }
     }
 } 
 

@@ -2591,6 +2591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef3b4ca8cb08af4192ba59787fb869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beef: {fileID: 11400000, guid: 2fe0d1e425e168743bd41f5f4e857a65, type: 2}
+  redBook: {fileID: 11400000, guid: 28af39de8374f11468fb6d7cbf876668, type: 2}
+  blueBook: {fileID: 11400000, guid: d72130f9aa6796847810c7e9b9303653, type: 2}
+  candy: {fileID: 11400000, guid: 54b071c80076a7741b6129df358c81e1, type: 2}
+  log: {fileID: 11400000, guid: 045795122e6dfa74aa4edf4c97f2b2fc, type: 2}
 --- !u!1 &2988146072680469956
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+public enum VampAnimStates
+{
+    Idle = 0,
+    Run = 1,
+}
 public class Vampire_Controller : MonoBehaviour
 {
     public Bat_Manager bat_manager;
@@ -13,12 +17,14 @@ public class Vampire_Controller : MonoBehaviour
 
     public float spawnBatTimer;
 
-    public int batLimit = 0;
-
     int maxHealth = 100;
     int currentHealth;
 
     public HealthBar healthBar;
+
+    public VampAnimStates vampAnimState;
+    private Animator _animator;
+    private static readonly int VampState = Animator.StringToHash("VampState");
 
     // Start is called before the first frame update
     void Start()
@@ -26,14 +32,17 @@ public class Vampire_Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthBar.setMaxValue(maxHealth);
+        _animator = GetComponent<Animator>();
+        vampAnimState = VampAnimStates.Idle;
+        _animator.SetInteger(VampState, (int)vampAnimState);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth <= 0)
+        if(currentHealth > 0)
         {
-            if (target != null) // If the Ghost has found a target, follow it.
+            if (target != null) // If the Vampire has found a target, follow it.
             {
                 spawnBatTimer -= Time.deltaTime;
 
@@ -46,10 +55,34 @@ public class Vampire_Controller : MonoBehaviour
                 movement = movement.normalized;
                 rb.MovePosition(rb.position + movement * chaseSpeed * Time.fixedDeltaTime);
             }
-
+            if (movement.x == 0 && movement.y == 0)
+            {
+                vampAnimState = VampAnimStates.Idle;
+            }
+            else
+            {
+                vampAnimState = VampAnimStates.Run;
+                if (movement.x > 0 )
+                {
+                    gameObject.transform.localScale = new Vector3(-5.5f, 5.5f, 5.5f);
+                }
+                else if (movement.x < 0)
+                {
+                    gameObject.transform.localScale = new Vector3(5.5f, 5.5f, 5.5f);
+                }
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 takeDamage(5);
+            }
+            _animator.SetInteger(VampState, (int)vampAnimState);
+
+        }
+        else
+        {
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
             }
         }
     }
@@ -58,6 +91,7 @@ public class Vampire_Controller : MonoBehaviour
     {
         if (_other.tag == "Player") 
         {
+            Debug.Log("hit");
             target = _other.gameObject;
         }
     }
@@ -66,8 +100,6 @@ public class Vampire_Controller : MonoBehaviour
    {
         bat_manager.spawnBats();
         bat_manager.ActivateTheBats();
-
-        Debug.Log(batLimit);
    }
 
     void takeDamage(int dmg)
