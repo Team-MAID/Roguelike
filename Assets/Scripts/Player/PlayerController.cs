@@ -21,15 +21,16 @@ public class PlayerController : playerStats
     
     public int coins = 0;
 
-    public TextMeshProUGUI coinText;
-
     bool isHiding = false;
 
     bool nearCloset = false;
 
+    public HUD hud;
+
     // Start is called before the first frame update
     private void Start()
     {
+        hud.UpdateCoinText(coins);
         baseAttack = attack;
         baseDefense = defense;
         baseHealth = health;
@@ -41,8 +42,6 @@ public class PlayerController : playerStats
         _animator = GetComponent<Animator>();
         playerAnimState = PlayerAnimStates.Idle;
         _animator.SetInteger(State, (int)playerAnimState);
-
-        setCoinsText();
     }
     
     private void Update()
@@ -110,8 +109,7 @@ public class PlayerController : playerStats
         {
             coins++;
             Destroy(col.gameObject);
-
-            setCoinsText();
+            hud.UpdateCoinText(coins);
         }
 
         if (col.gameObject.CompareTag("Closet"))
@@ -126,12 +124,6 @@ public class PlayerController : playerStats
         {
             nearCloset = false;
         }
-    }
-
-    void setCoinsText()
-    {
-        if (coinText == null) return;
-        coinText.text = "Coins : " + coins.ToString();
     }
 
     public bool getHidingStatus()

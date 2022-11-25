@@ -31,7 +31,8 @@ public class HealthSystem : MonoBehaviour
 
         if (health <= 0)
         {
-           // Destroy(gameObject);
+            Destroy(gameObject);
+            // load game over scene
         }
     }
 
