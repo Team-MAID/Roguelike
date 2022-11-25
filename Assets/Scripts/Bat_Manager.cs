@@ -9,7 +9,7 @@ public class Bat_Manager : MonoBehaviour
     public GameObject _batPrfb;
     public int _batCount;
     private Bat_Controller[] _bats;
-    
+
     void Start()
     {
         //spawnBats();    
@@ -22,10 +22,10 @@ public class Bat_Manager : MonoBehaviour
 
     public void ActivateTheBats()
     {
-       Debug.Log("ACTIVATE.....THE BATS!");
-       _bats = FindObjectsOfType<Bat_Controller>();
+        Debug.Log("ACTIVATE.....THE BATS!");
+        _bats = FindObjectsOfType<Bat_Controller>();
 
-        foreach(Bat_Controller bat in _bats)
+        foreach (Bat_Controller bat in _bats)
         {
             bat._enabled = true;
         }
@@ -37,6 +37,16 @@ public class Bat_Manager : MonoBehaviour
         {
             Vector3 _offset = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
             Instantiate(_batPrfb, transform.position + _offset, Quaternion.identity, transform);
+        }
+    }
+
+    public void updateScale(Vector3 newScale)
+    {
+        _bats = FindObjectsOfType<Bat_Controller>();
+
+        foreach (Bat_Controller bat in _bats)
+        {
+            bat.updateScale(newScale);
         }
     }
 }

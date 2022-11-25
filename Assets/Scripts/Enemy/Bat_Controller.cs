@@ -11,6 +11,8 @@ public class Bat_Controller : MonoBehaviour
     private Bat_Manager _batManger;
     public bool _enabled = false;
 
+    Vector3 currentScale = new Vector3(2.5f,2.5f,2.5f);
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -28,11 +30,11 @@ public class Bat_Controller : MonoBehaviour
 
             if (_movement.x > 0)
             {
-                gameObject.transform.localScale = new Vector3(-2.5f, 2.5f, 2.5f);
+                gameObject.transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
             }
             else if (_movement.x < 0)
             {
-                gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+                gameObject.transform.localScale = new Vector3(currentScale.x, currentScale.y, currentScale.z);
             }
         }
     }
@@ -45,5 +47,10 @@ public class Bat_Controller : MonoBehaviour
             _batManger.ActivateTheBats();
             FindObjectsOfType<Bat_Controller>();
         }
+    }
+
+    public void updateScale(Vector3 newScale)
+    {
+        currentScale = newScale;
     }
 }

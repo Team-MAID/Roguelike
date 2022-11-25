@@ -26,6 +26,8 @@ public class Vampire_Controller : MonoBehaviour
     private Animator _animator;
     private static readonly int VampState = Animator.StringToHash("VampState");
 
+    public Vector3 childScale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,7 @@ public class Vampire_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth > 0)
+        if (currentHealth > 0)
         {
             if (target != null) // If the Vampire has found a target, follow it.
             {
@@ -48,8 +50,8 @@ public class Vampire_Controller : MonoBehaviour
 
                 if (spawnBatTimer < 0)
                 {
-                    spawnBats();
                     spawnBatTimer = 5.0f;
+                    spawnBats();
                 }
                 movement = target.transform.position - transform.position;
                 movement = movement.normalized;
@@ -91,7 +93,7 @@ public class Vampire_Controller : MonoBehaviour
     {
         if (_other.tag == "Player") 
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             target = _other.gameObject;
         }
     }
@@ -99,6 +101,7 @@ public class Vampire_Controller : MonoBehaviour
    void spawnBats()
    {
         bat_manager.spawnBats();
+        bat_manager.updateScale(childScale);
         bat_manager.ActivateTheBats();
    }
 

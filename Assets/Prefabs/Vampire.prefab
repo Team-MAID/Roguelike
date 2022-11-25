@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bat_manager: {fileID: 5305023247466913267}
-  target: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  target: {fileID: 0}
   chaseSpeed: 2
   spawnBatTimer: 2
   healthBar: {fileID: 0}
   vampAnimState: 0
+  childScale: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!50 &5305023247466913265
 Rigidbody2D:
   serializedVersion: 4
