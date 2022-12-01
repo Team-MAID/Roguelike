@@ -619,10 +619,22 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1066414526}
+    - target: {fileID: 1396519957066017627, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173747554306860944, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4173747554306860944, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: UIInventory
       value: 
       objectReference: {fileID: 38972488}
+    - target: {fileID: 5213307381913479643, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5213307381913479643, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
       propertyPath: uiInventory
       value: 
