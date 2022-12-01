@@ -63,6 +63,9 @@ namespace DungeonGeneration
         private List<GameObject> _sword;
         private List<GameObject> _bow;
 
+
+        //Temp 
+        bool spawnOnce = false;
         private void Start()
         {
             GenerateRandomLevel();
@@ -103,7 +106,14 @@ namespace DungeonGeneration
             {
                 SpawnItemsInRoom(leaf);
                 SpawnClosetInRoom(leaf);
-                SpawnEnemiesInRoom(leaf);
+                if(!spawnOnce)
+                {
+                    SpawnEnemiesInRoom(leaf);
+                    spawnOnce = true;
+                }
+
+
+                GenerateShopInRoom(leaf);
             }
         }
 
@@ -197,14 +207,14 @@ namespace DungeonGeneration
         {
             var roomFloors = dungeonNode.Floors;
 
-            int numberOfEnemiesToGenerate = Random.Range(1, 3);
+            int numberOfEnemiesToGenerate = 1;// Random.Range(1, 3);
             for (var i = 0; i < numberOfEnemiesToGenerate; ++i)
             {
                 Vector2 randomFloorPosition = roomFloors[Random.Range(0, roomFloors.Count - 1)];
                 // Add 0.5 for the game object to be instantiated in the center of the tile
                 randomFloorPosition += new Vector2(0.5f, 0.5f);
-                
-                GameObject enemyToInstantiate = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Count - 1)];
+
+                GameObject enemyToInstantiate = _enemyPrefabs[1];//[Random.Range(0, _enemyPrefabs.Count - 1)];
                 GameObject newEnemy = Instantiate(enemyToInstantiate, randomFloorPosition, Quaternion.identity);
                 _enemies.Add(newEnemy);
             }
@@ -232,28 +242,28 @@ namespace DungeonGeneration
                 if (isTopSide)
                 {
                     shopPosition = new(Random.Range(minX, maxX) + 0.5f, maxY);
-                    _shops.Add(Instantiate(closetPrefab, shopPosition, Quaternion.identity));
+                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isRightSide)
                 {
                     shopPosition = new(maxX + 0.5f, Random.Range(minY, maxY));
-                    _shops.Add(Instantiate(closetPrefab, shopPosition, Quaternion.identity));
+                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isBottomSide)
                 {
                     shopPosition = new(Random.Range(minX, maxX) + 0.5f, minY);
-                    _shops.Add(Instantiate(closetPrefab, shopPosition, Quaternion.identity));
+                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isLeftSide)
                 {
                     shopPosition = new(minX + 0.5f, Random.Range(minY, maxY));
-                    _shops.Add(Instantiate(closetPrefab, shopPosition, Quaternion.identity));
+                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
             }
@@ -290,5 +300,7 @@ namespace DungeonGeneration
 
             _shops.Clear();
         }
+
+      
     }
 }
