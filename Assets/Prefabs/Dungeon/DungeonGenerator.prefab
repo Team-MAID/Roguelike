@@ -76,3 +76,4 @@ MonoBehaviour:
   speedPotionPrefab: {fileID: 6722646109092365159, guid: c76913f3d2862394799287617832ea9b, type: 3}
   swordPrefab: {fileID: 8953738396917018979, guid: 516d1db83c1272f46a0f92780032c5fb, type: 3}
   bowPrefab: {fileID: 6137579662602476341, guid: c45fc3d926b9fad49af05ff9605538d5, type: 3}
+  staircasePrefab: {fileID: 557354066322009834, guid: 4623f8b4925444844b0c4b4f34c7e98a, type: 3}
