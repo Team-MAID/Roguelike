@@ -136,8 +136,8 @@ TextureImporter:
         y: 129
         width: 53
         height: 55
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.60266, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,8 +157,8 @@ TextureImporter:
         y: 129
         width: 34
         height: 54
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.69503516, y: 0.5031487}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,8 +178,8 @@ TextureImporter:
         y: 129
         width: 28
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6275226, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,8 +199,8 @@ TextureImporter:
         y: 129
         width: 47
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6447069, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,8 +220,8 @@ TextureImporter:
         y: 129
         width: 51
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6066859, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,8 +241,8 @@ TextureImporter:
         y: 1
         width: 36
         height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5869473, y: 0.5000001}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,8 +262,8 @@ TextureImporter:
         y: 1
         width: 36
         height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.58260006, y: 0.5000001}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,8 +283,8 @@ TextureImporter:
         y: 129
         width: 34
         height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.61001945, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -304,8 +304,8 @@ TextureImporter:
         y: 129
         width: 34
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.46999404, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -325,8 +325,8 @@ TextureImporter:
         y: 129
         width: 49
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6110404, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,8 +346,8 @@ TextureImporter:
         y: 0
         width: 36
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58694756, y: 0.49999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,8 +367,8 @@ TextureImporter:
         y: 0
         width: 36
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58694756, y: 0.49999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -376,6 +376,153 @@ TextureImporter:
       bones: []
       spriteID: 73023b5c13a10c1448f81c9c1a9d0e3a
       internalID: 86336671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_attack_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 255
+        width: 51
+        height: 65
+      alignment: 9
+      pivot: {x: 0.70629716, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3db63fa9555d894bbf469d1e39f44d0
+      internalID: 765922198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_attack_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 255
+        width: 82
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1340db7a442ecd48b9cef0d1c039704
+      internalID: -1435857087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_attack_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 255
+        width: 71
+        height: 65
+      alignment: 9
+      pivot: {x: 0.20647936, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f509d8ceb2f12bd4293ca55c51d97eb2
+      internalID: -715830761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_attack_3
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 255
+        width: 62
+        height: 65
+      alignment: 9
+      pivot: {x: 0.21934903, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b5cb423af9d2484bbe73c696e706793
+      internalID: 190430082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_bow_0
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 255
+        width: 46
+        height: 60
+      alignment: 9
+      pivot: {x: 0.45857373, y: 0.4999995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f23754fa52fb7448d50892602be7e4
+      internalID: 1006232951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_bow_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 255
+        width: 44
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4783436, y: 0.499999}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5125297fca254b44f9a837bbbb2e9161
+      internalID: -571631627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: raiser_anim_bow_2
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 255
+        width: 39
+        height: 60
+      alignment: 9
+      pivot: {x: 0.54071593, y: 0.4973531}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2562837e29538be43b9ea227de9252b9
+      internalID: 1695453570
       vertices: []
       indices: 
       edges: []
@@ -391,17 +538,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      raiser_anim_bow_0: 1006232951
+      raiser_anim_bow_1: -571631627
       raiser_anim_run_4: -1571971995
       raiser_anim_run_1: 1742847796
+      raiser_anim_attack_3: 190430082
       raiser_anim_run_2: 1460687980
       raiser_anim_run_6: -449251756
       raiser_anim_run_5: -1795073992
+      raiser_anim_attack_0: 765922198
+      raiser_anim_attack_2: -715830761
+      raiser_anim_attack_1: -1435857087
       raiser_anim_idle_1: 1842178235
       raiser_anim_run_7: 705365321
       raiser_anim_run_0: 632236615
       raiser_anim_idle_2: -787908
       raiser_anim_run_3: 2006846245
       raiser_anim_idle_0: -1029383441
+      raiser_anim_bow_2: 1695453570
       raiser_anim_idle_3: 86336671
   spritePackingTag: 
   pSDRemoveMatte: 0
