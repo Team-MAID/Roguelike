@@ -20,7 +20,7 @@
                     "id": "002dafce-756c-4cc7-8ce1-ad390a141fdb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": true
                 }
             ],
@@ -127,7 +127,7 @@
                 {
                     "name": "",
                     "id": "468c8a09-126a-4357-8a6a-8f44621065ba",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

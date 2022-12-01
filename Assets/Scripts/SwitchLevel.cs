@@ -15,20 +15,23 @@ public class SwitchLevel : MonoBehaviour
         _levelGenerator = GameObject.FindWithTag("DungeonGenerator").GetComponent<BSPDungeonLevelGenerator>();
 
         _informationText = GameObject.Find("UI/InformationText").GetComponent<TextMeshProUGUI>();
-        _informationText.gameObject.SetActive(false);
         _informationText.SetText("Press U to use the stairs. WARNING: You cannot come back.");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!other.CompareTag("Player")) return;
+        
         _isPlayerOnStair = true;
-        _informationText.gameObject.SetActive(true);
+        _informationText.enabled = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!other.CompareTag("Player")) return;
+
         _isPlayerOnStair = false;
-        _informationText.gameObject.SetActive(false);
+        _informationText.enabled = false;
     }
 
     private void OnSwitchLevel()
