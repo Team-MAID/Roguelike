@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7717990776045722386}
   m_Layer: 0
   m_Name: DungeonGenerator
-  m_TagString: Untagged
+  m_TagString: DungeonGenerator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
