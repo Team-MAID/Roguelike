@@ -13,10 +13,6 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            DecreaseHealth(20);
-        }
         if (health > currentMaxHealth)
         {
             health = currentMaxHealth;

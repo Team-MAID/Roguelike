@@ -12,6 +12,8 @@ public class Projectile_Controller : MonoBehaviour
 
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(6,6);
+
         _rb = GetComponent<Rigidbody2D>();
 
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Get the mouse position relative to the game world.

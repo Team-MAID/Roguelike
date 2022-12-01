@@ -68,11 +68,11 @@ public class PlayerController : playerStats
             playerAnimState = PlayerAnimStates.Run;
             if (horizontalInput < 0)
             {
-                gameObject.transform.localScale = new Vector3(-1.7f, 1.7f, 1.7f);
+                gameObject.transform.localScale = new Vector3(-1.25f, 1.25f, 1.25f);
             }
             else if (horizontalInput > 0)
             {
-                gameObject.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
+                gameObject.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             }
 
         }
