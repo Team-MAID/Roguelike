@@ -16,7 +16,7 @@ public class ShopScript : MonoBehaviour
     private void Start()
     {
         inventoryController = GameObject.FindWithTag("Player").GetComponent<UIInventoryController>();
-        inventoryController.showInventory();
+        inventoryController.ShowInventory();
     }
 
     public void buyBeef()

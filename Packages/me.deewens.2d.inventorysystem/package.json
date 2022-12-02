@@ -1,0 +1,22 @@
+{
+  "name": "me.deewens.2d.inventorysystem",
+  "displayName": "2D Inventory System",
+  "version": "0.3.0",
+  "author": {
+    "name": "Adrien Dudon (Deewens)",
+    "email": "dudonadrien@gmail.com"
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.4.4",
+    "com.unity.textmeshpro": "3.0.6"
+  },
+  "samples": [
+    {
+      "displayName": "Papyrus UI Example",
+      "description": "Contains a simple Inventory UI that can be used as-is or just as example to create your own UI",
+      "path": "Samples~/SamplesPapyrusTheme"
+    }
+  ],
+  "description": "Simple Inventory System that can be used for any 2D Games in Unity",
+  "hideInEditor": false
+}
