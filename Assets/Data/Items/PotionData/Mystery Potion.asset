@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
+  m_Name: Mystery Potion
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Mystery Potion
+  <Description>k__BackingField: Has a random negative or positive effect on the user
+  <IsStackable>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: 0384c21bb1c6d644697952aae3bdb44c, type: 3}
+  prefab: {fileID: 7102261352777427429, guid: 171ff33e79bdf744cacb2abe8c656317, type: 3}

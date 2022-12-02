@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potion : MonoBehaviour
+public class Potion : MonoBehaviour, IConsumable
 {
     enum mysteryPotionEffects
     {
@@ -20,6 +20,8 @@ public class Potion : MonoBehaviour
 
     mysteryPotionEffects m_mysteryPotionEffects;
 
+    [SerializeField] private ConsumableItemSO consumableItemData;
+
     [SerializeField]
     private GameObject player;
     string potionType;
@@ -29,12 +31,14 @@ public class Potion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        consumableItemData.ConsumingItem += Consume;
         potionType = this.gameObject.tag;
         player = GameObject.Find("Player");
     }
 
-    public void useStandardPotion()
+    public void Consume(GameObject consumer)
     {
+        hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         m_multiplier = 2.0f;
         if (potionType == "SpeedUpPotion")
         {
@@ -53,6 +57,15 @@ public class Potion : MonoBehaviour
             player.GetComponent<HealthSystem>().IncreaseHealth(20);
             player.GetComponent<playerStats>().isPotionActive = false;
         }
+        else if (potionType == "MysteryPotion")
+        {
+            useMysteryPotion();
+        }
+    }
+
+        public void useStandardPotion()
+    {
+       
     }
 
     void useMysteryPotion()
@@ -60,7 +73,7 @@ public class Potion : MonoBehaviour
         m_multiplier = 0.5f;
         int temp_randomNumber = Random.Range(0, 8);
         m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
-
+        hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         // for testing 
         //m_mysteryPotionEffects = (mysteryPotionEffects)3;
         //Debug.Log(temp_randomNumber);
@@ -86,7 +99,6 @@ public class Potion : MonoBehaviour
             player.GetComponent<PlayerController>().coins += 10;
             player.GetComponent<playerStats>().isPotionActive = false;
             hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
-            hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
         {
@@ -101,26 +113,6 @@ public class Potion : MonoBehaviour
         {
             player.GetComponent<HealthSystem>().IncreaseHealth(20);
             player.GetComponent<playerStats>().isPotionActive = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D _otherColldier)
-    {
-        if (_otherColldier.gameObject.CompareTag("Player"))
-        {
-            if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
-            {
-                player.GetComponent<playerStats>().isPotionActive = true;
-                if (potionType != "MysteryPotion")
-                {
-                    useStandardPotion();
-                }
-                else
-                {
-                    useMysteryPotion();
-                }
-                Destroy(this.gameObject);
-            }
         }
     }
 }
