@@ -61,9 +61,6 @@ namespace DungeonGeneration
         private List<GameObject> _sword;
         private List<GameObject> _bow;
 
-
-        //Temp 
-        bool spawnOnce = false;
         private void Start()
         {
             GenerateRandomLevel();
@@ -104,12 +101,6 @@ namespace DungeonGeneration
             {
                 SpawnItemsInRoom(leaf);
                 SpawnClosetInRoom(leaf);
-                //if(!spawnOnce)
-                //{
-                //    SpawnEnemiesInRoom(leaf);
-                //    spawnOnce = true;
-                //}
-
                 SpawnEnemiesInRoom(leaf);
                 GenerateShopInRoom(leaf);
             }
@@ -214,7 +205,7 @@ namespace DungeonGeneration
                 // Add 0.5 for the game object to be instantiated in the center of the tile
                 randomFloorPosition += new Vector2(0.5f, 0.5f);
 
-                GameObject enemyToInstantiate = _enemyPrefabs[1];//[Random.Range(0, _enemyPrefabs.Count - 1)];
+                GameObject enemyToInstantiate = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Count - 1)];
                 GameObject newEnemy = Instantiate(enemyToInstantiate, randomFloorPosition, Quaternion.identity);
                 _generatedGO.Add(newEnemy);
             }
