@@ -26,6 +26,7 @@ TagManager:
   - RefillHealthPotion
   - BSPDungeonGenerator
   - Wall
+  - DungeonGenerator
   layers:
   - Default
   - TransparentFX

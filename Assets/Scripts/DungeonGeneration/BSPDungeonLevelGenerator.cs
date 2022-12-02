@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DungeonGeneration.BSPGeneration;
+using ExtensionMethods;
 using InventorySystem.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -45,20 +46,17 @@ namespace DungeonGeneration
 
         [SerializeField] private GameObject bowPrefab;
 
+        // Staircase
+        [Header("Staircase prefab")]
+        [SerializeField] private GameObject staircasePrefab;
+
         private List<GameObject> _potionPrefabs;
         private List<GameObject> _enemyPrefabs;
 
         // Instantiated GameObjects in the scene from Prefab
         // =====================================================
 
-        private GameObject _player;
-
-        private readonly List<GameObject> _enemies = new();
-
-        private readonly List<GameObject> _closets = new();
-        private readonly List<GameObject> _shops = new();
-
-        private readonly List<GameObject> _potions = new();
+        private readonly List<GameObject> _generatedGO = new();
 
         private List<GameObject> _sword;
         private List<GameObject> _bow;
@@ -93,7 +91,7 @@ namespace DungeonGeneration
 
         public void GenerateRandomLevel()
         {
-            //ClearLevel();
+            ClearLevel();
             Init();
 
             dungeonGenerator.GenerateDungeon();
@@ -115,6 +113,8 @@ namespace DungeonGeneration
 
                 GenerateShopInRoom(leaf);
             }
+            
+            GenerateStaircase(generatedLeafs.Last());
         }
 
         private void SpawnPlayerInRoom(BSPDungeonTreeNode dungeonNode)
@@ -150,7 +150,7 @@ namespace DungeonGeneration
 
                 GameObject potionToInstantiate = _potionPrefabs[Random.Range(0, _potionPrefabs.Count - 1)];
                 GameObject newPotion = Instantiate(potionToInstantiate, randomFloorPosition, Quaternion.identity);
-                _potions.Add(newPotion);
+                _generatedGO.Add(newPotion);
             }
         }
 
@@ -176,28 +176,28 @@ namespace DungeonGeneration
                 if (isTopSide)
                 {
                     closetPosition = new(Random.Range(minX, maxX) + 0.5f, maxY);
-                    _closets.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isRightSide)
                 {
                     closetPosition = new(maxX + 0.5f, Random.Range(minY, maxY));
-                    _closets.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isBottomSide)
                 {
                     closetPosition = new(Random.Range(minX, maxX) + 0.5f, minY);
-                    _closets.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isLeftSide)
                 {
                     closetPosition = new(minX + 0.5f, Random.Range(minY, maxY));
-                    _closets.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(closetPrefab, closetPosition, Quaternion.identity));
                     return;
                 }
             }
@@ -216,7 +216,7 @@ namespace DungeonGeneration
 
                 GameObject enemyToInstantiate = _enemyPrefabs[1];//[Random.Range(0, _enemyPrefabs.Count - 1)];
                 GameObject newEnemy = Instantiate(enemyToInstantiate, randomFloorPosition, Quaternion.identity);
-                _enemies.Add(newEnemy);
+                _generatedGO.Add(newEnemy);
             }
         }
 
@@ -242,63 +242,51 @@ namespace DungeonGeneration
                 if (isTopSide)
                 {
                     shopPosition = new(Random.Range(minX, maxX) + 0.5f, maxY);
-                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isRightSide)
                 {
                     shopPosition = new(maxX + 0.5f, Random.Range(minY, maxY));
-                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isBottomSide)
                 {
                     shopPosition = new(Random.Range(minX, maxX) + 0.5f, minY);
-                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
 
                 if (isLeftSide)
                 {
                     shopPosition = new(minX + 0.5f, Random.Range(minY, maxY));
-                    _shops.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
+                    _generatedGO.Add(Instantiate(shopPrefab, shopPosition, Quaternion.identity));
                     return;
                 }
             }
         }
 
+        private void GenerateStaircase(BSPDungeonTreeNode dungeonNode)
+        {
+            var roomFloors = dungeonNode.Floors;
+            Vector2 randomFloorPosition = roomFloors[Random.Range(0, roomFloors.Count - 1)];
+            // Add 0.5 for the game object to be instantiated in the center of the tile
+            randomFloorPosition += new Vector2(0.5f, 0.5f);
+
+            GameObject staircase = Instantiate(staircasePrefab, randomFloorPosition, Quaternion.identity);
+            _generatedGO.Add(staircase);
+        }
+
         private void ClearLevel()
         {
-            DestroyImmediate(_player);
-            foreach (var potion in _potions)
+            foreach (var go in _generatedGO)
             {
-                DestroyImmediate(potion);
+                Destroy(go);
             }
-
-            _potions.Clear();
-
-            foreach (var closet in _closets)
-            {
-                DestroyImmediate(closet);
-            }
-
-            _closets.Clear();
-
-            foreach (var enemy in _enemies)
-            {
-                DestroyImmediate(enemy);
-            }
-
-            _enemies.Clear();
-            
-            foreach (var shop in _shops)
-            {
-                DestroyImmediate(shop);
-            }
-
-            _shops.Clear();
+            _generatedGO.Clear();
         }
 
       
