@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DungeonGeneration.BSPGeneration;
+using System.Linq;
+using ExtensionMethods;
 
 public class ratController : MonoBehaviour
 {
@@ -23,7 +25,6 @@ public class ratController : MonoBehaviour
     {
         dungeonGenerator = FindObjectOfType<BSPDungeonGenerator>();
         castToVectorInt();
-        IsInRoom();
         setNewDestination();
         oldPosition = transform.position.x;
     }
@@ -33,15 +34,9 @@ public class ratController : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, nextTarget, speed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, nextTarget) < range || hitWall)
+        if (Vector2.Distance(transform.position, nextTarget) < range)
         {
-            if (hitWall)
-            {
-                hitWall = false;
-            }
             setNewDestination();
-
-            Debug.Log(hitWall);
         }
 
         if (transform.position.x > oldPosition)
@@ -54,32 +49,22 @@ public class ratController : MonoBehaviour
             gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
         oldPosition = transform.position.x;
-
-        //Debug.Log(transform)
     }
 
     void setNewDestination() // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
-    {
-        nextTarget = new Vector2(Random.Range(wayPoints.x - 3, wayPoints.x + 3), Random.Range(wayPoints.y - 3, wayPoints.y + 3));
-
-        Debug.Log(nextTarget);
-    }
-
-    void OnDestroy() // drop coins when destroyed 
-    {
-        Instantiate(coins, transform.position, coins.transform.rotation);
-    }
-
-    void IsInRoom()
     {
         foreach (var leaf in dungeonGenerator.DungeonTree.Leafs)
         {
             if (leaf.Floors.Contains(ratRoomPos))
             {
-                Debug.Log(ratRoomPos);
-                wayPoints = ratRoomPos;
+               nextTarget = leaf.Floors.GetRandomElement();
             }
         }
+    }
+
+    void OnDestroy() // drop coins when destroyed 
+    {
+        Instantiate(coins, transform.position, coins.transform.rotation);
     }
 
     void castToVectorInt()
@@ -91,7 +76,8 @@ public class ratController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            hitWall = true;
+            Debug.Log("change");
+            setNewDestination();
         }
     }
 }

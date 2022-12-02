@@ -104,13 +104,13 @@ namespace DungeonGeneration
             {
                 SpawnItemsInRoom(leaf);
                 SpawnClosetInRoom(leaf);
-                if(!spawnOnce)
-                {
-                    SpawnEnemiesInRoom(leaf);
-                    spawnOnce = true;
-                }
+                //if(!spawnOnce)
+                //{
+                //    SpawnEnemiesInRoom(leaf);
+                //    spawnOnce = true;
+                //}
 
-
+                SpawnEnemiesInRoom(leaf);
                 GenerateShopInRoom(leaf);
             }
             
@@ -268,6 +268,8 @@ namespace DungeonGeneration
                 }
             }
         }
+
+ 
 
         private void GenerateStaircase(BSPDungeonTreeNode dungeonNode)
         {
