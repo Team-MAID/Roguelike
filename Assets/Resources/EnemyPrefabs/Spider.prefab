@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1637852733
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -1157103199, guid: 66e257cac41084b4a9502f75e7c29c89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  baseSpiderAttackRange: 2
+  baseSpiderAttackRange: 4
+  baseSpiderWanderRange: 2
   baseSpiderHealth: 2
   baseSpiderSpeed: 2
 --- !u!95 &7812364975101444915

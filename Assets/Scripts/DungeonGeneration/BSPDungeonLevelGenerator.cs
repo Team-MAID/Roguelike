@@ -20,10 +20,11 @@ namespace DungeonGeneration
 
         // Enemies
         [Header("Enemy prefabs")]
-        [SerializeField] private GameObject batPrefab;
-        [SerializeField] private GameObject ratPrefab;
-        [SerializeField] private GameObject ghostPrefab;
-        [SerializeField] private GameObject spiderNestPrefab;
+        [SerializeField] private GameObject spawnerPrefab;
+        //[SerializeField] private GameObject batPrefab;
+        //[SerializeField] private GameObject ratPrefab;
+        //[SerializeField] private GameObject ghostPrefab;
+        //[SerializeField] private GameObject spiderNestPrefab;
 
         // Furniture
         [Header("Furniture prefabs")]
@@ -79,10 +80,11 @@ namespace DungeonGeneration
 
             _enemyPrefabs = new List<GameObject>
             {
-                batPrefab,
-                ratPrefab,
-                ghostPrefab,
-                spiderNestPrefab
+                spawnerPrefab
+                //batPrefab,
+                //ratPrefab,
+                //ghostPrefab,
+                //spiderNestPrefab
             };
         }
 

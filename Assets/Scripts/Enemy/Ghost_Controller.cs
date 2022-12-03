@@ -2,69 +2,75 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost_Controller : MonoBehaviour
+public class Ghost_Controller : EnemyBehaviour
 {
-    public PlayerController _player;
-    private Rigidbody2D     _rb;
-    public GameObject       _target; // The object to follow (Player)
-    
-    private Vector2 _movement; 
-    private Vector2 _wayPoint;
-    public float    _maxDistance;
-    public float    _range;
-    public int      _chaseSpeed;
-    public int      _wanderSpeed;
+    [SerializeField]
+    public int ghostHealth;
 
+    [SerializeField]
+    public float ghostSpeed;
 
+    [SerializeField]
+    public float ghostWanderRange;
 
+    [SerializeField]
+    public float ghostFollowRange;
+
+    private Transform playerPos;
+    private Rigidbody2D rb;
+
+    // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<PlayerController>();
-        _target = _player.gameObject;
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        setHealth(ghostHealth);
+        setSpeed(ghostSpeed);
+        setDungeon();
+        setWanderRange(ghostWanderRange);
+        setAttackrange(ghostFollowRange);
+        setState(EnemyBehaviourStates.Wandering);
+        setRoomPosition(this.gameObject.transform);
+        setNewDestination();
+        setOldPosition(this.gameObject.transform);
     }
 
-    void Update()
+    public override void Update()
     {
-        if (_target != null && !_player.getHidingStatus()) // If the Ghost has found a target, follow it.
+        if (isAlive())
         {
-            _movement = _target.transform.position - transform.position;
-            _movement = _movement.normalized;
-            _rb.MovePosition(_rb.position + _movement * _chaseSpeed * Time.fixedDeltaTime);
-
-            if(_movement.x > 0)
+            if (CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Following)
             {
-                gameObject.transform.localScale = new Vector3(-1.5f, 2.0f, 1.0f);
+                setState(EnemyBehaviourStates.Following);
             }
-            else if(_movement.x < 0)
+            else if(!CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Wandering)
             {
-                gameObject.transform.localScale = new Vector3(1.5f, 2.0f, 1.0f);
+                setState(EnemyBehaviourStates.Wandering);
             }
-        }
-        else if (_target != null && _player.getHidingStatus()) // If the Ghost has found a target, follow it.
-        {
-            _target = null;
+            if (getState() == EnemyBehaviourStates.Wandering)
+            {
+                wanderMovement();
+            }
+            else if (getState() == EnemyBehaviourStates.Following)
+            {
+                followMovement(ref playerPos, ref rb);
+            }
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, _wayPoint, _wanderSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, _wayPoint) < _range)
-            {
-                setNewDestination();
-            }
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
         }
     }
 
-    void setNewDestination() // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        _wayPoint = new Vector2(Random.Range(-_maxDistance, _maxDistance), Random.Range(-_maxDistance, _maxDistance));
-    }
-
-    void OnTriggerEnter2D(Collider2D _other)
-    {
-        if (_other.tag == "Player") // If the player enters the Ghost's detection radius (circle collider), set the player as the target.
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            _target = _other.gameObject;
+            Debug.Log("change");
+            setNewDestination();
+
+
         }
     }
 }
