@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cd93b2d8329f94783cfc1610c5e678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  ratHealth: 5
+  ratSpeed: 2
   range: 2
   coins: {fileID: 2711746712551056240, guid: 0a0a36f1a4e2c34469331ea891192e71, type: 3}
 --- !u!95 &-4356517784146936223

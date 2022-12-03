@@ -5,9 +5,15 @@ using DungeonGeneration.BSPGeneration;
 using System.Linq;
 using ExtensionMethods;
 
-public class ratController : MonoBehaviour
+public class ratController : Enemy
 {
-    public float speed;
+    [SerializeField]
+    public int ratHealth;
+
+    [SerializeField]
+    public float ratSpeed;
+
+
     public float range;
     private float oldPosition = 0.0f;
     Vector2 wayPoints;
@@ -23,15 +29,22 @@ public class ratController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        setHealth(ratHealth);
+        setSpeed(ratSpeed);
         dungeonGenerator = FindObjectOfType<BSPDungeonGenerator>();
         castToVectorInt();
         setNewDestination();
         oldPosition = transform.position.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        if (!isAlive())
+        {
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
+        }
+
         transform.position = Vector2.MoveTowards(transform.position, nextTarget, speed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, nextTarget) < range)
@@ -49,6 +62,8 @@ public class ratController : MonoBehaviour
             gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
         oldPosition = transform.position.x;
+
+
     }
 
     void setNewDestination() // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
@@ -62,7 +77,7 @@ public class ratController : MonoBehaviour
         }
     }
 
-    void OnDestroy() // drop coins when destroyed 
+    public override void OnDestroy() // drop coins when destroyed 
     {
         Instantiate(coins, transform.position, coins.transform.rotation);
     }
