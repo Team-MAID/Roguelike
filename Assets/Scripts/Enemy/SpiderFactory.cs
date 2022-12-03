@@ -9,7 +9,7 @@ public class SpiderFactory : EnemyFactory
 
     void Start()
     {
-        spiderPrefab = Resources.Load("EnemyPrefabs/PoisonSpider") as GameObject;
+        spiderPrefab = Resources.Load("EnemyPrefabs/Spider") as GameObject;
     }
 
     public override GameObject SpawnEnemy()

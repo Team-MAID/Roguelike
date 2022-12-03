@@ -36,7 +36,7 @@ TagManager:
   - UI
   - Player
   - Spider
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -69,6 +69,9 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 2987085781
+    locked: 0
+  - name: Spawner
+    uniqueID: 1825585719
     locked: 0
   - name: Enemy
     uniqueID: 1637852733
