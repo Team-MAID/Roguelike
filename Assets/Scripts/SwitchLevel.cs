@@ -3,11 +3,12 @@ using DungeonGeneration;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SwitchLevel : MonoBehaviour
 {
     private BSPDungeonLevelGenerator _levelGenerator;
-    private bool _isPlayerOnStair = false;
+    public bool _isPlayerOnStair = false;
     private TextMeshProUGUI _informationText;
 
     private void Start()
@@ -39,7 +40,7 @@ public class SwitchLevel : MonoBehaviour
         if (_isPlayerOnStair)
         {
             _isPlayerOnStair = false;
-            _levelGenerator.GenerateRandomLevel();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

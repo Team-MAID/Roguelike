@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7374765216110973055}
   - component: {fileID: 7374765216110973054}
   - component: {fileID: 2297335911813851630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost
   m_TagString: GhostDetectionCollider
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 7374765217046468214}
   - component: {fileID: 7374765217046468215}
   - component: {fileID: 5053233086233901236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider_Carrier
   m_TagString: Enemy
   m_Icon: {fileID: 0}

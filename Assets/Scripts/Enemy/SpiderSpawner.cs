@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderSpawner : MonoBehaviour
+public class SpiderSpawner : EnemyBehaviour
 {
+    private EnemyFactory baseSpiderFactory;
+    private EnemyFactory poisonSpiderFactory;
+
+    [SerializeField]
+    public int nestHealth;
+
+    [SerializeField]
+    public Vector3 nestScale;
 
     [SerializeField]
     private GameObject[] spiderPrefab;
@@ -17,6 +25,8 @@ public class SpiderSpawner : MonoBehaviour
     [SerializeField]
     private float spawnInterval = 5.0f;
 
+    public float spawnSpiderTimer = 5.0f;
+
     int limit = 5;
     public int counter = 0;
     public float aliveTime = 0;
@@ -26,31 +36,52 @@ public class SpiderSpawner : MonoBehaviour
     void Start()
     {
         counter = 0;
-        StartCoroutine(spawnEnemy(spawnInterval));
+        setHealth(nestHealth);
+        setScale(nestScale);
+        baseSpiderFactory = gameObject.AddComponent<SpiderFactory>();
+        poisonSpiderFactory = gameObject.AddComponent<PoisonousSpiderFactory>();
     }
 
-    private IEnumerator spawnEnemy(float interval)
+    public override void Update()
     {
+        if (isAlive())
+        {
+            spawnSpiderTimer -= Time.deltaTime;
+
+            //Debug.Log(counter);
+            if (spawnSpiderTimer < 0)
+            {
+                spawnSpiderTimer = spawnInterval;
+                spawnEnemy();
+            }
+        }
+        else
+        {
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void spawnEnemy()
+    {
+        Debug.Log("Here");
         if (counter < limit)
         {
-            int temp_randomNumber = Random.Range(0, 3);
+            int temp_randomNumber = Random.Range(0, 5);
             Debug.Log(temp_randomNumber);
-            if (temp_randomNumber != 2)
+            if (temp_randomNumber != 4)
             {
-                spiderPrefab[counter] = Instantiate(spiderPrefab[counter],
-                    new Vector3(spiderNest.transform.position.x, spiderNest.transform.position.y, 0), Quaternion.identity);
-                counter += 1;
+                spiderPrefab[counter] = baseSpiderFactory.SpawnEnemy();
+                spiderPrefab[counter].transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+                counter++;
             }
             else
             {
-                poisonSpiderPrefab[counter] = Instantiate(poisonSpiderPrefab[counter],
-                    new Vector3(spiderNest.transform.position.x, spiderNest.transform.position.y, 0), Quaternion.identity);
-                counter += 1;
+                poisonSpiderPrefab[counter] = poisonSpiderFactory.SpawnEnemy();
+                poisonSpiderPrefab[counter].transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+                counter++;
             }
         }
-        yield return new WaitForSeconds(interval);
-        //GameObject newEnemy = Instantiate(enemy, new Vector3(spiderNest.transform.position.x, spiderNest.transform.position.y, 0), Quaternion.identity);
-        StartCoroutine(spawnEnemy(interval));
     }
 
     public void DecreaseCounter()

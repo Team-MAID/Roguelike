@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244006d5c6b82fc439c4809673f205ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nestHealth: 10
+  nestScale: {x: 1, y: 1, z: 1}
   spiderPrefab:
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
@@ -111,5 +113,6 @@ MonoBehaviour:
   - {fileID: 624915934399402192, guid: 0f3b1e4300b97904c9b2ee22132b8e25, type: 3}
   spiderNest: {fileID: 7031763060367958703}
   spawnInterval: 5
+  spawnSpiderTimer: 5
   counter: 0
   aliveTime: 0

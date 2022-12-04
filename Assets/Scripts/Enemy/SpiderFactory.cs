@@ -14,6 +14,14 @@ public class SpiderFactory : EnemyFactory
 
     public override GameObject SpawnEnemy()
     {
-        return Instantiate(spiderPrefab);
+        if (spiderPrefab != null)
+        {
+            return Instantiate(spiderPrefab);
+        }
+        else
+        {
+            spiderPrefab = Resources.Load("EnemyPrefabs/Spider") as GameObject;
+            return Instantiate(spiderPrefab);
+        }
     }
 }

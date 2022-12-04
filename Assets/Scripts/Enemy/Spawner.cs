@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class Spawner : MonoBehaviour
     private Vector3 pos;
     private EnemyFactory ratFactory;
     private EnemyFactory ghostFactory;
-    private EnemyFactory spiderFactory;
+    private EnemyFactory spiderNestFactory;
     private EnemyFactory batFactory;
     private EnemyFactory vampireFactory;
+    Scene currentScene;
+    private bool spawning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +23,9 @@ public class Spawner : MonoBehaviour
         batFactory = gameObject.AddComponent<BatFactory>();
         ghostFactory = gameObject.AddComponent<GhostFactory>();
         vampireFactory = gameObject.AddComponent<VampireFactory>();
-        spiderFactory = gameObject.AddComponent<SpiderFactory>();
+        spiderNestFactory = gameObject.AddComponent<SpiderNestFactory>();
+        currentScene = SceneManager.GetActiveScene();
+        spawning = true;
     }
 
     void Awake()
@@ -31,25 +37,71 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+
+
+        // Check if the name of the current Active Scene is your first Scene.
+        if (currentScene.name == "FloorOne" && spawning == true)
         {
             spawnNewEnemy(ratFactory);
+            spawning = false;
         }
-        if (Input.GetKeyUp(KeyCode.R))
+        else if (currentScene.name == "FloorTwo" && spawning == true)
         {
-            spawnNewEnemy(batFactory);
+            int temp_randomNumber = Random.Range(0, 4);
+            Debug.Log(temp_randomNumber);
+            if (temp_randomNumber != 0)
+            {
+                spawnNewEnemy(ratFactory);
+            }
+            else
+            {
+                spawnNewEnemy(spiderNestFactory);
+            }
+            spawning = false;
         }
-        if (Input.GetKeyUp(KeyCode.T))
+        else if (currentScene.name == "FloorThree" && spawning == true)
         {
-            spawnNewEnemy(spiderFactory);
+            int temp_randomNumber = Random.Range(0, 4);
+            Debug.Log(temp_randomNumber);
+            if (temp_randomNumber == 1)
+            {
+                spawnNewEnemy(ghostFactory);
+            }
+            else if (temp_randomNumber == 2)
+            {
+                spawnNewEnemy(spiderNestFactory);
+            }
+            else if (temp_randomNumber == 3)
+            {
+                spawnNewEnemy(ratFactory);
+            }
+            else if (temp_randomNumber == 4)
+            {
+                spawnNewEnemy(batFactory);
+            }
+            spawning = false;
         }
-        if (Input.GetKeyUp(KeyCode.Y))
-        {
-            spawnNewEnemy(ghostFactory);
-        }
-        if (Input.GetKeyUp(KeyCode.U))
+        else if (currentScene.name == "FloorFour" && spawning == true)
         {
             spawnNewEnemy(vampireFactory);
+            spawning = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(1);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(2);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene(3);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            SceneManager.LoadScene(4);
         }
     }
 

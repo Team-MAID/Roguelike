@@ -2,39 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class posionousSpider : SpiderBehaviour
+public class posionousSpider : EnemyBehaviour
 {
-    //[SerializeField]
-    //private GameObject player;
+    [SerializeField]
+    public float poisonSpiderAttackRange;
 
-    //[SerializeField]
-    //public float poisonousSpiderAttackRange;
+    [SerializeField]
+    public float poisonSpiderWanderRange;
 
-    //[SerializeField]
-    //public int poisonousSpiderHealth;
+    [SerializeField]
+    public int poisonSpiderHealth;
 
-    //[SerializeField]
-    //public float poisonousSpiderSpeed;
+    [SerializeField]
+    public float poisonSpiderSpeed;
 
-    //private Transform playerTransform;
-    //private Rigidbody2D rb;
+    [SerializeField]
+    public Vector3 poisonSpiderScale;
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    rb = GetComponent<Rigidbody2D>();
-    //    playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    //    setAttackrange(poisonousSpiderAttackRange);
-    //    setHealth(poisonousSpiderHealth);
-    //    setSpeed(poisonousSpiderSpeed);
-    //}
+    private Transform playerTrans;
+    private Rigidbody2D rb;
+    private Transform nestPosition;
 
-    //public override void Update()
-    //{
-    //    followMovement(ref playerTransform, ref rb);
-    //    if (!isAlive())
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        setAttackrange(poisonSpiderAttackRange);
+        setHealth(poisonSpiderHealth);
+        setSpeed(poisonSpiderSpeed);
+        setScale(poisonSpiderScale);
+        nestPosition = gameObject.transform;
+        setDungeon();
+        setWanderRange(poisonSpiderWanderRange);
+        setRoomPosition(this.gameObject.transform);
+        setNewDestination();
+        setOldPosition(this.gameObject.transform);
+    }
+
+    public override void Update()
+    {
+        if (isAlive())
+        {
+            if (CheckDistance(ref playerTrans, ref rb))
+            {
+                followMovement(ref playerTrans, ref rb);
+            }
+            else
+            {
+                wanderMovement();
+            }
+        }
+        else
+        {
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("change");
+            setNewDestination();
+
+
+        }
+    }
 }

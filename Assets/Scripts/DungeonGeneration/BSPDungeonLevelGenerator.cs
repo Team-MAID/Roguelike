@@ -200,7 +200,7 @@ namespace DungeonGeneration
         {
             var roomFloors = dungeonNode.Floors;
 
-            int numberOfEnemiesToGenerate = 1;// Random.Range(1, 3);
+            int numberOfEnemiesToGenerate = 4;// Random.Range(1, 3);
             for (var i = 0; i < numberOfEnemiesToGenerate; ++i)
             {
                 Vector2 randomFloorPosition = roomFloors[Random.Range(0, roomFloors.Count - 1)];

@@ -14,6 +14,14 @@ public class GhostFactory : EnemyFactory
 
     public override GameObject SpawnEnemy()
     {
-        return Instantiate(ghostPrefab);
+        if (ghostPrefab != null)
+        {
+            return Instantiate(ghostPrefab);
+        }
+        else
+        {
+            ghostPrefab = Resources.Load("EnemyPrefabs/Ghost") as GameObject;
+            return Instantiate(ghostPrefab);
+        }
     }
 }

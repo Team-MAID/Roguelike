@@ -14,7 +14,15 @@ public class RatFactory : EnemyFactory
     }
 
     public override GameObject SpawnEnemy()
-    { 
-        return Instantiate(ratPrefab);
+    {
+        if (ratPrefab != null)
+        {
+            return Instantiate(ratPrefab);
+        }
+        else
+        {
+            ratPrefab = Resources.Load("EnemyPrefabs/Rat 2") as GameObject;
+            return Instantiate(ratPrefab);
+        }
     }
 }

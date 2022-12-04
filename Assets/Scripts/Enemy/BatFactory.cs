@@ -14,6 +14,14 @@ public class BatFactory : EnemyFactory
 
     public override GameObject SpawnEnemy()
     {
-        return Instantiate(batPrefab);
+        if (batPrefab != null)
+        {
+            return Instantiate(batPrefab);
+        }
+        else
+        {
+            batPrefab = Resources.Load("EnemyPrefabs/Bat") as GameObject;
+            return Instantiate(batPrefab);
+        }
     }
 }

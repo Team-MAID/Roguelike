@@ -13,6 +13,14 @@ public class VampireFactory : EnemyFactory
     }
     public override GameObject SpawnEnemy()
     {
-        return Instantiate(vampirePrefab);
+        if (vampirePrefab != null)
+        {
+            return Instantiate(vampirePrefab);
+        }
+        else
+        {
+            vampirePrefab = Resources.Load("EnemyPrefabs/Vampire") as GameObject;
+            return Instantiate(vampirePrefab);
+        }
     }
 }
