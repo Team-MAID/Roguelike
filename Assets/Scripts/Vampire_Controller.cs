@@ -7,18 +7,43 @@ public enum VampAnimStates
     Idle = 0,
     Run = 1,
 }
-public class Vampire_Controller : MonoBehaviour
+public class Vampire_Controller : EnemyBehaviour
 {
-    public Bat_Manager bat_manager;
-    public GameObject target;
-    private Vector2 movement;
+    public GameObject[] spawnedEnemy;
+    private EnemyFactory batFactory;
+    public int counter = 0;
+
+    [SerializeField]
+    public int vampireHealth;
+
+    [SerializeField]
+    public float vampireSpeed;
+
+    [SerializeField]
+    public float vampireWanderRange;
+
+    [SerializeField]
+    public float vampireFollowRange;
+
+    [SerializeField]
+    public Vector3 vampireScale;
+
+    [SerializeField]
+    private float spawnInterval = 5.0f;
+
+    public int limit = 5;
+
+    private Transform playerTrans;
     private Rigidbody2D rb;
-    public int chaseSpeed;
+
+
+
+    public Bat_Manager bat_manager;
+
+
 
     public float spawnBatTimer;
 
-    int maxHealth = 100;
-    int currentHealth;
 
     public HealthBar healthBar;
 
@@ -32,83 +57,80 @@ public class Vampire_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
-        healthBar.setMaxValue(maxHealth);
-        _animator = GetComponent<Animator>();
-        vampAnimState = VampAnimStates.Idle;
-        _animator.SetInteger(VampState, (int)vampAnimState);
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        setHealth(vampireHealth);
+        setSpeed(vampireSpeed);
+        setScale(vampireScale);
+        setDungeon();
+        setWanderRange(vampireWanderRange);
+        setAttackrange(vampireFollowRange);
+        setRoomPosition(this.gameObject.transform);
+        setNewDestination();
+        setOldPosition(this.gameObject.transform);
+        batFactory = gameObject.AddComponent<BatFactory>();
+
+        //healthBar.setMaxValue(health);
+        //_animator = GetComponent<Animator>();
+        //vampAnimState = VampAnimStates.Idle;
+        //_animator.SetInteger(VampState, (int)vampAnimState);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void spawnNewBat(EnemyFactory t_enemyfactory)
     {
-        if (currentHealth > 0)
+        if (counter < spawnedEnemy.Length)
         {
-            if (target != null) // If the Vampire has found a target, follow it.
-            {
-                spawnBatTimer -= Time.deltaTime;
+            spawnedEnemy[counter] = t_enemyfactory.SpawnEnemy();
+            spawnedEnemy[counter].transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+            counter++;
+        }
+    }
+    public void DecreaseCounter()
+    {
+        counter--;
+    }
+    // Update is called once per frame
+    public override void Update()
+    {
+        if (isAlive())
+        {
+            spawnBatTimer -= Time.deltaTime;
 
-                if (spawnBatTimer < 0)
-                {
-                    spawnBatTimer = 5.0f;
-                    spawnBats();
-                }
-                movement = target.transform.position - transform.position;
-                movement = movement.normalized;
-                rb.MovePosition(rb.position + movement * chaseSpeed * Time.fixedDeltaTime);
-            }
-            if (movement.x == 0 && movement.y == 0)
+            //Debug.Log(counter);
+            if (spawnBatTimer < 0)
             {
-                vampAnimState = VampAnimStates.Idle;
+                spawnBatTimer = spawnInterval;
+                spawnNewBat(batFactory);
+            }
+
+            if (CheckDistance(ref playerTrans, ref rb))
+            {
+                followMovement(ref playerTrans, ref rb);
             }
             else
             {
-                vampAnimState = VampAnimStates.Run;
-                if (movement.x > 0 )
-                {
-                    gameObject.transform.localScale = new Vector3(-5.5f, 5.5f, 5.5f);
-                }
-                else if (movement.x < 0)
-                {
-                    gameObject.transform.localScale = new Vector3(5.5f, 5.5f, 5.5f);
-                }
+                wanderMovement();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                takeDamage(5);
-            }
-            _animator.SetInteger(VampState, (int)vampAnimState);
 
         }
         else
         {
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                Destroy(transform.GetChild(i).gameObject);
-            }
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D _other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_other.tag == "Player") 
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            //Debug.Log("hit");
-            target = _other.gameObject;
+            Debug.Log("change");
+            setNewDestination();
         }
     }
-
-   void spawnBats()
-   {
-        bat_manager.spawnBats();
-        bat_manager.updateScale(childScale);
-        bat_manager.ActivateTheBats();
-   }
 
     void takeDamage(int dmg)
     {
-        currentHealth -= dmg;
+        health -= dmg;
 
-        healthBar.setHealth(currentHealth);
+        //healthBar.setHealth(health);
     }
 }

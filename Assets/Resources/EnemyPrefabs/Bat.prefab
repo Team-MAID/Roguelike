@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4179528518083146187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.52325, y: -0.36638346, z: -0.11199273}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -165,7 +165,8 @@ MonoBehaviour:
   batSpeed: 2
   batWanderRange: 2
   batSwarmRange: 4
-  batScale: {x: 2.5, y: 2.5, z: 2.5}
+  batScale: {x: 2.5, y: 2.5, z: 1}
+  vampire: {fileID: 5305023247466913264, guid: c198cee88f247114ba578a4f62a0cef5, type: 3}
   batAttacked: 0
 --- !u!95 &3442380808254365556
 Animator:
