@@ -86,23 +86,6 @@ public class Spawner : MonoBehaviour
             spawnNewEnemy(vampireFactory);
             spawning = false;
         }
-
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(1);
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene(2);
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            SceneManager.LoadScene(3);
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            SceneManager.LoadScene(4);
-        }
     }
 
     public void spawnNewEnemy(EnemyFactory t_enemyFactory)
