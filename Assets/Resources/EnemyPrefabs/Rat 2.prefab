@@ -103,6 +103,7 @@ MonoBehaviour:
   ratHealth: 5
   ratSpeed: 2
   ratWanderRange: 2
+  ratScale: {x: 1, y: 1, z: 1}
 --- !u!95 &-4356517784146936223
 Animator:
   serializedVersion: 4

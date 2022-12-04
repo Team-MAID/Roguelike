@@ -2,55 +2,96 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat_Controller : MonoBehaviour
+public class Bat_Controller : EnemyBehaviour
 {
-    public GameObject _target; 
-    private Vector2 _movement;
-    public int _speed;
-    private Rigidbody2D _rb;
-    private Bat_Manager _batManger;
-    public bool _enabled = false;
+    [SerializeField]
+    public int batHealth;
 
-    Vector3 currentScale = new Vector3(2.5f,2.5f,2.5f);
+    [SerializeField]
+    public float batSpeed;
+
+    [SerializeField]
+    public float batWanderRange;
+
+    [SerializeField]
+    public float batSwarmRange;
+
+    [SerializeField]
+    public Vector3 batScale;
+
+
+    private Transform playerTrans;
+    private Rigidbody2D rb;
+    private Bat_Manager _batManger;
+
+    public bool batAttacked = false;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _target = GameObject.FindGameObjectWithTag("Player");
+        setScale(batScale);
+        gameObject.transform.localScale = getScale();
+        rb = GetComponent<Rigidbody2D>();
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        setHealth(batHealth);
+        setSpeed(batSpeed);
+        setDungeon();
+        setWanderRange(batWanderRange);
+        setAttackrange(batSwarmRange);
+        setRoomPosition(this.gameObject.transform);
+        setNewDestination();
+        setOldPosition(this.gameObject.transform);
+
         _batManger = GetComponentInParent<Bat_Manager>();
     }
 
-    void Update()
+    public override void Update()
     {
-        if (_target != null && _enabled)
+        if (isAlive())
         {
-            _movement = _target.transform.position - transform.position;
-            _movement = _movement.normalized;
-            _rb.MovePosition(_rb.position + _movement * _speed * Time.fixedDeltaTime);
-
-            if (_movement.x > 0)
+            // temp for testing
+            if (Input.GetKeyUp(KeyCode.P))
             {
-                gameObject.transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
+                batAttacked = true;
             }
-            else if (_movement.x < 0)
+            if (batAttacked)
             {
-                gameObject.transform.localScale = new Vector3(currentScale.x, currentScale.y, currentScale.z);
+                if (CheckDistance(ref playerTrans, ref rb))
+                {
+                    followMovement(ref playerTrans, ref rb);
+                }
+                else
+                {
+                    batAttacked = false;
+                }
+            }
+            else
+            {
+                    wanderMovement();
             }
         }
+        else
+        {
+            Debug.Log("auto death");
+            Destroy(this.gameObject);
+        }
+
     }
 
     void OnCollisonEnter2D(Collider2D _other)
     {
-        if (!_enabled && (_other.CompareTag("Weapon_Player") || _other.CompareTag("Projectile_Player")))
+        if (!batAttacked && (_other.CompareTag("Weapon_Player") || _other.CompareTag("Projectile_Player")))
         {
-            _enabled = true;
+            batAttacked = true;
             _batManger.ActivateTheBats();
             FindObjectsOfType<Bat_Controller>();
         }
+        if (_other.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("change");
+            setNewDestination();
+
+
+        }
     }
 
-    public void updateScale(Vector3 newScale)
-    {
-        currentScale = newScale;
-    }
 }

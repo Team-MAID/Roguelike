@@ -10,16 +10,6 @@ public class Bat_Manager : MonoBehaviour
     public int _batCount;
     private Bat_Controller[] _bats;
 
-    void Start()
-    {
-        //spawnBats();    
-    }
-
-    void Update()
-    {
-
-    }
-
     public void ActivateTheBats()
     {
         Debug.Log("ACTIVATE.....THE BATS!");
@@ -27,7 +17,7 @@ public class Bat_Manager : MonoBehaviour
 
         foreach (Bat_Controller bat in _bats)
         {
-            bat._enabled = true;
+            bat.batAttacked = true;
         }
     }
 
@@ -46,7 +36,7 @@ public class Bat_Manager : MonoBehaviour
 
         foreach (Bat_Controller bat in _bats)
         {
-            bat.updateScale(newScale);
+
         }
     }
 }

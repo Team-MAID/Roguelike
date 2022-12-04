@@ -16,20 +16,23 @@ public class Ghost_Controller : EnemyBehaviour
     [SerializeField]
     public float ghostFollowRange;
 
-    private Transform playerPos;
+    [SerializeField]
+    public Vector3 ghostScale;
+
+    private Transform playerTrans;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setHealth(ghostHealth);
         setSpeed(ghostSpeed);
+        setScale(ghostScale);
         setDungeon();
         setWanderRange(ghostWanderRange);
         setAttackrange(ghostFollowRange);
-        setState(EnemyBehaviourStates.Wandering);
         setRoomPosition(this.gameObject.transform);
         setNewDestination();
         setOldPosition(this.gameObject.transform);
@@ -39,21 +42,13 @@ public class Ghost_Controller : EnemyBehaviour
     {
         if (isAlive())
         {
-            if (CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Following)
+            if (CheckDistance(ref playerTrans, ref rb))
             {
-                setState(EnemyBehaviourStates.Following);
+                followMovement(ref playerTrans, ref rb);
             }
-            else if(!CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Wandering)
-            {
-                setState(EnemyBehaviourStates.Wandering);
-            }
-            if (getState() == EnemyBehaviourStates.Wandering)
+            else
             {
                 wanderMovement();
-            }
-            else if (getState() == EnemyBehaviourStates.Following)
-            {
-                followMovement(ref playerPos, ref rb);
             }
         }
         else
