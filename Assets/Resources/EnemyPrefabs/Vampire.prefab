@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5305023247466913279}
   - component: {fileID: 5305023247466913264}
   - component: {fileID: 5305023247466913265}
-  - component: {fileID: 5305023247466913266}
+  - component: {fileID: 7187020203280847441}
   - component: {fileID: 5305023247466913267}
   - component: {fileID: 6405027829883932999}
   m_Layer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5305023247466913268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,13 +101,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958c74861d057c54db78f14c2e78d907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnedEnemy:
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  - {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
+  vampireHealth: 100
+  vampireSpeed: 2
+  vampireWanderRange: 2
+  vampireFollowRange: 2
+  vampireScale: {x: 5, y: 5, z: 1}
+  spawnInterval: 3
+  limit: 6
   bat_manager: {fileID: 5305023247466913267}
-  target: {fileID: 0}
-  chaseSpeed: 2
   spawnBatTimer: 2
   healthBar: {fileID: 0}
   vampAnimState: 0
-  childScale: {x: 0.5, y: 0.5, z: 0.5}
+  childScale: {x: 1, y: 1, z: 1}
 --- !u!50 &5305023247466913265
 Rigidbody2D:
   serializedVersion: 4
@@ -129,8 +141,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &5305023247466913266
-CircleCollider2D:
+--- !u!61 &7187020203280847441
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,9 +154,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.1, y: 0.23}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 5
+  m_Size: {x: 0.06, y: 0.23}
+  m_EdgeRadius: 0
 --- !u!114 &5305023247466913267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,8 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c5dfdaaec05ee40a872b3a51ef9506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _batPrfb: {fileID: 4179528518083146187, guid: e6fb24c9a49bf584abe94a1d53d34f2e, type: 3}
-  _batCount: 3
 --- !u!95 &6405027829883932999
 Animator:
   serializedVersion: 4

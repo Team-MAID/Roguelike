@@ -19,7 +19,6 @@ public class Bat_Controller : EnemyBehaviour
     [SerializeField]
     public Vector3 batScale;
 
-
     private Transform playerTrans;
     private Rigidbody2D rb;
     private Bat_Manager _batManger;
@@ -51,7 +50,8 @@ public class Bat_Controller : EnemyBehaviour
             // temp for testing
             if (Input.GetKeyUp(KeyCode.P))
             {
-                batAttacked = true;
+                //batAttacked = true;
+                decreaseHealth();
             }
             if (batAttacked)
             {

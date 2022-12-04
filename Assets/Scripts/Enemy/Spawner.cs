@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
         spawnedEnemy = t_enemyFactory.SpawnEnemy();
        // Debug.Log(counter);
 
-       spawnedEnemy.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,0);
+        spawnedEnemy.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,0);
       //  Debug.Log(counter);
        // counter = counter + 1;
     }
