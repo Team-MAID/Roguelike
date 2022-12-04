@@ -25,6 +25,7 @@ public class EnemyBehaviour : Enemy
     Vector2 wayPoints;
 
 
+
     BSPDungeonGenerator dungeonGenerator;
 
     Vector2Int currentRoomPos;
@@ -70,11 +71,13 @@ public class EnemyBehaviour : Enemy
 
         if (movement.x > 0)
         {
-            gameObject.transform.localScale = new Vector3(-1.2f, 1.2f, 1.0f);
+            Vector3 l_scale = getScale();
+            gameObject.transform.localScale = new Vector3(-l_scale.x, l_scale.y, l_scale.z);
         }
         else if (movement.x < 0)
         {
-            gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
+            Vector3 l_scale = getScale();
+            gameObject.transform.localScale = new Vector3(l_scale.x, l_scale.y, l_scale.z);
         } 
     }
 
@@ -89,12 +92,14 @@ public class EnemyBehaviour : Enemy
 
         if (transform.position.x > oldPosition)
         {
-            gameObject.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            Vector3 l_scale = getScale();
+            gameObject.transform.localScale = new Vector3(-l_scale.x, l_scale.y, l_scale.z);
         }
 
         if (transform.position.x < oldPosition)
         {
-            gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Vector3 l_scale = getScale();
+            gameObject.transform.localScale = new Vector3(l_scale.x, l_scale.y, l_scale.z);
         }
         oldPosition = transform.position.x;
 

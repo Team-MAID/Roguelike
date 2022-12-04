@@ -142,6 +142,7 @@ MonoBehaviour:
   ghostSpeed: 2
   ghostWanderRange: 2
   ghostFollowRange: 4
+  ghostScale: {x: 1.5, y: 2, z: 1}
 --- !u!95 &2297335911813851630
 Animator:
   serializedVersion: 4

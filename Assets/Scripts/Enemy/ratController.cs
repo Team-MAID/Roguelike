@@ -16,14 +16,17 @@ public class ratController : EnemyBehaviour
     [SerializeField]
     public float ratWanderRange;
 
+    [SerializeField]
+    public Vector3 ratScale;
+
     // Start is called before the first frame update
     void Start()
     {
         setHealth(ratHealth);
         setSpeed(ratSpeed);
+        setScale(ratScale);
         setDungeon();
         setWanderRange(ratWanderRange);
-        setState(EnemyBehaviourStates.Wandering);
         setRoomPosition(this.gameObject.transform);
         setNewDestination();
         setOldPosition(this.gameObject.transform);
@@ -33,10 +36,7 @@ public class ratController : EnemyBehaviour
     {
         if (isAlive())
         {
-            if (getState() == EnemyBehaviourStates.Wandering)
-            {
-                wanderMovement();
-            }
+            wanderMovement();
         }
         else
         {

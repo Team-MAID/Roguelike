@@ -5,9 +5,6 @@ using UnityEngine;
 public class BaseSpider : EnemyBehaviour
 {
     [SerializeField]
-    private GameObject player;
-
-    [SerializeField]
     public float baseSpiderAttackRange;
 
     [SerializeField]
@@ -16,7 +13,10 @@ public class BaseSpider : EnemyBehaviour
     [SerializeField]
     public float baseSpiderSpeed;
 
-    private Transform playerPos;
+    [SerializeField]
+    public Vector3 baseSpiderScale;
+
+    private Transform playerTrans;
     private Rigidbody2D rb;
     private Transform nestPosition;
 
@@ -24,13 +24,11 @@ public class BaseSpider : EnemyBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setAttackrange(baseSpiderAttackRange);
         setHealth(baseSpiderHealth);
         setSpeed(baseSpiderSpeed);
-        setState(EnemyBehaviourStates.Following);
-
-        setOldPosition(this.gameObject.transform);
+        setScale(baseSpiderScale);
         nestPosition = gameObject.transform;
     }
 
@@ -38,17 +36,9 @@ public class BaseSpider : EnemyBehaviour
     {
         if (isAlive())
         {
-            if (CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Following)
+            if (CheckDistance(ref playerTrans, ref rb))
             {
-                setState(EnemyBehaviourStates.Following);
-            }
-            else if (!CheckDistance(ref playerPos, ref rb) && getState() != EnemyBehaviourStates.Idle)
-            {
-                setState(EnemyBehaviourStates.Idle);
-            }
-            if (getState() == EnemyBehaviourStates.Following)
-            {
-                followMovement(ref playerPos, ref rb);
+                followMovement(ref playerTrans, ref rb);
             }
         }
         else

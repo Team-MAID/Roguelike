@@ -149,9 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
   baseSpiderAttackRange: 4
-  baseSpiderWanderRange: 2
   baseSpiderHealth: 2
   baseSpiderSpeed: 2
+  baseSpiderScale: {x: 1.2, y: 1.2, z: 1.2}
 --- !u!95 &7812364975101444915
 Animator:
   serializedVersion: 4
