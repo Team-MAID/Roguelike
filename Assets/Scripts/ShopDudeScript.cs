@@ -27,7 +27,7 @@ public class ShopDudeScript : MonoBehaviour
         {
             if (m_shop != null)
             {
-                Destroy(m_shopInstance);   
+                Destroy(m_shopInstance);
             }
         }
     }

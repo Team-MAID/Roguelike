@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InventorySystem;
 
 public class Potion : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class Potion : MonoBehaviour
 
     mysteryPotionEffects m_mysteryPotionEffects;
 
-    [SerializeField]
-    private GameObject player;
+
+    [SerializeField]private GameObject player;
+    [SerializeField]private ConsumableItemSO consumableItemData;
     string potionType;
     float m_multiplier;
     public HUD hud;
@@ -31,6 +33,7 @@ public class Potion : MonoBehaviour
     {
         potionType = this.gameObject.tag;
         player = GameObject.Find("Player");
+        consumableItemData.ConsumingItem += Consume;
     }
 
     public void useStandardPotion()
@@ -121,6 +124,23 @@ public class Potion : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    public void Consume(GameObject consumer)
+    {
+        if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
+        {
+            player.GetComponent<playerStats>().isPotionActive = true;
+            if (potionType != "MysteryPotion")
+            {
+                useStandardPotion();
+            }
+            else
+            {
+                useMysteryPotion();
+            }
+            Destroy(this.gameObject);
         }
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ShopScript : MonoBehaviour
 {
-    public ConsumableItemSO beef;
-    public ConsumableItemSO redBook;
-    public ConsumableItemSO blueBook;
-    public ConsumableItemSO candy;
-    public ConsumableItemSO log;
+    public ConsumableItemSO defensePotion;
+    public ConsumableItemSO attackPotion;
+    public ConsumableItemSO healthPotion;
+    public ConsumableItemSO mysteryPotion;
+    public ConsumableItemSO speedPotion;
 
     UIInventoryController inventoryController;
 
@@ -19,28 +19,29 @@ public class ShopScript : MonoBehaviour
         inventoryController.ShowInventory();
     }
 
-    public void buyBeef()
+    public void buyDefensePotion()
     {
-        inventoryController.InventorySO.AddItem(beef);
+        inventoryController.InventorySO.AddItem(defensePotion);
     }
-    public void buyRedBook()
+    public void buyAttackPotion()
     {
-        inventoryController.InventorySO.AddItem(redBook);
+        inventoryController.InventorySO.AddItem(attackPotion);
     }
-    public void buyBlueBook()
+    public void buyHealthPotion()
     {
-        inventoryController.InventorySO.AddItem(blueBook);
+        inventoryController.InventorySO.AddItem(healthPotion);
     }
-    public void buyCandy()
+    public void buyMysteryPotion()
     {
-        inventoryController.InventorySO.AddItem(candy);
+        inventoryController.InventorySO.AddItem(mysteryPotion);
     }
-    public void buyLog()
+    public void buySpeedPotion()
     {
-        inventoryController.InventorySO.AddItem(log);
+        inventoryController.InventorySO.AddItem(speedPotion);
     }
     public void exit()
     {
+        inventoryController.HideInventory();
         Destroy(gameObject);
     }
 }

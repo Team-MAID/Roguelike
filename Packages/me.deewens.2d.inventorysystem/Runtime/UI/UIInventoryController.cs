@@ -47,18 +47,21 @@ namespace InventorySystem.UI
             if (UIInventory.gameObject.activeSelf)
             {
                 UIInventory.Hide();
-                Time.timeScale = 1f;
             }
             else
             {
-                UIInventory.Show();
-                Time.timeScale = 0f;
+                UIInventory.Show(); 
             }
         }
 
         public void ShowInventory()
         {
             UIInventory.Show();
+        }
+
+        public void HideInventory()
+        {
+            UIInventory.Hide();
         }
     }
 }
