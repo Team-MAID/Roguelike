@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
   m_Name: MysteryPotion
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <Description>k__BackingField: 
-  <IsStackable>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 0}
-  prefab: {fileID: 0}
+  <Name>k__BackingField: Mystery potion
+  <Description>k__BackingField: BUFF POTION MAN
+  <IsStackable>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: 51c00a5d4be97e94f96628cee6a893fe, type: 3}
+  prefab: {fileID: 7102261352777427429, guid: 171ff33e79bdf744cacb2abe8c656317, type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
   m_Name: DefenseUpPotion
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <Description>k__BackingField: 
-  <IsStackable>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 0}
-  prefab: {fileID: 0}
+  <Name>k__BackingField: defence potion
+  <Description>k__BackingField: BUFF POTION MAN
+  <IsStackable>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: 67aa33268b210164393003cbca95c616, type: 3}
+  prefab: {fileID: 5653664522429949210, guid: 5519b72aa35ec1844978212ccc97e917, type: 3}

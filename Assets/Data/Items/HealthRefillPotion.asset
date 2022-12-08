@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd452248bdd46b294c57e12552040e4, type: 3}
   m_Name: HealthRefillPotion
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <Description>k__BackingField: 
-  <IsStackable>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 0}
-  prefab: {fileID: 0}
+  <Name>k__BackingField: health potion
+  <Description>k__BackingField: BUFF POTION MAN
+  <IsStackable>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: a54d08cc3b957074098e89b1ac2814e8, type: 3}
+  prefab: {fileID: 5629341602598069770, guid: 98a97d454ace3164cbaf0fa7ae2aae42, type: 3}
