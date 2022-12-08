@@ -18,24 +18,18 @@ public class Collision : MonoBehaviour
     //    }
     //}
 
-
-    private void OnTriggerEnter2D(Collider2D _otherColldier)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_otherColldier.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             GetComponent<HealthSystem>().DecreaseHealth(20);
         }
 
-        if (_otherColldier.gameObject.CompareTag("Food"))
+        if (collision.gameObject.CompareTag("Food"))
         {
-            Destroy(_otherColldier.gameObject);
+            Destroy(collision.gameObject);
             GetComponent<HealthSystem>().IncreaseHealth(20);
         }
 
-        if (_otherColldier.gameObject.CompareTag("HeartContainer"))
-        {
-            Destroy(_otherColldier.gameObject);
-            GetComponent<HealthSystem>().IncreaseMaxHealth(20);
-        }
     }
 }

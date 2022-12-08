@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject instruc;
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("FloorOne");
     }
 
     public void ExitGame()
