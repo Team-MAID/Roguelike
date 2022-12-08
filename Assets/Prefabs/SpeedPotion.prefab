@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6722646109092365156}
   - component: {fileID: 6722646109092365157}
   - component: {fileID: 6722646109092365178}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpeedPotion
   m_TagString: SpeedUpPotion
   m_Icon: {fileID: 0}
@@ -115,3 +115,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
+  hud: {fileID: 0}

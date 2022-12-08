@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CampanionController : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject projectile;
+    private GameObject player;
     public int          maxHealth;
     public int          attackDelay;
     public int          movementSpeed;
@@ -22,7 +22,7 @@ public class CampanionController : MonoBehaviour
     void Start()
     {
         Physics2D.IgnoreLayerCollision(6,6);
-
+        player = GameObject.Find("Player").gameObject;
         rB = GetComponent<Rigidbody2D>();
         rBP = player.GetComponent<Rigidbody2D>();   
 
@@ -49,6 +49,20 @@ public class CampanionController : MonoBehaviour
                 rB.MovePosition(rB.position + (mVector * movementSpeed * Time.fixedDeltaTime));
             }
 
+        }
+
+        Vector2 movement = rBP.position - rB.position;
+        movement = movement.normalized;
+
+        if (mVector.x > 0)
+        {
+            Vector3 l_scale = gameObject.transform.localScale;
+            gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+        else if (mVector.x < 0)
+        {
+            Vector3 l_scale = gameObject.transform.localScale;
+            gameObject.transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
 
         if (cAttackDelay > 0)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6182048512241065408}
   - component: {fileID: 6182048512241065409}
   - component: {fileID: 6182048512241065414}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackUpPotion
   m_TagString: AttackUpPotion
   m_Icon: {fileID: 0}
