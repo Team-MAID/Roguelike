@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5629341602598069775}
   - component: {fileID: 5629341602598069768}
   - component: {fileID: 5629341602598069769}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HealthRefillPotion
   m_TagString: RefillHealthPotion
   m_Icon: {fileID: 0}

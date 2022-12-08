@@ -13,7 +13,7 @@ public class SwitchLevel : MonoBehaviour
 
     private void Start()
     {
-        _levelGenerator = GameObject.FindWithTag("DungeonGenerator").GetComponent<BSPDungeonLevelGenerator>();
+        _levelGenerator = GameObject.Find("DungeonGenerator").GetComponent<BSPDungeonLevelGenerator>();
 
         _informationText = GameObject.Find("UI/InformationText").GetComponent<TextMeshProUGUI>();
         _informationText.SetText("Press U to use the stairs. WARNING: You cannot come back.");

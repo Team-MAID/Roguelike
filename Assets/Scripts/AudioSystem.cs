@@ -18,7 +18,7 @@ public class AudioSystem : Observer
         {
             transform.Find("Hit").gameObject.GetComponent<AudioSource>().Play();
         }
-        else if (notificationType == NotificationType.Hit && value.ToString() == "Player")
+        else if (notificationType == NotificationType.Hit && value.ToString() == "Player" && collValue == LayerMask.NameToLayer("Items"))
         {
             transform.Find("Collect").gameObject.GetComponent<AudioSource>().Play();
         }

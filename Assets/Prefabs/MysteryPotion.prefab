@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7102261352777427416}
   - component: {fileID: 7102261352777427419}
   - component: {fileID: 7102261352777427418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MysteryPotion
   m_TagString: MysteryPotion
   m_Icon: {fileID: 0}
