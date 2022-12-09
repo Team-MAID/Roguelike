@@ -5,14 +5,14 @@ namespace Editor
     using UnityEditor;
     using DungeonGeneration;
     
-    [CustomEditor(typeof(BSPDungeonLevelGenerator), true)]
+    [CustomEditor(typeof(BSPLevelGenerator), true)]
     public class LevelGeneratorEditor : Editor
     {
-        private BSPDungeonLevelGenerator _generator;
+        private BSPLevelGenerator _generator;
 
         private void Awake()
         {
-            _generator = (BSPDungeonLevelGenerator) target;
+            _generator = (BSPLevelGenerator) target;
         }
 
         public override void OnInspectorGUI()

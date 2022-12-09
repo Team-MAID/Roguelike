@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpiderBehaviour : Enemy
 {
-    private bool following = false;
     private float attackRange;
     private Vector2 movement;
 

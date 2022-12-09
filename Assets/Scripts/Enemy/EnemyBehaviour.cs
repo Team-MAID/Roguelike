@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DungeonGeneration.BSPGeneration;
 using System.Linq;
+using DungeonGeneration;
+using DungeonGeneration.RandomWalkGeneration;
 using ExtensionMethods;
 
 public class EnemyBehaviour : Enemy
@@ -16,7 +18,6 @@ public class EnemyBehaviour : Enemy
     };
 
     EnemyBehaviourStates m_enemyBehaviourState;
-    private bool following = false;
     private float attackRange;
     private Vector2 movement;
 
@@ -25,8 +26,7 @@ public class EnemyBehaviour : Enemy
     Vector2 wayPoints;
 
 
-
-    BSPDungeonGenerator dungeonGenerator;
+    DungeonGenerator dungeonGenerator;
 
     Vector2Int currentRoomPos;
     Vector2 nextTarget;
@@ -35,13 +35,15 @@ public class EnemyBehaviour : Enemy
     {
         oldPosition = t_position.position.x;
     }
+
     protected virtual void setDungeon()
     {
-        dungeonGenerator = FindObjectOfType<BSPDungeonGenerator>();
+        dungeonGenerator = FindObjectOfType<DungeonGenerator>();
     }
+
     protected virtual void setState(EnemyBehaviourStates t_newState)
     {
-        m_enemyBehaviourState = t_newState; 
+        m_enemyBehaviourState = t_newState;
     }
 
     protected EnemyBehaviourStates getState()
@@ -53,6 +55,7 @@ public class EnemyBehaviour : Enemy
     {
         attackRange = t_attackRange;
     }
+
     public virtual void setWanderRange(float t_wanderRange)
     {
         wanderRange = t_wanderRange;
@@ -60,7 +63,7 @@ public class EnemyBehaviour : Enemy
 
     protected virtual void setRoomPosition(Transform t_pos)
     {
-        currentRoomPos = new Vector2Int((int)t_pos.position.x, (int)t_pos.position.y);
+        currentRoomPos = new Vector2Int((int) t_pos.position.x, (int) t_pos.position.y);
     }
 
     public virtual void followMovement(ref Transform targetPos, ref Rigidbody2D targetRB)
@@ -78,7 +81,7 @@ public class EnemyBehaviour : Enemy
         {
             Vector3 l_scale = getScale();
             gameObject.transform.localScale = new Vector3(l_scale.x, l_scale.y, l_scale.z);
-        } 
+        }
     }
 
     public virtual void wanderMovement()
@@ -101,22 +104,34 @@ public class EnemyBehaviour : Enemy
             Vector3 l_scale = getScale();
             gameObject.transform.localScale = new Vector3(l_scale.x, l_scale.y, l_scale.z);
         }
-        oldPosition = transform.position.x;
 
+        oldPosition = transform.position.x;
     }
 
-    protected virtual void setNewDestination() // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
+    // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
+    protected virtual void setNewDestination()
     {
-        foreach (var leaf in dungeonGenerator.DungeonTree.Leafs)
+        if (dungeonGenerator is BSPDungeonGenerator bspDungeonGenerator)
         {
-            if (leaf.Floors.Contains(currentRoomPos))
+            foreach (var leaf in bspDungeonGenerator.DungeonTree.Leafs)
             {
-                nextTarget = leaf.Floors.GetRandomElement();
+                if (leaf.Floors.Contains(currentRoomPos))
+                {
+                    nextTarget = leaf.Floors.GetRandomElement();
+                }
+            }
+        }
+        else if (dungeonGenerator is SimpleRandomWalkDungeonGenerator randomWalkDungeonGenerator)
+        {
+            var floorPositions = randomWalkDungeonGenerator.FloorPositions;
+            if (floorPositions.Contains(currentRoomPos))
+            {
+                nextTarget = floorPositions.GetRandomElement();
             }
         }
     }
 
-    protected bool CheckDistance(ref Transform targetPos,ref Rigidbody2D targetRB)
+    protected bool CheckDistance(ref Transform targetPos, ref Rigidbody2D targetRB)
     {
         // loop through enemies
         if (Vector2.Distance(targetRB.transform.position, targetPos.position) < attackRange)
@@ -127,6 +142,5 @@ public class EnemyBehaviour : Enemy
         {
             return false;
         }
-
     }
 }

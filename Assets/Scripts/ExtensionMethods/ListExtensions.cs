@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ExtensionMethods
 {
     public static class ListExtensions
     {
-        public static T GetRandomElement<T>(this List<T> list)
+        public static T GetRandomElement<T>(this ICollection<T> collection)
         {
-            return list[Random.Range(0, list.Count)];
+            return collection.ElementAt(Random.Range(0, collection.Count));
         }
     }
 }

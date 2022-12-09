@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
         health -= 1;
     }
 
-    public virtual void movement()
+    public virtual void Movement()
     {
         health -= 1;
     }

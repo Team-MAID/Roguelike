@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class SwitchLevel : MonoBehaviour
 {
-    private BSPDungeonLevelGenerator _levelGenerator;
+    private BSPLevelGenerator _levelGenerator;
     public bool _isPlayerOnStair = false;
     private TextMeshProUGUI _informationText;
 
     private void Start()
     {
-        _levelGenerator = GameObject.Find("DungeonGenerator").GetComponent<BSPDungeonLevelGenerator>();
+        _levelGenerator = GameObject.Find("DungeonGenerator").GetComponent<BSPLevelGenerator>();
 
         _informationText = GameObject.Find("UI/InformationText").GetComponent<TextMeshProUGUI>();
         _informationText.SetText("Press U to use the stairs. WARNING: You cannot come back.");
