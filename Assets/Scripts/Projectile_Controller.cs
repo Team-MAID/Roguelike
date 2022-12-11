@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Projectile_Controller : MonoBehaviour
 {
+    [SerializeField] private WeaponItemSO weaponItemData;
+    public int _damage;
     public int _speed; // The projectil's speed.
     public int _lifetime; // The projectile's liftetime, gets destroyed at 0.
     private Rigidbody2D _rb;
     private Vector2 _movement;
     private Vector2 _target; // The point toward which the projectile will be shot.
-
     void Start()
     {
         Physics2D.IgnoreLayerCollision(6,6);
@@ -41,16 +42,10 @@ public class Projectile_Controller : MonoBehaviour
 
         if (_other.tag == "Enemy" ) // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
         {
-
             if (_other.gameObject.GetComponent<EnemyHealthSystem>())
             {
                 Debug.Log("Enemy Health System Called");
-                _other.gameObject.GetComponent<EnemyHealthSystem>().decreaseHealth();
-            }
-            else
-            {
-                Debug.Log("Object Destroyed by Drojectile");
-                Destroy(_other.gameObject);
+                _other.gameObject.GetComponent<EnemyHealthSystem>().decreaseHealthByDamage(_damage);
             }
 
             Destroy(gameObject);

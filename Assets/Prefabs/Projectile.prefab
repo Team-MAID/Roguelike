@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3044741921344223857}
   - component: {fileID: 3044741921344223858}
   - component: {fileID: -8362065813591185930}
+  - component: {fileID: 7594091960497973847}
   m_Layer: 6
-- component: {fileID: 7594091960497973847}
   m_Name: Projectile
   m_TagString: Projectile_Player
   m_Icon: {fileID: 0}
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf2cfa10a2e80d468ba4e1a8953dd0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponItemData: {fileID: 0}
+  _damage: 5
   _speed: 20
   _lifetime: 30
 --- !u!50 &-8362065813591185930
@@ -132,7 +134,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
