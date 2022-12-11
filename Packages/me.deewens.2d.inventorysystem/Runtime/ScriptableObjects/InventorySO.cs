@@ -26,6 +26,14 @@ namespace InventorySystem.ScriptableObjects
                     item.Quantity++;
                 }
             }
+            else if (itemData.Name == "Bow" || itemData.Name == "Sword")
+            {
+                InventoryItem item = Items.Find(item => item.ItemData == itemData);
+                if (item == null)
+                {
+                    Items.Add(new InventoryItem(itemData));
+                }
+            }
             else
             {
                 Items.Add(new InventoryItem(itemData));

@@ -1,46 +1,112 @@
+using InventorySystem.UI;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+using InventorySystem.Interfaces;
+using static UnityEngine.GraphicsBuffer;
 
-public class BowController : MonoBehaviour
+public class BowController : MonoBehaviour, IEquipable
 {
-    [SerializeField] private GameObject projectile;
-    public bool equipped;
+    [SerializeField] private GameObject     projectile;
+    [SerializeField] private WeaponItemSO   weaponItemData;
 
+    public bool         equipped;
+    private float       angleOffset;
+    private Collider2D  col;
+
+    private UIInventoryController uiInventoryController;
     private void Start()
-    {
+    {     
+        weaponItemData.EquippingItem += Equip;
+        weaponItemData.UnequippingItem += Unequip;
+
+        angleOffset = -45;
+        col = GetComponent<Collider2D>();
+        this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -135));
+        uiInventoryController = GameObject.Find("Player").GetComponent<UIInventoryController>();
+
+        if (uiInventoryController == null)
+        {
+            Debug.Log("No Inventory Controller");
+        }
+
         if (transform.parent != null && transform.parent.tag == "Player")
         { 
-            equipped = true; 
-            this.transform.GetComponent<SpriteRenderer>().flipX=true;
-            this.transform.GetComponent<SpriteRenderer>().flipY = true;
+            equipped = true;
+            col.enabled = false;
+           
         }
         else { equipped = false;}
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && equipped == true )
+        if (equipped) 
         {
-            //Debug.Log("LeftClick");
-            Instantiate(projectile, this.transform.position, Quaternion.identity);
+           // Reposition();
+            Rotate();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                //Debug.Log("LeftClick");
+                Quaternion _deltaRot = Quaternion.Euler(0, 0, -135);
+                Instantiate(projectile, this.transform.position, this.transform.rotation * _deltaRot);
+            }
         }
+        
+    }
+
+    private void Reposition()
+    {
+        Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 _target;
+        Vector3 _parent = this.transform.parent.transform.position;
+        Vector3 _newPos;
+      
+        _target = _mPos - _parent;
+        _target.z = 0.0f;
+        _newPos = _parent + (_target.normalized / 2);
+        this.transform.position = _newPos;
+    }
+
+    private void Rotate()
+    {
+        Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 _target;
+        Vector3 _deltaRot;
+        float   _angle;
+
+        _target = _mPos - this.transform.position;
+        _angle = Mathf.Atan2(_target.x, _target.y) * Mathf.Rad2Deg;
+        _deltaRot = new Vector3(0, 0, -_angle + angleOffset);
+
+        this.transform.rotation = Quaternion.Euler(_deltaRot);
     }
 
     public void Equip(GameObject user)
-    {      
+    {
+        Debug.Log("Bow Equip Call");
+
         GameObject player = GameObject.FindWithTag("Player");
         BowController bow = player.GetComponentInChildren<BowController>();
 
-        Vector3 offset = new Vector3(0.7f,0,0);
-
         if (bow == null)
         {
-            Instantiate(this, player.transform.position + offset, Quaternion.identity, player.transform);
             Debug.Log("Bow Equipped");
+            Instantiate(this.weaponItemData.Prefab, player.transform.position, Quaternion.identity, player.transform);
         }
-        else
-        {
-            Destroy(bow.gameObject);
-            Debug.Log("Bow Un-Equipped");
-        }
+       
+    }
+
+    public void Unequip(GameObject user)
+    {
+        Debug.Log("Bow Unequip Call");
+
+        GameObject player = GameObject.FindWithTag("Player");
+        BowController bow = player.GetComponentInChildren<BowController>();
+      
+        Debug.Log("Bow Un-Equipped");
+        uiInventoryController.InventorySO.AddItem(bow.weaponItemData);
+        Destroy(bow.gameObject);
+               
     }
 }
