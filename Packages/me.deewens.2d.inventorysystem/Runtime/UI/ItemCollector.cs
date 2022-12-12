@@ -27,6 +27,7 @@ namespace InventorySystem.UI
 
         private void OnCollisionEnter2D(Collision2D col)
         {
+            Debug.Log("ItemCollector Collision");
             ICollectable item = col.gameObject.GetComponent<ICollectable>();
             item?.Collect(_uiInventoryController.InventorySO);
         }

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 3044741921344223859, guid: d08aa4c4163d13e4fbe2ace095d5580b, type: 3}
-  maxHealth: 4
+  maxHealth: 100
   attackDelay: 400
   movementSpeed: 3
   standOffDistance: 1
@@ -161,7 +161,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2427360014427236502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 60bdfbe29652fbc45a2d2edefd72f2fa, type: 2}
   m_CullingMode: 0

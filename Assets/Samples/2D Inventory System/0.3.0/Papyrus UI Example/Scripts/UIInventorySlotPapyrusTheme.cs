@@ -1,7 +1,10 @@
 ﻿using System;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using Unity;
+using UnityEngine;
 
 namespace InventorySystem.UI.PapyrusTheme
 {
@@ -22,8 +25,8 @@ namespace InventorySystem.UI.PapyrusTheme
         public override void SetInventoryItem(InventoryItem item)
         {
             base.SetInventoryItem(item);
-
-            gameObject.name = "Item Slot: " + Item.ItemData.Name + " (" + Item.Quantity + ")";
+            Debug.Log("SetIventoryItem");
+            gameObject.name = "Item Slot: " + Item.ItemData.Name + " (" + Item.Quantity + ")";   
             _icon.sprite = item.ItemData.Icon;
             if (item.Quantity > 1)
             {

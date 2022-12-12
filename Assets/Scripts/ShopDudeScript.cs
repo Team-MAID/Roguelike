@@ -16,18 +16,16 @@ public class ShopDudeScript : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(m_player.transform.position, gameObject.transform.position);
-        if(distance <= 1)
+        if(distance <= 1 )
         {
-            if(Input.GetKeyDown(KeyCode.E)) 
-            {    
-                m_shopInstance = Instantiate(m_shop);
-            }
-        }
-        else
-        {
-            if (m_shop != null)
-            {
-                Destroy(m_shopInstance);
+            if (Input.GetKeyDown(KeyCode.E))
+            {                
+                if(m_shopInstance)
+                {
+                    Destroy(m_shopInstance);
+                }
+                else
+                m_shopInstance = Instantiate(m_shop);                
             }
         }
     }
