@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject menu;
     public GameObject instruc;
+    public GameObject settings;
     public void StartGame()
     {
         SceneManager.LoadScene("FloorOne");
@@ -28,5 +29,16 @@ public class MenuManager : MonoBehaviour
     {
         menu.SetActive(true);
         instruc.SetActive(false);
+    }
+
+    public void OpenSettings()
+    {
+        menu.SetActive(false);
+        settings.SetActive(true);
+    } 
+    public void CloseSettings()
+    {
+        menu.SetActive(true);
+        settings.SetActive(false);
     }
 }

@@ -8,9 +8,21 @@ public class PointOfInterest : Subject
     {
         poiName = gameObject.name;
     }
+    private void Update()
+    {
+        if(this.gameObject == null)
+        {
+            Notify(poiName, 0, NotificationType.Die);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D _otherColldier)
     {
         Notify(poiName, _otherColldier.gameObject.layer, NotificationType.Hit);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Notify(poiName, collision.gameObject.layer, NotificationType.Hit);
     }
     private void FixedUpdate()
     {

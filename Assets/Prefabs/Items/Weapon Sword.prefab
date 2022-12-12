@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8084364645330218095}
   - component: {fileID: 2746591916561566460}
   - component: {fileID: 8258874968284028956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwordSlash
   m_TagString: SwordSlash
   m_Icon: {fileID: 0}
@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d3daabbc6486d4681503b0ef8e1c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &8953738396917018979
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +77,7 @@ GameObject:
   - component: {fileID: 650914997422794744}
   - component: {fileID: 2147270069432029912}
   - component: {fileID: 5906473927853964102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon Sword
   m_TagString: Weapon_Player
   m_Icon: {fileID: 0}
