@@ -20,6 +20,9 @@ public class Vampire_Controller : EnemyBehaviour
     public float vampireSpeed;
 
     [SerializeField]
+    public int vampireDamage;
+
+    [SerializeField]
     public float vampireWanderRange;
 
     [SerializeField]
@@ -32,19 +35,11 @@ public class Vampire_Controller : EnemyBehaviour
     private float spawnInterval = 5.0f;
 
     public int limit = 5;
-
     private Transform playerTrans;
     private Rigidbody2D rb;
 
-
-
     public Bat_Manager bat_manager;
-
-
-
     public float spawnBatTimer;
-
-
     public HealthBar healthBar;
 
     public VampAnimStates vampAnimState;
@@ -94,7 +89,7 @@ public class Vampire_Controller : EnemyBehaviour
         {
             spawnBatTimer -= Time.deltaTime;
 
-            //Debug.Log(counter);
+            Debug.Log(counter);
             if (spawnBatTimer < 0)
             {
                 spawnBatTimer = spawnInterval;
@@ -124,6 +119,19 @@ public class Vampire_Controller : EnemyBehaviour
         {
             Debug.Log("change");
             setNewDestination();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            Debug.Log("Vampire/Player Collision");
+            collision.gameObject.GetComponent<HealthSystem>().DecreaseHealth(vampireDamage);
+        }
+        else if (collision.transform.CompareTag("Companion"))
+        {
+            Debug.Log("VampireCollision");
+            collision.gameObject.GetComponent<CompanionController>().DecreaseHealthByDamage(vampireDamage);
         }
     }
 

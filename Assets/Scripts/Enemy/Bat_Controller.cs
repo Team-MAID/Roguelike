@@ -90,7 +90,6 @@ public class Bat_Controller : EnemyBehaviour
             Debug.Log("change");
             setNewDestination();
 
-
         }
     }
 
