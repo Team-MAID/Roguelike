@@ -45,6 +45,7 @@ public class Bat_Controller : EnemyBehaviour
 
     public override void Update()
     {
+        Debug.Log(batHealth);
         if (isAlive())
         {
             // temp for testing
