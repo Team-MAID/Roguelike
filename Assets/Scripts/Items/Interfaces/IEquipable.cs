@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IEquipable
 {
     void Equip(GameObject user);
+    void Unequip(GameObject user);
 }

@@ -111,6 +111,7 @@ MonoBehaviour:
   counter: 0
   vampireHealth: 100
   vampireSpeed: 2
+  vampireDamage: 20
   vampireWanderRange: 2
   vampireFollowRange: 2
   vampireScale: {x: 5, y: 5, z: 1}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7518930410017533295}
   - component: {fileID: 4530961401165280433}
   - component: {fileID: 5466967716485753082}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DefenseUpPotion
   m_TagString: DefenseUpPotion
   m_Icon: {fileID: 0}
