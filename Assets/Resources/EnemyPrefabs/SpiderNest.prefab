@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 7031763060367958705}
   - component: {fileID: 7031763060367958704}
   - component: {fileID: -8485972922237217628}
+  - component: {fileID: -1303403472183548642}
+  - component: {fileID: -3080319003848392766}
   m_Layer: 0
   m_Name: SpiderNest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244006d5c6b82fc439c4809673f205ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nestHealth: 10
+  health: 0
+  nestHealth: 100
   nestScale: {x: 1, y: 1, z: 1}
   spiderPrefab:
   - {fileID: 624915934399402192, guid: 83ea7f01200cdd641af38419161c3de5, type: 3}
@@ -129,9 +132,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 0}
-  potionPrefab: {fileID: 0}
   itemDrops: []
-  delay: 0
-  timePassed: 0
-  whenTo: 0
+  item: {fileID: 0}
+--- !u!58 &-1303403472183548642
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031763060367958703}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
+--- !u!114 &-3080319003848392766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031763060367958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

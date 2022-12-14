@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 3
 --- !u!114 &4179528518083146227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c048a2c75f30d459edeae82d799556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  batHealth: 2
+  health: 0
+  batHealth: 20
   batSpeed: 2
   batWanderRange: 2
   batSwarmRange: 4
@@ -200,9 +200,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 0}
-  potionPrefab: {fileID: 0}
   itemDrops: []
-  delay: 0
-  timePassed: 0
-  whenTo: 0
+  item: {fileID: 0}

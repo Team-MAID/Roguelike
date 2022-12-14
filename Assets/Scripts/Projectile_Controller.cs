@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile_Controller : MonoBehaviour
 {
+    public GameObject player;
     [SerializeField] private WeaponItemSO weaponItemData;
     public int _damage;
     public int _speed; // The projectil's speed.
@@ -13,6 +14,7 @@ public class Projectile_Controller : MonoBehaviour
     private Vector2 _target; // The point toward which the projectile will be shot.
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreLayerCollision(6,6);
 
         _rb = GetComponent<Rigidbody2D>();
@@ -42,13 +44,24 @@ public class Projectile_Controller : MonoBehaviour
 
         if (_other.tag == "Enemy" ) // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
         {
-            if (_other.gameObject.GetComponent<EnemyHealthSystem>())
-            {
-                Debug.Log("Enemy Health System Called");
-                _other.gameObject.GetComponent<EnemyHealthSystem>().decreaseHealthByDamage(_damage);
-            }
-
+            _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect();
+            _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D _other)
+    {
+        if (_other.gameObject.tag == "Enemy") // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
+        {
+            _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect();
+            _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
+            Destroy(gameObject);
+        }
+    }
+
+    public int GetDamage()
+    {
+        return _damage;
     }
 }

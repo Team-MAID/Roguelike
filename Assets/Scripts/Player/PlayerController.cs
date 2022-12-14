@@ -37,6 +37,10 @@ public class PlayerController : playerStats
         baseSpeed = speed;
         isPotionActive = false;
         isImmuneTodamage = false;
+
+        hud.UpdateCurrentHealth(health);
+        hud.UpdateHealthText(health, 100); 
+
         //Debug.Log("Speed" + baseSpeed);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1150597811062360595}
   - component: {fileID: 5480195549987529785}
   - component: {fileID: 4070426821531761063}
+  - component: {fileID: 8069006171277424666}
   m_Layer: 8
   m_Name: Rat 2
   m_TagString: Enemy
@@ -101,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cd93b2d8329f94783cfc1610c5e678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ratHealth: 5
+  health: 0
+  ratHealth: 20
   ratSpeed: 2
   ratWanderRange: 2
   ratScale: {x: 1, y: 1, z: 1}
@@ -184,9 +186,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 0}
-  potionPrefab: {fileID: 0}
   itemDrops: []
-  delay: 0
-  timePassed: 0
-  whenTo: 0
+  item: {fileID: 0}
+--- !u!114 &8069006171277424666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314442898864716521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

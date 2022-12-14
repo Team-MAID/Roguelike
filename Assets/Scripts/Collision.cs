@@ -20,16 +20,31 @@ public class Collision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (GetComponent<DamageEffect>().isImmuneToDamage == false)
         {
-            GetComponent<HealthSystem>().DecreaseHealth(20);
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                GetComponent<DamageEffect>().TakeDamageEffect();
+                GetComponent<HealthSystem>().DecreaseHealth(20);
+            }
         }
+    }
 
-        if (collision.gameObject.CompareTag("Food"))
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (GetComponent<DamageEffect>().isImmuneToDamage == false)
         {
-            Destroy(collision.gameObject);
-            GetComponent<HealthSystem>().IncreaseHealth(20);
+            if (collision.transform.CompareTag("Enemy"))
+            {
+                Debug.Log("Vampire/Player Collision");
+                GetComponent<DamageEffect>().TakeDamageEffect();
+                GetComponent<HealthSystem>().DecreaseHealth(collision.GetComponent<Vampire_Controller>().GetDamage());
+            }
         }
-
+        //else if (collision.transform.CompareTag("Companion"))
+        //{
+        //    Debug.Log("VampireCollision");
+        //    collision.gameObject.GetComponent<CompanionController>().DecreaseHealthByDamage(vampireDamage);
+        //}
     }
 }

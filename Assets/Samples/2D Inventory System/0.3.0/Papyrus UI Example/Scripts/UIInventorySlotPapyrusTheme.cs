@@ -25,7 +25,7 @@ namespace InventorySystem.UI.PapyrusTheme
         public override void SetInventoryItem(InventoryItem item)
         {
             base.SetInventoryItem(item);
-            Debug.Log("SetIventoryItem");
+            //Debug.Log("SetIventoryItem");
             gameObject.name = "Item Slot: " + Item.ItemData.Name + " (" + Item.Quantity + ")";   
             _icon.sprite = item.ItemData.Icon;
             if (item.Quantity > 1)

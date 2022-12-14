@@ -43,11 +43,11 @@ public class Potion : MonoBehaviour
         {
             player.GetComponent<playerStats>().setSpeed(m_multiplier);
         }
-        else if (potionType == "DefenseUpPotion")
-        {
-            player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
-        }
         else if (potionType == "AttackUpPotion")
+        {
+            player.GetComponent<playerStats>().setAttackDamagePotion(m_multiplier);
+        }
+        else if (potionType == "DefenseUpPotion")
         {
             player.GetComponent<playerStats>().setDefense(m_multiplier);
         }
@@ -78,7 +78,7 @@ public class Potion : MonoBehaviour
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.attackDown)
         {
-            player.GetComponent<playerStats>().setAttackDamage(m_multiplier);
+            player.GetComponent<playerStats>().setAttackDamagePotion(m_multiplier);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.speedDown)
         {

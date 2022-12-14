@@ -45,14 +45,14 @@ public class Bat_Controller : EnemyBehaviour
 
     public override void Update()
     {
-        Debug.Log(batHealth);
+        //Debug.Log(batHealth);
         if (isAlive())
         {
             // temp for testing
             if (Input.GetKeyUp(KeyCode.P))
             {
                 //batAttacked = true;
-                decreaseHealth();
+                //decreaseHealth();
             }
             if (batAttacked)
             {

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6209255023655306145}
   - component: {fileID: 8140657274473495442}
   - component: {fileID: -5794053556689156039}
+  - component: {fileID: -4159654748991047993}
   m_Layer: 7
   m_Name: PoisonSpider
   m_TagString: Enemy
@@ -148,9 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6082f6ad654427d45b4e7c81ca5cae08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   poisonSpiderAttackRange: 4
   poisonSpiderWanderRange: 2
-  poisonSpiderHealth: 4
+  poisonSpiderHealth: 30
   poisonSpiderSpeed: 3
   poisonSpiderScale: {x: 1.25, y: 1.25, z: 1}
 --- !u!95 &8140657274473495442
@@ -185,9 +187,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 0}
-  potionPrefab: {fileID: 0}
   itemDrops: []
-  delay: 0
-  timePassed: 0
-  whenTo: 0
+  item: {fileID: 0}
+--- !u!114 &-4159654748991047993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624915934399402192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

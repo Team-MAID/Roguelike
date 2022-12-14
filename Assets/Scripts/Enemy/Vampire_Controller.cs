@@ -121,24 +121,22 @@ public class Vampire_Controller : EnemyBehaviour
             setNewDestination();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            Debug.Log("Vampire/Player Collision");
-            collision.gameObject.GetComponent<HealthSystem>().DecreaseHealth(vampireDamage);
-        }
-        else if (collision.transform.CompareTag("Companion"))
-        {
-            Debug.Log("VampireCollision");
-            collision.gameObject.GetComponent<CompanionController>().DecreaseHealthByDamage(vampireDamage);
-        }
-    }
 
-    void takeDamage(int dmg)
+    public int GetDamage()
     {
-        health -= dmg;
-
-        //healthBar.setHealth(health);
+        return vampireDamage;
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.transform.CompareTag("Player"))
+    //    {
+    //        Debug.Log("Vampire/Player Collision");
+    //        collision.gameObject.GetComponent<HealthSystem>().DecreaseHealth(vampireDamage);
+    //    }
+    //    else if (collision.transform.CompareTag("Companion"))
+    //    {
+    //        Debug.Log("VampireCollision");
+    //        collision.gameObject.GetComponent<CompanionController>().DecreaseHealthByDamage(vampireDamage);
+    //    }
+    //}
 }

@@ -39,9 +39,9 @@ public abstract class Enemy : MonoBehaviour
         health = t_health;
     }
 
-    public virtual void decreaseHealth()
+    public virtual void decreaseHealth(int t_playerAttack)
     {
-        health -= 1;
+        health -= t_playerAttack;
     }
 
     public virtual void Movement()
