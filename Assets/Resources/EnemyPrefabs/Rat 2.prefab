@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4356517784146936223}
   - component: {fileID: 1150597811062360595}
   - component: {fileID: 5480195549987529785}
+  - component: {fileID: 4070426821531761063}
   m_Layer: 8
   m_Name: Rat 2
   m_TagString: Enemy
@@ -171,3 +172,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4070426821531761063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314442898864716521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
+  potionPrefab: {fileID: 0}
+  itemDrops: []
+  delay: 0
+  timePassed: 0
+  whenTo: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 624915934399402194}
   - component: {fileID: 5055628506795103388}
   - component: {fileID: 7812364975101444915}
+  - component: {fileID: 6017082673863285796}
   m_Layer: 7
   m_Name: Spider
   m_TagString: Enemy
@@ -171,3 +172,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6017082673863285796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624915934399402192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
+  potionPrefab: {fileID: 0}
+  itemDrops: []
+  delay: 0
+  timePassed: 0
+  whenTo: 0

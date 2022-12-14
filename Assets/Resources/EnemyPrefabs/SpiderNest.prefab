@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7031763060367958706}
   - component: {fileID: 7031763060367958705}
   - component: {fileID: 7031763060367958704}
+  - component: {fileID: -8485972922237217628}
   m_Layer: 0
   m_Name: SpiderNest
   m_TagString: Untagged
@@ -116,3 +117,21 @@ MonoBehaviour:
   spawnSpiderTimer: 5
   counter: 0
   aliveTime: 0
+--- !u!114 &-8485972922237217628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031763060367958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
+  potionPrefab: {fileID: 0}
+  itemDrops: []
+  delay: 0
+  timePassed: 0
+  whenTo: 0

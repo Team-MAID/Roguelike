@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected int health;
+    public int health;
     protected float speed;
     protected Vector3 scale;
 
@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            GetComponent<ItemDrops>().SpawnItemDrops();
             return false;
         }
         //Debug.Log("Alive");

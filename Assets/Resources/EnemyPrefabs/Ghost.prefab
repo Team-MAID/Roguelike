@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7374765216110973055}
   - component: {fileID: 7374765216110973054}
   - component: {fileID: 2297335911813851630}
+  - component: {fileID: 2623777438439773259}
   m_Layer: 8
   m_Name: Ghost
   m_TagString: GhostDetectionCollider
@@ -163,6 +164,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2623777438439773259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374765216110973049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
+  potionPrefab: {fileID: 0}
+  itemDrops: []
+  delay: 0
+  timePassed: 0
+  whenTo: 0
 --- !u!1 &7374765217046468211
 GameObject:
   m_ObjectHideFlags: 0

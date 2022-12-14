@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7187020203280847441}
   - component: {fileID: 5305023247466913267}
   - component: {fileID: 6405027829883932999}
+  - component: {fileID: 9135780358973080706}
   m_Layer: 8
   m_Name: Vampire
   m_TagString: Untagged
@@ -201,3 +202,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9135780358973080706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305023247466913268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0726066d6ab8c5c49ab41cdf131d93fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
+  potionPrefab: {fileID: 0}
+  itemDrops: []
+  delay: 0
+  timePassed: 0
+  whenTo: 0
