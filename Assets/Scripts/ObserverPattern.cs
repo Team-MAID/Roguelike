@@ -20,6 +20,9 @@ public abstract class Subject : MonoBehaviour
         _observers.Remove(observer);
     }
 
+    /// <summary>
+    /// Loops through each observer in the list and notifies them of a new notification
+    /// <summary>
     public void Notify(object value, int collValue, NotificationType notificationType)
     {
         foreach(var observer in _observers)

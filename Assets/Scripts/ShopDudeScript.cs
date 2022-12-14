@@ -13,6 +13,9 @@ public class ShopDudeScript : MonoBehaviour
     {
         m_player = GameObject.FindGameObjectWithTag("Player");
     }
+    /// <summary>
+    /// Instantiates the shop window when the player is within range of the shop dude and presses E
+    /// <summary>
     void Update()
     {
         if (m_player.gameObject != null)
