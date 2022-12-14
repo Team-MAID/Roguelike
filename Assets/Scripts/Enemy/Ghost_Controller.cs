@@ -5,6 +5,9 @@ using UnityEngine;
 public class Ghost_Controller : EnemyBehaviour
 {
     [SerializeField]
+    public int ghostDamage;
+
+    [SerializeField]
     public int ghostHealth;
 
     [SerializeField]
@@ -25,6 +28,7 @@ public class Ghost_Controller : EnemyBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDamage(ghostDamage);
         rb = GetComponent<Rigidbody2D>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setHealth(ghostHealth);

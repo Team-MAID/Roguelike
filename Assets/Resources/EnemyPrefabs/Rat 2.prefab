@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  ratDamage: 5
   ratHealth: 20
   ratSpeed: 2
   ratWanderRange: 2
@@ -200,3 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmuneToDamage: 0

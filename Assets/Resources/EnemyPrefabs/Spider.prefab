@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  baseSpiderDamage: 10
   baseSpiderAttackRange: 3
   baseSpiderHealth: 25
   baseSpiderSpeed: 2
@@ -200,3 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmuneToDamage: 0

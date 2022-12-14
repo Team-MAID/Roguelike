@@ -51,6 +51,7 @@ public class Vampire_Controller : EnemyBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDamage(vampireDamage);
         rb = GetComponent<Rigidbody2D>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setHealth(vampireHealth);
@@ -120,11 +121,6 @@ public class Vampire_Controller : EnemyBehaviour
             Debug.Log("change");
             setNewDestination();
         }
-    }
-
-    public int GetDamage()
-    {
-        return vampireDamage;
     }
     //private void OnTriggerEnter2D(Collider2D collision)
     //{

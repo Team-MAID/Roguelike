@@ -18,7 +18,7 @@ public class playerStats : MonoBehaviour
     [SerializeField]
     protected float attack;
     [SerializeField]
-    protected float defense;
+    protected float defense = 0.0f;
     [SerializeField]
     protected int health;
     [SerializeField]
@@ -40,8 +40,13 @@ public class playerStats : MonoBehaviour
     }
     public void setDefense(float t_multiplier)
     {
-        defense = baseDefense * t_multiplier + armourDefense;
+        defense = 0.5f;
+        //defense = baseDefense * t_multiplier + armourDefense;
         StartCoroutine(potionDuration());
+    }
+    public float getDefense()
+    {
+        return defense;
     }
     public void increaseAllStats()
     {
@@ -49,7 +54,7 @@ public class playerStats : MonoBehaviour
         baseSpeed += 0.5f;
         baseDefense += 2;
         setAttackDamage(0);
-        setDefense();
+        defense = 0.0f;
         GetComponent<HealthSystem>().IncreaseMaxHealth(20);
         setSpeed();
     }
@@ -64,8 +69,11 @@ public class playerStats : MonoBehaviour
     {
         yield return new WaitForSeconds(potionCoolDown);
         setSpeed();
-        setDefense();
-        attack = storeAttack;
+        defense = 0.0f;
+        if (storeAttack!=0)
+        {
+            attack = storeAttack;
+        }
         isImmuneTodamage = false;
         isPotionActive = false;
     }

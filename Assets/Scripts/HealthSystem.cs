@@ -35,7 +35,13 @@ public class HealthSystem : MonoBehaviour
     public void DecreaseHealth(int t_decreaseHealth)
     {
         Debug.Log("Health Decreased");
-        health -= t_decreaseHealth;
+
+        if (GetComponent<playerStats>().getDefense() != 0.0f)
+        {
+            float temp = (float)t_decreaseHealth * GetComponent<playerStats>().getDefense();
+            t_decreaseHealth = (int)temp;
+        }
+        health -= (int)t_decreaseHealth;
         hud.UpdateCurrentHealth(health);
         hud.UpdateHealthText(health, currentMaxHealth);
     }

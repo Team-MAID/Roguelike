@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
     public int health;
     protected float speed;
+    protected int damage;
     protected Vector3 scale;
 
     public virtual bool isAlive()
@@ -32,6 +33,16 @@ public abstract class Enemy : MonoBehaviour
     public virtual void setSpeed(float t_speed)
     {
         speed = t_speed;
+    }
+
+    public virtual void SetDamage(int t_damage)
+    {
+        damage = t_damage;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 
     public virtual void setHealth(int t_health)

@@ -5,6 +5,9 @@ using UnityEngine;
 public class BaseSpider : EnemyBehaviour
 {
     [SerializeField]
+    public int baseSpiderDamage;
+
+    [SerializeField]
     public float baseSpiderAttackRange;
 
     [SerializeField]
@@ -23,6 +26,7 @@ public class BaseSpider : EnemyBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDamage(baseSpiderDamage);
         rb = GetComponent<Rigidbody2D>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setAttackrange(baseSpiderAttackRange);

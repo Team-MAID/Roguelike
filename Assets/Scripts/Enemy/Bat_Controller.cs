@@ -5,6 +5,9 @@ using UnityEngine;
 public class Bat_Controller : EnemyBehaviour
 {
     [SerializeField]
+    public int batDamage;
+
+    [SerializeField]
     public int batHealth;
 
     [SerializeField]
@@ -27,6 +30,7 @@ public class Bat_Controller : EnemyBehaviour
 
     void Start()
     {
+        SetDamage(batDamage);
         setScale(batScale);
         gameObject.transform.localScale = getScale();
         rb = GetComponent<Rigidbody2D>();

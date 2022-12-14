@@ -5,6 +5,9 @@ using UnityEngine;
 public class posionousSpider : EnemyBehaviour
 {
     [SerializeField]
+    public int poisonSpiderDamage;
+
+    [SerializeField]
     public float poisonSpiderAttackRange;
 
     [SerializeField]
@@ -26,6 +29,7 @@ public class posionousSpider : EnemyBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDamage(poisonSpiderDamage);
         rb = GetComponent<Rigidbody2D>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         setAttackrange(poisonSpiderAttackRange);

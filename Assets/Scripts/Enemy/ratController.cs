@@ -8,6 +8,9 @@ using ExtensionMethods;
 public class ratController : EnemyBehaviour
 {
     [SerializeField]
+    public int ratDamage;
+
+    [SerializeField]
     public int ratHealth;
 
     [SerializeField]
@@ -22,6 +25,7 @@ public class ratController : EnemyBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDamage(ratDamage);
         setHealth(ratHealth);
         setSpeed(ratSpeed);
         setScale(ratScale);

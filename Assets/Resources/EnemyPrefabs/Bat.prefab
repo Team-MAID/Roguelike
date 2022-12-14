@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4179528518083146226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf9c301497078459ed38549ea44750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmuneToDamage: 0
 --- !u!114 &4179528518083146227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  batHealth: 20
+  batDamage: 8
+  batHealth: 25
   batSpeed: 2
   batWanderRange: 2
   batSwarmRange: 4
