@@ -13,6 +13,9 @@ public class ShopScript : MonoBehaviour
 
     UIInventoryController inventoryController;
 
+    /// <summary>
+    /// Opening the shop will automatically open the inventory for the player
+    /// </summary>
     private void Start()
     {
         inventoryController = GameObject.FindWithTag("Player").GetComponent<UIInventoryController>();

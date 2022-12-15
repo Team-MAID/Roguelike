@@ -8,6 +8,9 @@ public class DamageEffect : MonoBehaviour
     public bool isImmuneToDamage;
     private Renderer renderer;
 
+    /// <summary>
+    /// Get the original color of the game object 
+    /// </summary>
     void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -33,6 +36,9 @@ public class DamageEffect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the color of the gameObject to be red then wait for a period of time before going back to the gameObject original color 
+    /// </summary>
     IEnumerator FlashColor(Renderer renderer, float t_immuneFor)
     {
         isImmuneToDamage = true;

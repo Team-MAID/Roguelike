@@ -70,6 +70,10 @@ public class Vampire_Controller : EnemyBehaviour
         //vampAnimState = VampAnimStates.Idle;
         //_animator.SetInteger(VampState, (int)vampAnimState);
     }
+
+    /// <summary>
+    /// The vampire will spawn bats until it reach the number of bats the vampire suppose to spawn
+    /// </summary>
     public void spawnNewBat(EnemyFactory t_enemyfactory)
     {
         if (counter < spawnedEnemy.Length)
@@ -84,6 +88,10 @@ public class Vampire_Controller : EnemyBehaviour
         counter--;
     }
     // Update is called once per frame
+    /// <summary>
+    /// The vampire will spawn bat at interval time and follow the player if the player is in range.
+    /// The vampire will fllow the player if the player is in range , if not , the vampire will wander in the room 
+    /// </summary>
     public override void Update()
     {
         if (isAlive())
