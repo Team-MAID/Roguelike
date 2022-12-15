@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6579921992517294902}
   - component: {fileID: -7833104378853607810}
   - component: {fileID: 2527456183874217614}
+  - component: {fileID: -982674371554690157}
   m_Layer: 3
   m_Name: HealthRefillPotion
   m_TagString: RefillHealthPotion
@@ -118,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: 9789e8849bc20094da96492d659f3983, type: 2}
   hud: {fileID: 0}
 --- !u!50 &-6579921992517294902
 Rigidbody2D:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 9789e8849bc20094da96492d659f3983, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 9789e8849bc20094da96492d659f3983, type: 2}
 --- !u!114 &2527456183874217614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.1
+--- !u!114 &-982674371554690157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629341602598069770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125aaa9363044d01bd19b452f6c99f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

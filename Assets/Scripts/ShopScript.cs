@@ -1,15 +1,16 @@
 using InventorySystem.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Items.ScriptableObjects;
 using UnityEngine;
 
 public class ShopScript : MonoBehaviour
 {
-    public ConsumableItemSO defensePotion;
-    public ConsumableItemSO attackPotion;
-    public ConsumableItemSO healthPotion;
-    public ConsumableItemSO mysteryPotion;
-    public ConsumableItemSO speedPotion;
+    public PotionItemSO defensePotion;
+    public PotionItemSO attackPotion;
+    public PotionItemSO healthPotion;
+    public PotionItemSO mysteryPotion;
+    public PotionItemSO speedPotion;
 
     UIInventoryController inventoryController;
 

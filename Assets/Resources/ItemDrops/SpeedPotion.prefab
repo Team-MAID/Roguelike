@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7580586120987828353}
   - component: {fileID: -5078999565296211609}
   - component: {fileID: -7011052805104532775}
+  - component: {fileID: -5131521777971766188}
   m_Layer: 3
   m_Name: SpeedPotion
   m_TagString: SpeedUpPotion
@@ -118,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: a07e4182390bec64bb31fe40ad675034, type: 2}
   hud: {fileID: 0}
 --- !u!50 &-7580586120987828353
 Rigidbody2D:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: a07e4182390bec64bb31fe40ad675034, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: a07e4182390bec64bb31fe40ad675034, type: 2}
 --- !u!114 &-7011052805104532775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.1
+--- !u!114 &-5131521777971766188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722646109092365159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125aaa9363044d01bd19b452f6c99f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

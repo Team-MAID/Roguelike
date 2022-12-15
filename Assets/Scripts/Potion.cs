@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using InventorySystem;
+using Items.ScriptableObjects;
+using UnityEngine.Serialization;
 
 public class Potion : MonoBehaviour
 {
@@ -23,17 +22,14 @@ public class Potion : MonoBehaviour
 
 
     [SerializeField]private GameObject player;
-    [SerializeField]private ConsumableItemSO consumableItemData;
     string potionType;
     float m_multiplier;
-    public HUD hud;
 
     // Start is called before the first frame update
     void Start()
     {
         potionType = this.gameObject.tag;
         player = GameObject.Find("Player");
-        consumableItemData.ConsumingItem += Consume;
     }
 
     public void useStandardPotion()
@@ -88,8 +84,6 @@ public class Potion : MonoBehaviour
         {
             player.GetComponent<PlayerController>().coins += 10;
             player.GetComponent<playerStats>().isPotionActive = false;
-            hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
-            hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
         {

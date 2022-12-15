@@ -15,6 +15,8 @@ namespace InventorySystem.UI
         /// </summary>
         protected Transform ItemSlotContainer;
         
+        private CanvasGroup _canvasGroup;
+        
         private InventorySO _inventory;
         public InventorySO Inventory
         {
@@ -35,6 +37,8 @@ namespace InventorySystem.UI
                 throw new InventoryUIElementNotFoundException(
                     "ItemSlotContainer GameObject is missing inside UIInventoryContainer");
             }
+
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public abstract void RefreshInventorySlots();
@@ -53,14 +57,14 @@ namespace InventorySystem.UI
 
         public void Show()
         {
+            _canvasGroup.alpha = 1;
             Time.timeScale = 0f;
-            gameObject.SetActive(true);
         }
 
         public void Hide()
         {
             Time.timeScale = 1f;
-            gameObject.SetActive(false);
+            _canvasGroup.alpha = 0;
         }
     }
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9085309878062414797}
   - component: {fileID: 8445124368028533522}
   - component: {fileID: 3858649306167100342}
+  - component: {fileID: -2048129458227574031}
   m_Layer: 3
   m_Name: MysteryPotion
   m_TagString: MysteryPotion
@@ -118,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: 9e50b26946e1a234eb54bcce7008827e, type: 2}
   hud: {fileID: 812888105049909969, guid: b0af7521ff5af664e8c87e5433460d9a, type: 3}
 --- !u!50 &9085309878062414797
 Rigidbody2D:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 9e50b26946e1a234eb54bcce7008827e, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 9e50b26946e1a234eb54bcce7008827e, type: 2}
 --- !u!114 &3858649306167100342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.1
+--- !u!114 &-2048129458227574031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102261352777427429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125aaa9363044d01bd19b452f6c99f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

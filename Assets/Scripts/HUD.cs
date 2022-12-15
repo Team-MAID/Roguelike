@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Items.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -30,13 +31,13 @@ public class HUD : MonoBehaviour
         coinText.text = "X " + t_coins.ToString();
     }
 
-    public void UpdateEquipedPotion(Sprite t_sprite)
+    public void UpdateEquippedPotion(Sprite sprite)
     {
-        equipedPotion.sprite = t_sprite;
+        equipedPotion.sprite = sprite;
     }
 
-    public void UpdateEquipedWeapon(Sprite t_sprite)
+    public void UpdateEquippedWeapon(Sprite sprite)
     {
-        equipedWeapon.sprite = t_sprite;
+        equipedWeapon.sprite = sprite;
     }
 }

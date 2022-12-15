@@ -44,7 +44,7 @@ namespace InventorySystem.UI
 
         private void OnOpenInventory(InputAction.CallbackContext ctx)
         {
-            if (UIInventory.gameObject.activeSelf)
+            if (UIInventory.gameObject.GetComponent<CanvasGroup>().alpha > 0)
             {
                 UIInventory.Hide();
             }

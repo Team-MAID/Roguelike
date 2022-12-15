@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Items.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RedBook : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private ConsumableItemSO consumableItemData;
+    [FormerlySerializedAs("consumableItemData")] [SerializeField] private PotionItemSO potionItemData;
     // Start is called before the first frame update
     private void Start()
     {
-        consumableItemData.ConsumingItem += Consume;
+        potionItemData.ConsumingItem += Consume;
     }
 
     public void Consume(GameObject consumer)

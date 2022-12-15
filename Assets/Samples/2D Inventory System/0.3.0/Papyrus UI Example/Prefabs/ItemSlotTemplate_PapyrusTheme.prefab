@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6499736371266936394}
   - component: {fileID: -8667639054015912184}
+  - component: {fileID: -6278657594164555221}
   m_Layer: 5
   m_Name: ItemSlotTemplate_PapyrusTheme
   m_TagString: Untagged
@@ -201,6 +202,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b9f86719d9481a90692b6d2c3f5808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &-6278657594164555221
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499736371266936393}
+  m_CullTransparentMesh: 1
 --- !u!1 &6499736371596929024
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f1bb83075fa68df40b5265ac8a118d2d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43eb2f4b5bb3dbc438fb8f16dd945fdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

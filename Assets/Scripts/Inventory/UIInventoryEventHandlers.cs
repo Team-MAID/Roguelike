@@ -1,8 +1,7 @@
-using System;
 using InventorySystem;
-using InventorySystem.ScriptableObjects;
 using InventorySystem.UI.PapyrusTheme;
-using UnityEditor.UIElements;
+using Items;
+using Items.ScriptableObjects;
 using UnityEngine;
 using Utils;
 
@@ -19,15 +18,11 @@ public class UIInventoryEventHandlers : MonoBehaviour
     //TODO: It may be a good idea to Invoke static event from here to be subscribed somwhere else instead of calling "Consume", but I'm not sure, need to think about it
     private void OnItemClicked(InventoryItem item)
     {
-        // Use item
-
-        ConsumableItemSO consumableItem = item.ItemData as ConsumableItemSO;
-        if (consumableItem != null)
+        if (item.ItemData is IEquipable equipableItem)
         {
-            consumableItem.Consume(gameObject);
-            uiInventory.Inventory.RemoveItem(consumableItem);
+            equipableItem.Equip(item.ItemData.Prefab);
         }
-
+        
         WeaponItemSO weaponItem = item.ItemData as WeaponItemSO;
         if (weaponItem != null)
         {
@@ -70,11 +65,6 @@ public class UIInventoryEventHandlers : MonoBehaviour
                     // uiInventory.Inventory.RemoveItem(weaponItem);
                 }
             }
-
-
-
-
-
         }
     }
 

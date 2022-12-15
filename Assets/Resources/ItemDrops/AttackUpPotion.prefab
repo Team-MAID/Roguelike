@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3975144970557121152}
   - component: {fileID: 3422107320269436124}
   - component: {fileID: 640449251420910600}
+  - component: {fileID: 5587768855296000428}
   m_Layer: 3
   m_Name: AttackUpPotion
   m_TagString: AttackUpPotion
@@ -118,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
+  potionItemData: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
   hud: {fileID: 0}
 --- !u!50 &3975144970557121152
 Rigidbody2D:
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
 --- !u!114 &640449251420910600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +168,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.1
+--- !u!114 &5587768855296000428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182048512241065415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125aaa9363044d01bd19b452f6c99f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
