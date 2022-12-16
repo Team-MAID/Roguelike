@@ -91,7 +91,6 @@ public class Bat_Controller : EnemyBehaviour
         }
         if (_other.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("change");
             setNewDestination();
         }
     }

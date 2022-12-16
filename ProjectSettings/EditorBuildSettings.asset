@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FloorFour.unity
     guid: b226eb3119a302b44a1b66000743ba7c
+  - enabled: 1
+    path: Assets/Scenes/Cleared.unity
+    guid: b4e3e22c9900b0d4eb59795ac4d91dcc
   m_configObjects: {}
