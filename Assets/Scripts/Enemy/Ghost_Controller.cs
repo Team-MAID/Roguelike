@@ -46,7 +46,7 @@ public class Ghost_Controller : EnemyBehaviour
     {
         if (isAlive())
         {
-            if (CheckDistance(ref playerTrans, ref rb))
+            if (CheckDistance(ref playerTrans, ref rb) && playerTrans.GetComponent<PlayerController>().getHidingStatus() == false)
             {
                 followMovement(ref playerTrans, ref rb);
             }

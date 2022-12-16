@@ -13,6 +13,9 @@ public class PlayerController : playerStats
 
     public PlayerAnimStates playerAnimState;
 
+    private Renderer _playerRenderer;
+    private BoxCollider2D _playerCollider;
+    public Color _transparent;
     private Rigidbody2D _rb;
     private Animator _animator;
     private static readonly int State = Animator.StringToHash("State");
@@ -30,6 +33,9 @@ public class PlayerController : playerStats
     // Start is called before the first frame update
     private void Start()
     {
+        _playerRenderer = GetComponent<Renderer>();
+        _playerCollider = GetComponent<BoxCollider2D>();    
+        _playerRenderer.material.color = Color.white;
         hud.UpdateCoinText(coins);
         baseAttack = attack;
         baseDefense = defense;
@@ -56,7 +62,7 @@ public class PlayerController : playerStats
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(!isHiding)
+        if(isHiding == false)
         {
             _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
         }
@@ -115,8 +121,12 @@ public class PlayerController : playerStats
             Destroy(col.gameObject);
             hud.UpdateCoinText(coins);
         }
+    }
 
-        if (col.gameObject.CompareTag("Closet"))
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        Debug.Log("Closet Collision");
+        if (col.gameObject.transform.CompareTag("Closet"))
         {
             nearCloset = true;
         }
@@ -137,9 +147,22 @@ public class PlayerController : playerStats
 
     void hidingKeyPress()
     {
-        if (Input.GetKeyUp("h") && nearCloset)
+        if (isHiding == true)
         {
-            isHiding = !isHiding;
+            if (Input.GetKeyUp("h"))
+            {
+                {
+                    isHiding = false;
+                    _playerRenderer.material.color = Color.white;
+                    _playerCollider.enabled = true;
+                }
+            }
+        }
+        else if (Input.GetKeyUp("h") && nearCloset == true)
+        {
+            isHiding = true;
+            _playerRenderer.material.color = _transparent;
+            _playerCollider.enabled = false;
         }
     }
 }
