@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>HealthSystem</c> Manages the health of the player
+/// </summary>
 public class HealthSystem : MonoBehaviour
 {
 
@@ -28,10 +31,13 @@ public class HealthSystem : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            // load game over scene
         }
     }
 
+    /// <summary>
+    /// Method <c>DecreaseHealth</c> decreases the players health taking into account their current defense stat
+    /// </summary>
+    /// <param name="t_decreaseHealth"></param>
     public void DecreaseHealth(int t_decreaseHealth)
     {
         if (GetComponent<playerStats>().getDefense() == 1.0f)
@@ -48,6 +54,10 @@ public class HealthSystem : MonoBehaviour
         hud.UpdateHealthText(health, currentMaxHealth);
     }
 
+    /// <summary>
+    /// Method <c>IncreaseHealth</c> Increases the players health when a potion is consumed
+    /// </summary>
+    /// <param name="t_increaseHealth"></param>
     public void IncreaseHealth(int t_increaseHealth)
     {
         if (health < currentMaxHealth)
@@ -58,6 +68,10 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>increaseMaxHealth</c> increases the player's max health within a max limit
+    /// </summary>
+    /// <param name="t_increaseMaxhealth"></param>
     public void IncreaseMaxHealth(int t_increaseMaxhealth)
     {
         if (currentMaxHealth < upperHealthLimit)

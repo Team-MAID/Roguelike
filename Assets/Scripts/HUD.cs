@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Class <c>HUD</c> Manages HUD elements and updates them
+/// </summary>
 public class HUD : MonoBehaviour
 {
     public Slider slider;

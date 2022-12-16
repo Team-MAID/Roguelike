@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>DamageEffect</c> Renders a damage effect to be used on the player and enemies
+/// </summary>
 public class DamageEffect : MonoBehaviour
 {
     private Color originalColor;
     public bool isImmuneToDamage;
     private Renderer renderer;
 
-    /// <summary>
-    /// Get the original color of the game object 
-    /// </summary>
     void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -37,7 +37,8 @@ public class DamageEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the color of the gameObject to be red then wait for a period of time before going back to the gameObject original color 
+    /// Method <c>FlashColor</c> Set the color of the gameObject to be red 
+    /// then wait for a period of time before going back to the gameObject original color 
     /// </summary>
     IEnumerator FlashColor(Renderer renderer, float t_immuneFor)
     {

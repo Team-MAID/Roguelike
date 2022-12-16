@@ -5,6 +5,9 @@ using DungeonGeneration.BSPGeneration;
 using System.Linq;
 using ExtensionMethods;
 
+/// <summary>
+/// Class <c>ratController</c> Manages the rat enemies and their movement
+/// </summary>
 public class ratController : EnemyBehaviour
 {
     [SerializeField]
@@ -22,7 +25,6 @@ public class ratController : EnemyBehaviour
     [SerializeField]
     public Vector3 ratScale;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetDamage(ratDamage);
@@ -44,17 +46,18 @@ public class ratController : EnemyBehaviour
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
     }
 
-
+    /// <summary>
+    /// Method <c>OnCollisionEnter2D</c> Checks for collision with walls and sets a new destination to move to.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("change");
             setNewDestination();
         }
     }

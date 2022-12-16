@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>poisonousSpider</c> Manages poisonous spiders stats and their movement
+/// </summary>
 public class posionousSpider : EnemyBehaviour
 {
     [SerializeField]
@@ -26,7 +29,6 @@ public class posionousSpider : EnemyBehaviour
     private Rigidbody2D rb;
     private Transform nestPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetDamage(poisonSpiderDamage);
@@ -59,19 +61,19 @@ public class posionousSpider : EnemyBehaviour
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
     }
 
+    /// <summary>
+    /// Method <c>OnCollisionEnter2D</c> Sets a new destination to move to if collision with wall is detected
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("change");
             setNewDestination();
-
-
         }
     }
 }

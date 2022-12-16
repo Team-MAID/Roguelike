@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>BaseSpider</c> Base Spider Class that defines base spider behaviour
+/// </summary>
 public class BaseSpider : EnemyBehaviour
 {
     [SerializeField]
@@ -23,7 +26,6 @@ public class BaseSpider : EnemyBehaviour
     private Rigidbody2D rb;
     private Transform nestPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetDamage(baseSpiderDamage);
@@ -36,6 +38,9 @@ public class BaseSpider : EnemyBehaviour
         nestPosition = gameObject.transform;
     }
 
+    /// <summary>
+    /// Method <c>Update</c> default update method. Spider will use follow movement
+    /// </summary>
     public override void Update()
     {
         if (isAlive())

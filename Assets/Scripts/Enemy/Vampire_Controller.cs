@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
+/// <summary>
+/// Enum <c>VampAnimStates</c> Animation States for the vampire
+/// </summary>
 public enum VampAnimStates
 {
     Idle = 0,
     Run = 1,
 }
+
+/// <summary>
+/// Class <c>Vampire_Controller</c> manages the vampires behaviour like movement and spawning bats
+/// </summary>
 public class Vampire_Controller : EnemyBehaviour
 {
     public GameObject[] spawnedEnemy;
@@ -38,7 +46,6 @@ public class Vampire_Controller : EnemyBehaviour
     private Transform playerTrans;
     private Rigidbody2D rb;
 
-    public Bat_Manager bat_manager;
     public float spawnBatTimer;
     public HealthBar healthBar;
 
@@ -48,7 +55,6 @@ public class Vampire_Controller : EnemyBehaviour
 
     public Vector3 childScale;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetDamage(vampireDamage);
@@ -64,15 +70,10 @@ public class Vampire_Controller : EnemyBehaviour
         setNewDestination();
         setOldPosition(this.gameObject.transform);
         batFactory = gameObject.AddComponent<BatFactory>();
-
-        //healthBar.setMaxValue(health);
-        //_animator = GetComponent<Animator>();
-        //vampAnimState = VampAnimStates.Idle;
-        //_animator.SetInteger(VampState, (int)vampAnimState);
     }
 
     /// <summary>
-    /// The vampire will spawn bats until it reach the number of bats the vampire suppose to spawn
+    /// Method <c>spawnNewBat</c> Spawns a bat at the vampire's position
     /// </summary>
     public void spawnNewBat(EnemyFactory t_enemyfactory)
     {
@@ -83,11 +84,12 @@ public class Vampire_Controller : EnemyBehaviour
             counter++;
         }
     }
+
     public void DecreaseCounter()
     {
         counter--;
     }
-    // Update is called once per frame
+
     /// <summary>
     /// The vampire will spawn bat at interval time and follow the player if the player is in range.
     /// The vampire will fllow the player if the player is in range , if not , the vampire will wander in the room 
@@ -98,13 +100,11 @@ public class Vampire_Controller : EnemyBehaviour
         {
             spawnBatTimer -= Time.deltaTime;
 
-            Debug.Log(counter);
             if (spawnBatTimer < 0)
             {
                 spawnBatTimer = spawnInterval;
                 spawnNewBat(batFactory);
             }
-
             if (CheckDistance(ref playerTrans, ref rb))
             {
                 followMovement(ref playerTrans, ref rb);
@@ -113,34 +113,23 @@ public class Vampire_Controller : EnemyBehaviour
             {
                 wanderMovement();
             }
-
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
     }
 
+    /// <summary>
+    /// Method <c>OnCollisionEnter2D</c> Checks for collision with walls and sets a new destination
+    /// for the vampire to move to.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("change");
             setNewDestination();
         }
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.transform.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Vampire/Player Collision");
-    //        collision.gameObject.GetComponent<HealthSystem>().DecreaseHealth(vampireDamage);
-    //    }
-    //    else if (collision.transform.CompareTag("Companion"))
-    //    {
-    //        Debug.Log("VampireCollision");
-    //        collision.gameObject.GetComponent<CompanionController>().DecreaseHealthByDamage(vampireDamage);
-    //    }
-    //}
 }

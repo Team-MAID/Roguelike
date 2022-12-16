@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class Bat_Manager : MonoBehaviour
 {
-
-
-
-
     private Bat_Controller[] _bats;
 
     void Start()
     {
-
     }
-
-
-
-
     public int ActivateTheBats()
     {
         Debug.Log("ACTIVATE.....THE BATS!");

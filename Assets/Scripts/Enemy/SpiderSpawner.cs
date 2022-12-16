@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c> SpiderSpawner</c> Spawns spiders from the nest
+/// </summary>
 public class SpiderSpawner : EnemyBehaviour
 {
     private EnemyFactory baseSpiderFactory;
@@ -31,8 +34,6 @@ public class SpiderSpawner : EnemyBehaviour
     public int counter = 0;
     public float aliveTime = 0;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         counter = 0;
@@ -48,7 +49,6 @@ public class SpiderSpawner : EnemyBehaviour
         {
             spawnSpiderTimer -= Time.deltaTime;
 
-            //Debug.Log(counter);
             if (spawnSpiderTimer < 0)
             {
                 spawnSpiderTimer = spawnInterval;
@@ -57,11 +57,13 @@ public class SpiderSpawner : EnemyBehaviour
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
     }
 
+    /// <summary>
+    /// method <c>spawnEnemy</c> Spawns a spider enemy. Random chance for base or poisonous spider
+    /// </summary>
     private void spawnEnemy()
     {
         Debug.Log("Here");

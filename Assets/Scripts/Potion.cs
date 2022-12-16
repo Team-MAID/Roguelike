@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using InventorySystem;
 
+/// <summary>
+/// Class <c>Potion</c> Manages Potions and their effects
+/// </summary>
 public class Potion : MonoBehaviour
 {
+    /// <summary>
+    /// Enum <c>mysteryPotionEffects</c> sets the possible effects of a mystery potion to an enum
+    /// </summary>
     enum mysteryPotionEffects
     {
         //Negative Effects
@@ -28,7 +34,6 @@ public class Potion : MonoBehaviour
     float m_multiplier;
     public HUD hud;
 
-    // Start is called before the first frame update
     void Start()
     {
         potionType = this.gameObject.tag;
@@ -36,6 +41,9 @@ public class Potion : MonoBehaviour
         consumableItemData.ConsumingItem += Consume;
     }
 
+    /// <summary>
+    /// Method <c>useStandardPotion</c> Manages standard potion effects when a potion is consumed
+    /// </summary>
     public void useStandardPotion()
     {
         m_multiplier = 2.0f;
@@ -58,6 +66,10 @@ public class Potion : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>useMysteryPotion</c> Manages mystery potion effects when a mystery potion is consumed.
+    /// The effect is random.
+    /// </summary>
     void useMysteryPotion()
     {
         m_multiplier = 0.5f;
@@ -107,6 +119,11 @@ public class Potion : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>Consume</c> Determines wheter a standard or mystery potion was used and calls
+    /// the appropriate method.
+    /// </summary>
+    /// <param name="consumer"></param>
     public void Consume(GameObject consumer)
     {
         if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player

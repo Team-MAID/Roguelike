@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Class <Spawner> Takes in enemy factories and spawns differenrt types of enemies depending on the floor
+/// </summary>
 public class Spawner : MonoBehaviour
 {
     public GameObject spawnedEnemy;
@@ -16,7 +19,6 @@ public class Spawner : MonoBehaviour
     Scene currentScene;
     private bool spawning;
 
-    // Start is called before the first frame update
     void Start()
     {
         ratFactory = gameObject.AddComponent<RatFactory>();
@@ -34,11 +36,11 @@ public class Spawner : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    /// <summary>
+    /// Method <c>Update</c> Updates and spawns enemies depending on the floor with some randomness assigned too
+    /// </summary>
     void Update()
     {
-
-
         // Check if the name of the current Active Scene is your first Scene.
         if (currentScene.name == "FloorOne" && spawning == true)
         {
@@ -88,15 +90,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>spawnNewEnemy</c> Spawns a new enemy at the spawners position
+    /// </summary>
+    /// <param name="t_enemyFactory"></param>
     public void spawnNewEnemy(EnemyFactory t_enemyFactory)
     {
-        //Debug.Log(counter);
-
         spawnedEnemy = t_enemyFactory.SpawnEnemy();
-       // Debug.Log(counter);
-
         spawnedEnemy.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,0);
-      //  Debug.Log(counter);
-       // counter = counter + 1;
     }
 }

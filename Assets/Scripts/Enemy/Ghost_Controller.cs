@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>Ghost_Controller</c> Determines the ghosts movement behaviour and follow range.
+/// </summary>
 public class Ghost_Controller : EnemyBehaviour
 {
     [SerializeField]
@@ -25,7 +28,6 @@ public class Ghost_Controller : EnemyBehaviour
     private Transform playerTrans;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetDamage(ghostDamage);
@@ -57,19 +59,19 @@ public class Ghost_Controller : EnemyBehaviour
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
     }
 
+    /// <summary>
+    /// Method <c>OnCollisionEnter2D</c> checks for collision with walls and changes direction
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("change");
             setNewDestination();
-
-
         }
     }
 }

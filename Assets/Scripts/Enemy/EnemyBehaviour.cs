@@ -7,8 +7,14 @@ using DungeonGeneration;
 using DungeonGeneration.RandomWalkGeneration;
 using ExtensionMethods;
 
+/// <summary>
+/// Class <c>EnemyBehaviour</c> Manages enemy behaviour patterns for enemies to utilise. main focus is enemy movement types
+/// </summary>
 public class EnemyBehaviour : Enemy
 {
+    /// <summary>
+    /// Enum <c>EnemyBehaviourStates</c> The possible states for the enemy types
+    /// </summary>
     protected enum EnemyBehaviourStates
     {
         Idle = 0,
@@ -41,31 +47,56 @@ public class EnemyBehaviour : Enemy
         dungeonGenerator = FindObjectOfType<DungeonGenerator>();
     }
 
+    /// <summary>
+    /// Method <c>setEnemy</c> sets the enemies movement state
+    /// </summary>
+    /// <param name="t_newState"></param>
     protected virtual void setState(EnemyBehaviourStates t_newState)
     {
         m_enemyBehaviourState = t_newState;
     }
 
+    /// <summary>
+    /// Method <c>getState</c> gets the enemies current behaviour state in terms of movement
+    /// </summary>
+    /// <returns></returns>
     protected EnemyBehaviourStates getState()
     {
         return m_enemyBehaviourState;
     }
 
+    /// <summary>
+    /// Method <c>setAttackRange</c> sets the range in which an enemy will attack the player
+    /// </summary>
+    /// <param name="t_attackRange"></param>
     public virtual void setAttackrange(float t_attackRange)
     {
         attackRange = t_attackRange;
     }
 
+    /// <summary>
+    /// Method <c>setWanderRange</c> sets the range in which an enemy will wander
+    /// </summary>
+    /// <param name="t_wanderRange"></param>
     public virtual void setWanderRange(float t_wanderRange)
     {
         wanderRange = t_wanderRange;
     }
 
+    /// <summary>
+    /// Method <c>setroomPosition</c> sets the position of the enemy within the room
+    /// </summary>
+    /// <param name="t_pos"></param>
     protected virtual void setRoomPosition(Transform t_pos)
     {
         currentRoomPos = new Vector2Int((int) t_pos.position.x, (int) t_pos.position.y);
     }
 
+    /// <summary>
+    /// method <c>followMovement</c> Defines enemy follow movement / behaviour
+    /// </summary>
+    /// <param name="targetPos"></param>
+    /// <param name="targetRB"></param>
     public virtual void followMovement(ref Transform targetPos, ref Rigidbody2D targetRB)
     {
         movement = targetPos.position - transform.position;
@@ -84,6 +115,9 @@ public class EnemyBehaviour : Enemy
         }
     }
 
+    /// <summary>
+    /// Method <c>wanderMovement</c> Defines enemy wander movement / behaviour
+    /// </summary>
     public virtual void wanderMovement()
     {
         transform.position = Vector2.MoveTowards(transform.position, nextTarget, speed * Time.deltaTime);
@@ -108,7 +142,9 @@ public class EnemyBehaviour : Enemy
         oldPosition = transform.position.x;
     }
 
-    // Pick a random waypoints between set distance so like if max distance is 5 then it will be from -5 to 5
+    /// <summary>
+    /// method <c>setNewdestination</c> Sets a new destination for an enemy to move to within a room
+    /// </summary>
     protected virtual void setNewDestination()
     {
         if (dungeonGenerator is BSPDungeonGenerator bspDungeonGenerator)
@@ -131,6 +167,12 @@ public class EnemyBehaviour : Enemy
         }
     }
 
+    /// <summary>
+    /// Method <c>CheckDistance</c> Checks the distance between two target objects. (player and enemy)
+    /// </summary>
+    /// <param name="targetPos"></param>
+    /// <param name="targetRB"></param>
+    /// <returns></returns>
     protected bool CheckDistance(ref Transform targetPos, ref Rigidbody2D targetRB)
     {
         // loop through enemies

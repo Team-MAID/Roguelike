@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>Bat_Controller</c> Manages bat movement, begaviour and stats
+/// </summary>
 public class Bat_Controller : EnemyBehaviour
 {
     [SerializeField]
@@ -49,15 +52,8 @@ public class Bat_Controller : EnemyBehaviour
 
     public override void Update()
     {
-        //Debug.Log(batHealth);
         if (isAlive())
         {
-            // temp for testing
-            if (Input.GetKeyUp(KeyCode.P))
-            {
-                //batAttacked = true;
-                //decreaseHealth();
-            }
             if (batAttacked)
             {
                 if (CheckDistance(ref playerTrans, ref rb))
@@ -71,20 +67,23 @@ public class Bat_Controller : EnemyBehaviour
             }
             else
             {
-                    wanderMovement();
+                wanderMovement();
             }
         }
         else
         {
-            Debug.Log("auto death");
             Destroy(this.gameObject);
         }
-
     }
 
-    void OnCollisonEnter2D(Collider2D _other)
+    /// <summary>
+    /// Method <c>OnCollisionEnter2D</c> Checks for collision with walls and sets a new destination to move to if detected.
+    /// Activates the bats swarm beaviour if attacked.
+    /// </summary>
+    /// <param name="_other"></param>
+    void OnCollisionEnter2D(Collision2D _other)
     {
-        if (!batAttacked && (_other.CompareTag("Weapon_Player") || _other.CompareTag("Projectile_Player")))
+        if (!batAttacked && (_other.gameObject.CompareTag("Weapon_Player") || _other.gameObject.CompareTag("Projectile_Player")))
         {
             batAttacked = true;
             _batManger.ActivateTheBats();
@@ -96,5 +95,4 @@ public class Bat_Controller : EnemyBehaviour
             setNewDestination();
         }
     }
-
 }
