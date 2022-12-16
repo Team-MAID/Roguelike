@@ -1,9 +1,6 @@
-using InventorySystem.UI;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using InventorySystem.Interfaces;
-using static UnityEngine.GraphicsBuffer;
 
 public class Bow : MonoBehaviour
 {
@@ -12,11 +9,11 @@ public class Bow : MonoBehaviour
     GameObject _player;
     private float angleOffset;
     public int attackDelay;
-    private float _AttackDelay;
+    bool firedArrow;
 
     private void Start()
-    {     
-        _AttackDelay = attackDelay;
+    {
+        firedArrow = false;
         angleOffset = -45;
         this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -135));
         _player = GameObject.FindWithTag("Player");
@@ -26,19 +23,22 @@ public class Bow : MonoBehaviour
     {
         Rotate();
 
-        if (_AttackDelay > 0)
+        if (Input.GetMouseButtonDown(0) && firedArrow == false)
         {
-            _AttackDelay--;
-        }
-        if (Input.GetMouseButtonDown(0) && _AttackDelay <= 0)
-        {
-            Quaternion _deltaRot = Quaternion.Euler(0, 0, -135);
-            Instantiate(projectile, this.transform.position, this.transform.rotation * _deltaRot);
-            _AttackDelay = attackDelay;
+            firedArrow=true;
+            StartCoroutine(FireArrow());
         }
     }
 
-    private void Rotate()
+    IEnumerator FireArrow()
+    {
+        Quaternion _deltaRot = Quaternion.Euler(0, 0, -135);
+        Instantiate(projectile, this.transform.position, this.transform.rotation * _deltaRot);
+        yield return new WaitForSeconds(.5f);
+        firedArrow = false;
+    }
+
+        private void Rotate()
     {
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 _target;
