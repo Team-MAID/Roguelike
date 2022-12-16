@@ -28,17 +28,27 @@ public class Potion : MonoBehaviour
     mysteryPotionEffects m_mysteryPotionEffects;
 
 
-    [SerializeField]private GameObject player;
-    [SerializeField]private ConsumableItemSO consumableItemData;
+    [SerializeField] private GameObject player;
     string potionType;
     float m_multiplier;
-    public HUD hud;
+    
+    private Item _item;
+    private HUD _hud;
+    private ConsumableItemSO _consumableItemData;
 
+    
     void Start()
     {
+        _hud = FindObjectOfType<HUD>();
+        
         potionType = this.gameObject.tag;
         player = GameObject.Find("Player");
-        consumableItemData.ConsumingItem += Consume;
+        
+        _item = GetComponent<Item>();
+        _consumableItemData = _item.ItemData as ConsumableItemSO;
+        
+        _consumableItemData.ConsumingItem += Consume;
+
     }
 
     /// <summary>
@@ -100,8 +110,8 @@ public class Potion : MonoBehaviour
         {
             player.GetComponent<PlayerController>().coins += 10;
             player.GetComponent<playerStats>().isPotionActive = false;
-            hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
-            hud.UpdateEquipedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
+            _hud.UpdateCoinText(player.GetComponent<PlayerController>().coins);
+            _hud.UpdateEquippedPotion(this.gameObject.GetComponent<SpriteRenderer>().sprite);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.immuneToDamage)
         {
@@ -126,6 +136,7 @@ public class Potion : MonoBehaviour
     /// <param name="consumer"></param>
     public void Consume(GameObject consumer)
     {
+        Debug.Log("Consuming potion");
         if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
         {
             player.GetComponent<playerStats>().isPotionActive = true;
@@ -137,7 +148,6 @@ public class Potion : MonoBehaviour
             {
                 useMysteryPotion();
             }
-            Destroy(this.gameObject);
         }
     }
 }

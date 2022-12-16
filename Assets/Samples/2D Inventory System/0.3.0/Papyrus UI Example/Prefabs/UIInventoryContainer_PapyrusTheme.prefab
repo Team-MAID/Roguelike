@@ -1893,6 +1893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7810493654267415610}
   - component: {fileID: 2809935516249634834}
+  - component: {fileID: 3936974443186052297}
   m_Layer: 5
   m_Name: UIInventoryContainer_PapyrusTheme
   m_TagString: Untagged
@@ -1935,6 +1936,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlotPrefab: {fileID: -8667639054015912184, guid: 6cad098ef769ffc438bd08cefd3d6baa, type: 3}
+--- !u!225 &3936974443186052297
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810493654267415613}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7810493654290693111
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Class <c>HUD</c> Manages HUD elements and updates them
@@ -15,8 +16,11 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI _playerAttackText;
     public TextMeshProUGUI _playerDefenseText;
     public TextMeshProUGUI _playerSpeedText;
-    public Image equipedPotion;
-    public Image equipedWeapon;
+    
+    public Image equippedPotion;
+    public Image equippedWeapon;
+
+    [SerializeField] private Sprite emptySlotSprite;
 
     public void UpdateHealthText(int t_health, int t_currentMaxHealth)
     {
@@ -51,13 +55,27 @@ public class HUD : MonoBehaviour
     }
 
 
-    public void UpdateEquipedPotion(Sprite t_sprite)
+    public void UpdateEquippedPotion(Sprite t_sprite)
     {
-        equipedPotion.sprite = t_sprite;
+        if (t_sprite == null)
+        {
+            equippedPotion.sprite = emptySlotSprite;
+        }
+        else
+        {
+            equippedPotion.sprite = t_sprite;
+        }
     }
 
-    public void UpdateEquipedWeapon(Sprite t_sprite)
+    public void UpdateEquippedWeapon(Sprite t_sprite)
     {
-        equipedWeapon.sprite = t_sprite;
+        if (t_sprite == null)
+        {
+            equippedWeapon.sprite = emptySlotSprite;
+        }
+        else
+        {
+            equippedWeapon.sprite = t_sprite;
+        }
     }
 }

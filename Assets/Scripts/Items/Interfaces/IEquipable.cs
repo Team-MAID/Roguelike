@@ -1,9 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using InventorySystem.ScriptableObjects;
 
-public interface IEquipable
+namespace Items.Interfaces
 {
-    void Equip(GameObject user);
-    void Unequip(GameObject user);
+    public interface IEquipable
+    {
+        public event Action<ItemSO> EquippingItem;
+        public event Action<ItemSO> UnequippingItem;
+        
+        void Equip();
+        void Unequip();
+    }
 }

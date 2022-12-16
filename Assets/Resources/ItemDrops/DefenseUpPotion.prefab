@@ -118,8 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: 30fab3b571e461541b642470ec4602ad, type: 2}
-  hud: {fileID: 0}
 --- !u!114 &-7518930410017533295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,4 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 30fab3b571e461541b642470ec4602ad, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 30fab3b571e461541b642470ec4602ad, type: 2}

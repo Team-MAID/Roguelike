@@ -54,13 +54,13 @@ namespace InventorySystem.UI
         public void Show()
         {
             Time.timeScale = 0f;
-            gameObject.SetActive(true);
+            GetComponent<CanvasGroup>().alpha = 1;
         }
 
         public void Hide()
         {
             Time.timeScale = 1f;
-            gameObject.SetActive(false);
+            GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 }

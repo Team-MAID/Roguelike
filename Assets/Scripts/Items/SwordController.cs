@@ -1,8 +1,8 @@
+using InventorySystem.ScriptableObjects;
 using InventorySystem.UI;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SwordController : MonoBehaviour, IEquipable
+public class SwordController : MonoBehaviour
 {
     [SerializeField] private int                    hitboxDuration;
     [SerializeField] private WeaponItemSO           weaponItemData;
@@ -101,7 +101,7 @@ public class SwordController : MonoBehaviour, IEquipable
         this.transform.rotation = Quaternion.Euler(_deltaRot);
     }
 
-    public void Equip(GameObject user)
+    public void Equip(ItemSO item)
     {
         Debug.Log("Sword Equip Call");
 
@@ -117,7 +117,7 @@ public class SwordController : MonoBehaviour, IEquipable
 
     }
 
-    public void Unequip(GameObject user)
+    public void Unequip(ItemSO item)
     {
         Debug.Log("Sword Unequip Call");
 

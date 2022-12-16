@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   <Items>k__BackingField:
-  - <ItemData>k__BackingField: {fileID: 11400000, guid: 9e50b26946e1a234eb54bcce7008827e, type: 2}
+  - <ItemData>k__BackingField: {fileID: 11400000, guid: 94148c3596a3a8c419e0125a725a914b, type: 2}
+    <Quantity>k__BackingField: 1
+  - <ItemData>k__BackingField: {fileID: 11400000, guid: 7c30864ea661c6b4abb0af4342c19f24, type: 2}
     <Quantity>k__BackingField: 1
   - <ItemData>k__BackingField: {fileID: 11400000, guid: 30fab3b571e461541b642470ec4602ad, type: 2}
-    <Quantity>k__BackingField: 7
+    <Quantity>k__BackingField: 4
+  - <ItemData>k__BackingField: {fileID: 11400000, guid: a07e4182390bec64bb31fe40ad675034, type: 2}
+    <Quantity>k__BackingField: 4
+  - <ItemData>k__BackingField: {fileID: 11400000, guid: 9789e8849bc20094da96492d659f3983, type: 2}
+    <Quantity>k__BackingField: 25

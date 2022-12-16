@@ -118,8 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5620541980126186928, guid: 11b8d718a0a0db544896a5fc20a3c001, type: 3}
-  consumableItemData: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
-  hud: {fileID: 0}
 --- !u!50 &3975144970557121152
 Rigidbody2D:
   serializedVersion: 4
@@ -153,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7350bafc48f4432cbb994bacef079c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 351e2575cad6fbe4b901ddd0e4c3c288, type: 2}
 --- !u!114 &640449251420910600
 MonoBehaviour:
   m_ObjectHideFlags: 0

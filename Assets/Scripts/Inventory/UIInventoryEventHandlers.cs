@@ -2,6 +2,7 @@ using System;
 using InventorySystem;
 using InventorySystem.ScriptableObjects;
 using InventorySystem.UI.PapyrusTheme;
+using Items.Interfaces;
 using UnityEditor.UIElements;
 using UnityEngine;
 using Utils;
@@ -9,23 +10,32 @@ using Utils;
 public class UIInventoryEventHandlers : MonoBehaviour
 {
     [SerializeField] private UIInventoryPapyrusTheme uiInventory;
+    private EquippedItems _equippedItems;
 
     private void Start()
     {
         uiInventory.ItemClicked += OnItemClicked;
         uiInventory.ItemRightClicked += OnItemRightClicked;
+
+        _equippedItems = GetComponent<EquippedItems>();
     }
 
     //TODO: It may be a good idea to Invoke static event from here to be subscribed somwhere else instead of calling "Consume", but I'm not sure, need to think about it
     private void OnItemClicked(InventoryItem item)
     {
         // Use item
-
-        ConsumableItemSO consumableItem = item.ItemData as ConsumableItemSO;
-        if (consumableItem != null)
+        if (item.ItemData is IEquipable equipable)
         {
-            consumableItem.Consume(gameObject);
-            uiInventory.Inventory.RemoveItem(consumableItem);
+            equipable.Equip();
+            switch (item.ItemData)
+            {
+                //case WeaponItemSO weaponItem:
+                    //_equippedItems.SetWeapon(weaponItem);
+                    //break;
+                case ConsumableItemSO consumableItemSO:
+                    _equippedItems.SetConsumable(consumableItemSO);
+                    break;
+            }
         }
 
         WeaponItemSO weaponItem = item.ItemData as WeaponItemSO;
@@ -38,17 +48,17 @@ public class UIInventoryEventHandlers : MonoBehaviour
             {
                 if (sword != null)
                 {
-                    sword.Unequip(sword.gameObject);
+                    sword.Unequip(weaponItem);
                 }
 
                 if (bow == null)
                 {
-                    weaponItem.Equip(gameObject);
+                    weaponItem.Equip();
                     //uiInventory.Inventory.RemoveItem(weaponItem);
                 }
                 else
                 {
-                    weaponItem.Unequip(gameObject);
+                    weaponItem.Unequip();
                     // uiInventory.Inventory.RemoveItem(weaponItem);
                 }
             }
@@ -56,25 +66,20 @@ public class UIInventoryEventHandlers : MonoBehaviour
             {
                 if (bow != null)
                 {
-                    bow.Unequip(bow.gameObject);
+                    bow.Unequip(weaponItem);
                 }
 
                 if (sword == null)
                 {
-                    weaponItem.Equip(gameObject);
+                    weaponItem.Equip();
                     //uiInventory.Inventory.RemoveItem(weaponItem);
                 }
                 else
                 {
-                    weaponItem.Unequip(gameObject);
+                    weaponItem.Unequip();
                     // uiInventory.Inventory.RemoveItem(weaponItem);
                 }
             }
-
-
-
-
-
         }
     }
 

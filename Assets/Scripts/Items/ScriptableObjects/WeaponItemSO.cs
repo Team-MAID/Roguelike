@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using InventorySystem.ScriptableObjects;
+using Items.Interfaces;
 using UnityEngine;
 
 /// <summary>
@@ -12,26 +13,16 @@ public class WeaponItemSO : ItemSO, IEquipable
     [SerializeField, Header("Quantity of damage given by this weapon")]
     private float damage;
 
-    public event Action<GameObject> EquippingItem;
-    public event Action<GameObject> UnequippingItem;
+    public event Action<ItemSO> EquippingItem;
+    public event Action<ItemSO> UnequippingItem;
 
-    public void Equip(GameObject user)
+    public void Equip()
     {
-        OnEquippingItem(user);
+        EquippingItem?.Invoke(this);
     }
 
-    public void Unequip(GameObject user)
+    public void Unequip()
     {
-        OnUnequippingItem(user);
-    }
-
-    protected virtual void OnEquippingItem(GameObject user)
-    {
-        EquippingItem?.Invoke(user);
-    }
-
-    protected virtual void OnUnequippingItem(GameObject user)
-    {
-        UnequippingItem?.Invoke(user);
+        UnequippingItem?.Invoke(this);
     }
 }

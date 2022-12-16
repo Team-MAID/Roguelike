@@ -1,27 +1,37 @@
+using InventorySystem;
 using InventorySystem.UI;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using InventorySystem.Interfaces;
+using InventorySystem.ScriptableObjects;
+using Items.Interfaces;
 using static UnityEngine.GraphicsBuffer;
 
-public class BowController : MonoBehaviour, IEquipable
+public class BowController : MonoBehaviour
 {
-    [SerializeField] private GameObject     projectile;
-    [SerializeField] private WeaponItemSO   weaponItemData;
+    [SerializeField] private GameObject projectile;
 
-    public bool         equipped;
-    private float       angleOffset;
-    private Collider2D  col;
+    public bool equipped;
+    private float angleOffset;
+    private Collider2D col;
 
     public int attackDelay;
     private float _AttackDelay;
 
     private UIInventoryController uiInventoryController;
+
+    private Item _item;
+    private WeaponItemSO _weaponItemData;
+
     private void Start()
-    {     
-        weaponItemData.EquippingItem += Equip;
-        weaponItemData.UnequippingItem += Unequip;
+    {
+        _item = GetComponent<Item>();
+        _weaponItemData = _item.ItemData as WeaponItemSO;
+        
+        _weaponItemData.EquippingItem += Equip;
+        _weaponItemData.UnequippingItem += Unequip;
+        
         _AttackDelay = attackDelay;
         angleOffset = -45;
         col = GetComponent<Collider2D>();
@@ -34,24 +44,28 @@ public class BowController : MonoBehaviour, IEquipable
         }
 
         if (transform.parent != null && transform.parent.tag == "Player")
-        { 
+        {
             equipped = true;
             col.enabled = false;
-           
         }
-        else { equipped = false;}
+        else
+        {
+            equipped = false;
+        }
     }
+
     void Update()
     {
-        if (equipped) 
+        if (equipped)
         {
-           // Reposition();
+            // Reposition();
             Rotate();
 
             if (_AttackDelay > 0)
             {
                 _AttackDelay--;
             }
+
             if (Input.GetMouseButtonDown(0) && _AttackDelay <= 0)
             {
                 //Debug.Log("LeftClick");
@@ -60,7 +74,6 @@ public class BowController : MonoBehaviour, IEquipable
                 _AttackDelay = attackDelay;
             }
         }
-        
     }
 
     private void Reposition()
@@ -69,7 +82,7 @@ public class BowController : MonoBehaviour, IEquipable
         Vector3 _target;
         Vector3 _parent = this.transform.parent.transform.position;
         Vector3 _newPos;
-      
+
         _target = _mPos - _parent;
         _target.z = 0.0f;
         _newPos = _parent + (_target.normalized / 2);
@@ -81,7 +94,7 @@ public class BowController : MonoBehaviour, IEquipable
         Vector3 _mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 _target;
         Vector3 _deltaRot;
-        float   _angle;
+        float _angle;
 
         _target = _mPos - this.transform.position;
         _angle = Mathf.Atan2(_target.x, _target.y) * Mathf.Rad2Deg;
@@ -90,7 +103,7 @@ public class BowController : MonoBehaviour, IEquipable
         this.transform.rotation = Quaternion.Euler(_deltaRot);
     }
 
-    public void Equip(GameObject user)
+    public void Equip(ItemSO item)
     {
         Debug.Log("Bow Equip Call");
 
@@ -100,23 +113,22 @@ public class BowController : MonoBehaviour, IEquipable
         if (bow == null)
         {
             Debug.Log("Bow Equipped");
-            Instantiate(this.weaponItemData.Prefab, player.transform.position, Quaternion.identity, player.transform);
-            player.GetComponent<playerStats>().setAttackDamageWithWeapon(projectile.GetComponent<Projectile_Controller>().GetDamage());
+            Instantiate(this._weaponItemData.Prefab, player.transform.position, Quaternion.identity, player.transform);
+            player.GetComponent<playerStats>()
+                .setAttackDamageWithWeapon(projectile.GetComponent<Projectile_Controller>().GetDamage());
         }
-       
     }
 
-    public void Unequip(GameObject user)
+    public void Unequip(ItemSO item)
     {
         Debug.Log("Bow Unequip Call");
 
         GameObject player = GameObject.FindWithTag("Player");
         BowController bow = player.GetComponentInChildren<BowController>();
-      
+
         Debug.Log("Bow Un-Equipped");
-        uiInventoryController.InventorySO.AddItem(bow.weaponItemData);
+        uiInventoryController.InventorySO.AddItem(bow._weaponItemData);
         player.GetComponent<playerStats>().setAttackDamageWithWeapon(0);
         Destroy(bow.gameObject);
-               
     }
 }

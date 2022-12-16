@@ -7,11 +7,12 @@ namespace InventorySystem
     [RequireComponent(typeof(Rigidbody2D))]
     public class Item : MonoBehaviour, ICollectable
     {
-        [SerializeField] private ItemSO itemData;
-        
+        [field: SerializeField]
+        public ItemSO ItemData { get; private set; }
+
         public void Collect(InventorySO inventorySO)
         {
-            inventorySO.AddItem(itemData);
+            inventorySO.AddItem(ItemData);
             Destroy(gameObject);
         }
     }

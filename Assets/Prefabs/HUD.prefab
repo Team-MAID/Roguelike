@@ -608,8 +608,9 @@ MonoBehaviour:
   _playerAttackText: {fileID: 4287670187650914689}
   _playerDefenseText: {fileID: 5066425137045509513}
   _playerSpeedText: {fileID: 1555984311411129822}
-  equipedPotion: {fileID: 0}
-  equipedWeapon: {fileID: 0}
+  equippedPotion: {fileID: 2303037973210355900}
+  equippedWeapon: {fileID: 3556669453433937750}
+  emptySlotSprite: {fileID: 21300000, guid: a3e491f99ea3ad74f8731ca93e84c497, type: 3}
 --- !u!114 &6491000610798637385
 MonoBehaviour:
   m_ObjectHideFlags: 0

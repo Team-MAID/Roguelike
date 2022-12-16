@@ -42,7 +42,7 @@ namespace InventorySystem.ScriptableObjects
             InventoryChanged?.Invoke();
         }
 
-        public void RemoveItem(ItemSO itemData)
+        public InventoryItem RemoveItem(ItemSO itemData)
         {
             InventoryItem item = Items.Find(item => item.ItemData == itemData);
 
@@ -63,6 +63,7 @@ namespace InventorySystem.ScriptableObjects
             }
 
             InventoryChanged?.Invoke();
+            return item;
         }
     }
 }
