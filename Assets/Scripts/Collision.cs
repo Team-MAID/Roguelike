@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ using UnityEngine;
 /// </summary>
 public class Collision : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (GetComponent<DamageEffect>().isImmuneToDamage == false)
@@ -16,6 +19,10 @@ public class Collision : MonoBehaviour
             {
                 GetComponent<DamageEffect>().TakeDamageEffect(1.0f);
                 GetComponent<HealthSystem>().DecreaseHealth(collision.gameObject.GetComponent<Enemy>().GetDamage());
+                if (GetComponent<HealthSystem>().health <= 0.0f)
+                {
+                    OnPlayerDeath?.Invoke();
+                }
             }
         }
     }
@@ -29,6 +36,10 @@ public class Collision : MonoBehaviour
                 GetComponent<DamageEffect>().TakeDamageEffect(1.0f);
                 GetComponent<HealthSystem>().DecreaseHealth(collision.gameObject.GetComponent<Enemy>().GetDamage());
             }
+            if (GetComponent<HealthSystem>().health <= 0.0f)
+            {
+                OnPlayerDeath?.Invoke();
+            }
         }
     }
 
@@ -41,6 +52,10 @@ public class Collision : MonoBehaviour
                 GetComponent<DamageEffect>().TakeDamageEffect(1.0f);
                 GetComponent<HealthSystem>().DecreaseHealth(collision.GetComponent<Enemy>().GetDamage());
             }
+            if (GetComponent<HealthSystem>().health <= 0.0f)
+            {
+                OnPlayerDeath?.Invoke();
+            }
         }
     }
 
@@ -52,6 +67,10 @@ public class Collision : MonoBehaviour
             {
                 GetComponent<DamageEffect>().TakeDamageEffect(1.0f);
                 GetComponent<HealthSystem>().DecreaseHealth(collision.GetComponent<Enemy>().GetDamage());
+            }
+            if (GetComponent<HealthSystem>().health <= 0.0f)
+            {
+                OnPlayerDeath?.Invoke();
             }
         }
     }
