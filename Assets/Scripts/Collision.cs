@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-    //private void OnCollisionEnter2D(Collision2D _otherCollider)
-    //{
-    //    Debug.Log("knock Back ?");
-
-    //    if (_otherCollider.gameObject.tag == "Enemy")
-    //    {
-    //        Debug.Log("knock Back ?");
-    //        GetComponent<HealthSystem>().decreaseHealth();
-
-    //        // Temporary to test decreasing health and enemy destruction. Will decrease on weapon collision later
-    //       // collision.gameObject.GetComponent<SpiderBehaviour>().DecreaseHealth();
-    //    }
-    //}
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (GetComponent<DamageEffect>().isImmuneToDamage == false)

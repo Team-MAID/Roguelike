@@ -8,7 +8,7 @@ public class CompanionController : MonoBehaviour
     public int          maxHealth;
     public int          attackDelay;
     public int          movementSpeed;
-    public int          standOffDistance;
+    public float        standOffDistance;
     private int         angleOffset;
     private int         health;
     private bool        active;
@@ -98,21 +98,6 @@ public class CompanionController : MonoBehaviour
         _deltaRot = new Vector3(0, 0, -_angle + angleOffset);
 
         projectileAngle = Quaternion.Euler(_deltaRot);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Companion Collision");
-
-        //if (other.transform.tag == "Enemy" && active)
-        //{
-        //    health--;
-
-        //    if (health <= 0)
-        //    {
-        //        active = false;  
-        //    }
-        //}
     }
 
     public void DecreaseHealthByDamage(int damage)

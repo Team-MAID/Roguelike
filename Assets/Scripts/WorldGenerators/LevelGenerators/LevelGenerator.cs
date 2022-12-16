@@ -8,6 +8,7 @@ namespace DungeonGeneration
         [SerializeField] protected DungeonGenerator DungeonGenerator;
         
         [SerializeField] protected GameObject playerPrefab;
+        [SerializeField] protected GameObject companionPrefab;
 
         [Header("Enemy Spawner")]
         [SerializeField] protected GameObject spawnerPrefab;
@@ -18,12 +19,12 @@ namespace DungeonGeneration
         [SerializeField] protected GameObject shopPrefab;
 
         // Items
-        [Header("Item prefabs")]
-        [SerializeField] protected GameObject healthRefillPotionPrefab;
-        [SerializeField] protected GameObject attackUpPotionPrefab;
-        [SerializeField] protected GameObject defenseUpPotionPrefab;
-        [SerializeField] protected GameObject mysteryPotionPrefab;
-        [SerializeField] protected GameObject speedPotionPrefab;
+        //[Header("Item prefabs")]
+        //[SerializeField] protected GameObject healthRefillPotionPrefab;
+        //[SerializeField] protected GameObject attackUpPotionPrefab;
+        //[SerializeField] protected GameObject defenseUpPotionPrefab;
+        //[SerializeField] protected GameObject mysteryPotionPrefab;
+        //[SerializeField] protected GameObject speedPotionPrefab;
 
         // Weapons
         [Header("Weapon prefabs")]
@@ -46,14 +47,14 @@ namespace DungeonGeneration
         
         private void Init()
         {
-            _potionPrefabs = new List<GameObject>
-            {
-                healthRefillPotionPrefab,
-                attackUpPotionPrefab,
-                defenseUpPotionPrefab,
-                mysteryPotionPrefab,
-                speedPotionPrefab
-            };
+            //_potionPrefabs = new List<GameObject>
+            //{
+            //    healthRefillPotionPrefab,
+            //    attackUpPotionPrefab,
+            //    defenseUpPotionPrefab,
+            //    mysteryPotionPrefab,
+            //    speedPotionPrefab
+            //};
         }
 
         protected virtual void GenerateRandomLevel()

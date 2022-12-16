@@ -30,10 +30,11 @@ namespace DungeonGeneration
             var generatedLeafs = _BSPDungeonGenerator.DungeonTree.Leafs;
 
             SpawnPlayerInRoom(generatedLeafs[0]);
+            SpawnCompanionInRoom(generatedLeafs[0]);
 
             foreach (var leaf in generatedLeafs)
             {
-                SpawnItemsInRoom(leaf);
+                //SpawnItemsInRoom(leaf);
                 SpawnClosetInRoom(leaf);
                 SpawnEnemiesInRoom(leaf);
                 GenerateShopInRoom(leaf);
@@ -52,8 +53,24 @@ namespace DungeonGeneration
             randomFloorPosition += new Vector2(0.5f, 0.5f);
 
             playerPrefab.transform.position = randomFloorPosition;
+            companionPrefab.transform.position = playerPrefab.transform.position;
+            companionPrefab.SetActive(true);
             playerPrefab.SetActive(true);
         }
+
+        private void SpawnCompanionInRoom(BSPDungeonTreeNode dungeonNode)
+        {
+            var roomFloors = dungeonNode.Floors;
+
+            Vector2 randomFloorPosition = roomFloors[Random.Range(0, roomFloors.Count - 1)];
+
+            // Add 0.5 for the game object to be instantiated in the center of the tile
+            randomFloorPosition += new Vector2(0.5f, 0.5f);
+
+            companionPrefab.transform.position = randomFloorPosition;
+            companionPrefab.SetActive(true);
+        }
+
 
         private void SpawnItemsInRoom(BSPDungeonTreeNode dungeonNode)
         {
