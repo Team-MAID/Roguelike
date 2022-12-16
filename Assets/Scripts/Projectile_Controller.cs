@@ -41,27 +41,21 @@ public class Projectile_Controller : MonoBehaviour
     void OnTriggerEnter2D(Collider2D _other)
     {
         //Debug.Log("Trigger Enter");
-        if (_other.GetComponent<DamageEffect>().isImmuneToDamage == false)
-        {
-            if (_other.tag == "Enemy") // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
-            {
-                _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
-                _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
-                Destroy(gameObject);
-            }
+        if (_other.gameObject.CompareTag("Enemy") && _other.GetComponent<DamageEffect>().isImmuneToDamage == false)
+        {                      
+            _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
+            _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
+            Destroy(gameObject);            
         }
     }
 
     private void OnCollisionEnter2D(Collision2D _other)
     {
-        if (_other.gameObject.GetComponent<DamageEffect>().isImmuneToDamage == false)
-        {
-            if (_other.gameObject.tag == "Enemy") // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
-            {
-                _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
-                _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
-                Destroy(gameObject);
-            }
+        if (_other.gameObject.CompareTag("Enemy") && _other.gameObject.GetComponent<DamageEffect>().isImmuneToDamage == false)
+        {              
+            _other.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
+            _other.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
+            Destroy(gameObject);           
         }
     }
 
