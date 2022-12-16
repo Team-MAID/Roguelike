@@ -8,15 +8,15 @@ public class EquippedItems : MonoBehaviour
     [SerializeField] private WeaponItemSO _weaponItem;
     [SerializeField] private ConsumableItemSO _consumableItem;
 
-    [SerializeField] private HUD _hud;
+    private HUD _hud;
+    private UIInventoryController _inventoryController;
 
-    [SerializeField] private UIInventoryController _inventoryController;
-    
     private void Start()
     {
+        _hud = FindObjectOfType<HUD>();
         _inventoryController = GetComponent<UIInventoryController>();
     }
-    
+
     public void SetWeapon(WeaponItemSO weaponItemSO)
     {
         _weaponItem = weaponItemSO;
@@ -34,16 +34,16 @@ public class EquippedItems : MonoBehaviour
     public void SetConsumable(ConsumableItemSO consumableItemSO)
     {
         _consumableItem = consumableItemSO;
-        
+
         if (_consumableItem == null)
         {
             _hud.UpdateEquippedPotion(null);
         }
         else
-        {           
+        {
             var spawned = Instantiate(_consumableItem.Prefab, Vector3.zero, Quaternion.identity);
             spawned.GetComponent<SpriteRenderer>().enabled = false;
-            
+
             _hud.UpdateEquippedPotion(_consumableItem.Icon);
         }
     }
