@@ -60,12 +60,12 @@ public class PlayerController : playerStats
     // Update is called once per frame
     private void FixedUpdate()
     {
-        // for testing
-        //if (Input.GetKeyUp("l"))
-        //{
-        //    increaseAllStats();
-        //}
-            if (isHiding == false)
+        //for testing
+        if (Input.GetKeyUp("l"))
+        {
+            increaseAllStats();
+        }
+        if (isHiding == false)
         {
             _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
         }

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e2569ebba8f53428efdd722d2fc72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3044741921344223859, guid: d08aa4c4163d13e4fbe2ace095d5580b, type: 3}
+  projectile: {fileID: 5013098720713590896, guid: b51da615b1105634db24c47dc7ff8df2, type: 3}
   maxHealth: 100
   attackDelay: 400
   movementSpeed: 3
