@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6137579662602476346}
   - component: {fileID: 3089434633979144508}
   - component: {fileID: 4986107894777101316}
+  - component: {fileID: 520267605057156286}
+  - component: {fileID: 8030477456090612149}
   m_Layer: 3
   m_Name: Weapon Bow
   m_TagString: Weapon_Player
@@ -178,3 +180,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 94148c3596a3a8c419e0125a725a914b, type: 2}
+--- !u!114 &520267605057156286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137579662602476341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd250f168924a958da320fd2d528a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIInventory: {fileID: 2809935516249634834, guid: 8b115cfc2d7c1054fbd72ed9a898d77d, type: 3}
+  isActiveOnStart: 1
+  openCloseInventoryAction:
+    m_Name: Open Close Inventory
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 38544277-2a0f-4a47-a6e8-5b5101c583af
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  <InventorySO>k__BackingField: {fileID: 11400000, guid: ecba022bb89037e4d9cfc976aba6dc27, type: 2}
+--- !u!114 &8030477456090612149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137579662602476341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa617fc454e685c41be37c545fd6f1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
