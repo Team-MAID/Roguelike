@@ -14,16 +14,10 @@ public class SwordSlashController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-        {
-            if (collision.tag == "Enemy") // If the collision is with an object tagged as an enemy, destroy it. Replace with some "deal damage" fucntion later, probably. Destroy projectile as well.
-            {
-                if (collision.GetComponent<DamageEffect>().isImmuneToDamage == false)
-                {
-                    collision.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
-                    collision.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());
-                }
-            }
+        if (collision.CompareTag("Enemy") && collision.GetComponent<DamageEffect>().isImmuneToDamage == false)
+        {                   
+            collision.gameObject.GetComponent<DamageEffect>().TakeDamageEffect(0.25f);
+            collision.gameObject.GetComponent<Enemy>().decreaseHealth(player.GetComponent<playerStats>().getAttackDamage());                         
         }
     }
 
