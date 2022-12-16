@@ -107,26 +107,6 @@ public class Potion : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D _otherColldier)
-    {
-        if (_otherColldier.gameObject.CompareTag("Player"))
-        {
-            if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
-            {
-                player.GetComponent<playerStats>().isPotionActive = true;
-                if (potionType != "MysteryPotion")
-                {
-                    useStandardPotion();
-                }
-                else
-                {
-                    useMysteryPotion();
-                }
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
     public void Consume(GameObject consumer)
     {
         if (player.GetComponent<playerStats>().isPotionActive == false)//isActive on Player
