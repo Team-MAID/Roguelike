@@ -28,6 +28,8 @@ TagManager:
   - Wall
   - DungeonGenerator
   - SwordSlash
+  - Floor
+  - Hud
   layers:
   - Default
   - TransparentFX

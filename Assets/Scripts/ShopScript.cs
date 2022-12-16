@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class ShopScript : MonoBehaviour
 {
+    private GameObject _player;
+    private GameObject _hud;
+    private int _thirtyCent = 30;
+    private int _fortyCent = 40;
+    private int _fiftyCent = 50;
+    private int _sixtyCent = 60;
+
     public ConsumableItemSO defensePotion;
     public ConsumableItemSO attackPotion;
     public ConsumableItemSO healthPotion;
@@ -18,29 +25,57 @@ public class ShopScript : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _hud = GameObject.FindGameObjectWithTag("Hud");
         inventoryController = GameObject.FindWithTag("Player").GetComponent<UIInventoryController>();
         inventoryController.ShowInventory();
     }
 
+    public void takeFromWallet(int t_cost)
+    {
+        _player.GetComponent<PlayerController>().coins = _player.GetComponent<PlayerController>().coins - t_cost;
+        _hud.GetComponent<HUD>().UpdateCoinText(_player.GetComponent<PlayerController>().coins);
+    }
+
     public void buyDefensePotion()
     {
-        inventoryController.InventorySO.AddItem(defensePotion);
+        if (_player.GetComponent<PlayerController>().coins >= _fortyCent)
+        {
+            inventoryController.InventorySO.AddItem(defensePotion);
+            takeFromWallet(_fortyCent);
+        }
     }
     public void buyAttackPotion()
     {
-        inventoryController.InventorySO.AddItem(attackPotion);
+        if (_player.GetComponent<PlayerController>().coins >= _fortyCent)
+        {
+            inventoryController.InventorySO.AddItem(attackPotion);
+            takeFromWallet(_fortyCent);
+        }
     }
     public void buyHealthPotion()
     {
-        inventoryController.InventorySO.AddItem(healthPotion);
+        if (_player.GetComponent<PlayerController>().coins >= _fiftyCent)
+        {
+            inventoryController.InventorySO.AddItem(healthPotion);
+            takeFromWallet(_fiftyCent);
+        }
     }
     public void buyMysteryPotion()
     {
-        inventoryController.InventorySO.AddItem(mysteryPotion);
+        if (_player.GetComponent<PlayerController>().coins >= _sixtyCent)
+        {
+            inventoryController.InventorySO.AddItem(mysteryPotion);
+            takeFromWallet(_sixtyCent);
+        }
     }
     public void buySpeedPotion()
     {
-        inventoryController.InventorySO.AddItem(speedPotion);
+        if (_player.GetComponent<PlayerController>().coins >= _thirtyCent)
+        {
+            inventoryController.InventorySO.AddItem(speedPotion);
+            takeFromWallet(_thirtyCent);
+        }
     }
     public void exit()
     {
