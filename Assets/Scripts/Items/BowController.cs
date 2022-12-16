@@ -14,12 +14,15 @@ public class BowController : MonoBehaviour, IEquipable
     private float       angleOffset;
     private Collider2D  col;
 
+    public int attackDelay;
+    private float _AttackDelay;
+
     private UIInventoryController uiInventoryController;
     private void Start()
     {     
         weaponItemData.EquippingItem += Equip;
         weaponItemData.UnequippingItem += Unequip;
-
+        _AttackDelay = attackDelay;
         angleOffset = -45;
         col = GetComponent<Collider2D>();
         this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -135));
@@ -45,11 +48,16 @@ public class BowController : MonoBehaviour, IEquipable
            // Reposition();
             Rotate();
 
-            if (Input.GetMouseButtonDown(0))
+            if (_AttackDelay > 0)
+            {
+                _AttackDelay--;
+            }
+            if (Input.GetMouseButtonDown(0) && _AttackDelay <= 0)
             {
                 //Debug.Log("LeftClick");
                 Quaternion _deltaRot = Quaternion.Euler(0, 0, -135);
                 Instantiate(projectile, this.transform.position, this.transform.rotation * _deltaRot);
+                _AttackDelay = attackDelay;
             }
         }
         
