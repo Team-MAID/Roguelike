@@ -9,6 +9,9 @@ public class HUD : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI healthBarText;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI _playerAttackText;
+    public TextMeshProUGUI _playerDefenseText;
+    public TextMeshProUGUI _playerSpeedText;
     public Image equipedPotion;
     public Image equipedWeapon;
 
@@ -29,6 +32,21 @@ public class HUD : MonoBehaviour
     {
         coinText.text = "X " + t_coins.ToString();
     }
+
+    public void UpdateAttackText(int t_attack)
+    {
+        _playerAttackText.text = t_attack.ToString();
+    }
+    public void UpdateDefenseText(int t_defense)
+    {
+        _playerDefenseText.text = t_defense.ToString() + "%";
+    }
+
+    public void UpdateSpeedText(float t_speed)
+    {
+        _playerSpeedText.text = t_speed.ToString();
+    }
+
 
     public void UpdateEquipedPotion(Sprite t_sprite)
     {

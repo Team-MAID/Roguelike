@@ -112,7 +112,7 @@ public class SwordController : MonoBehaviour, IEquipable
         {
             Debug.Log("Sword Equipped");
             Instantiate(this.weaponItemData.Prefab, player.transform.position, Quaternion.identity, player.transform);
-            player.GetComponent<playerStats>().setAttackDamage(swordSlash.GetComponent<SwordSlashController>().GetDamage());
+            player.GetComponent<playerStats>().setAttackDamageWithWeapon(swordSlash.GetComponent<SwordSlashController>().GetDamage());
         }
 
     }
@@ -126,7 +126,7 @@ public class SwordController : MonoBehaviour, IEquipable
 
         Debug.Log("Bow Un-Equipped");
         uiInventoryController.InventorySO.AddItem(sword.weaponItemData);
-        player.GetComponent<playerStats>().setAttackDamage(0);
+        player.GetComponent<playerStats>().setAttackDamageWithWeapon(0);
         Destroy(sword.gameObject);
 
     }

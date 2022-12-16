@@ -25,38 +25,47 @@ public class playerStats : MonoBehaviour
     protected float speed;
     [SerializeField]
     protected float potionCoolDown;
+    public HUD hud;
+
 
     // Increasing stats based on potion used
     public void setAttackDamagePotion(float t_multiplier)
     {
         storeAttack = attack;
         attack = (baseAttack + weaponDamage) * t_multiplier;
+        setHudStats();
         StartCoroutine(potionDuration());
     }
-    public void setSpeed(float t_multiplier)
+    public void setSpeedPotion(float t_multiplier)
     {
         speed = baseSpeed * t_multiplier;
+        setHudStats();
         StartCoroutine(potionDuration());
     }
-    public void setDefense(float t_multiplier)
+    public void setDefensePotion(float t_multiplier)
     {
-        defense = 0.5f;
-        //defense = baseDefense * t_multiplier + armourDefense;
+        if (baseDefense <= 0.5f)
+        {
+            defense = baseDefense + 0.5f;
+        }
+        else
+        {
+            defense = 1.0f;
+        }
+        setHudStats();
         StartCoroutine(potionDuration());
     }
-    public float getDefense()
-    {
-        return defense;
-    }
+
     public void increaseAllStats()
     {
-        baseAttack += 2;
-        baseSpeed += 0.5f;
-        baseDefense += 2;
-        setAttackDamage(0);
-        defense = 0.0f;
+        if (baseAttack <= 9.0f) { baseAttack += 1; }
+        if (baseSpeed <= 5.5f) { baseSpeed += 0.5f; }
+        if (baseDefense <= .4f) { baseDefense += 0.1f; }
         GetComponent<HealthSystem>().IncreaseMaxHealth(20);
-        setSpeed();
+        setBaseSpeed();
+        setBaseDefense();
+        setBaseAttack();
+        setHudStats();
     }
 
     public void setImmunity()
@@ -68,32 +77,64 @@ public class playerStats : MonoBehaviour
     IEnumerator potionDuration()
     {
         yield return new WaitForSeconds(potionCoolDown);
-        setSpeed();
-        defense = 0.0f;
+        setBaseSpeed();
+        setBaseDefense();
+        setBaseAttack();
         if (storeAttack!=0)
         {
             attack = storeAttack;
         }
         isImmuneTodamage = false;
         isPotionActive = false;
+        setHudStats();
     }
 
     // resetting to base stats after potion wears out
-    public void setAttackDamage(int t_weaponDamage)
+    public void setAttackDamageWithWeapon(int t_weaponDamage)
     {
         weaponDamage = t_weaponDamage;
         attack = baseAttack + weaponDamage;
+        setHudStats();
     }
     public int getAttackDamage()
     {
         return (int)attack;
     }
-    public void setSpeed()
+
+    public void setBaseAttack()
+    {
+        attack = baseAttack + weaponDamage;
+    }
+
+    public int getBaseAttack()
+    {
+        return (int)attack;
+    }
+
+    public void setBaseDefense()
+    {
+        defense = baseDefense;
+    }
+
+    public float getDefense()
+    {
+        return defense;
+    }
+
+    public void setBaseSpeed()
     {
         speed = baseSpeed;
     }
-    public void setDefense()
+
+    public float getSpeed()
     {
-        defense = baseDefense + armourDefense;
+        return speed;
+    }
+
+    public void setHudStats()
+    {
+        hud.UpdateDefenseText((int)(getDefense() * 100));
+        hud.UpdateAttackText(getAttackDamage());
+        hud.UpdateSpeedText(getSpeed());
     }
 }

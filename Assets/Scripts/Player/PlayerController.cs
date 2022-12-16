@@ -28,15 +28,13 @@ public class PlayerController : playerStats
 
     bool nearCloset = false;
 
-    public HUD hud;
-
     // Start is called before the first frame update
     private void Start()
     {
         _playerRenderer = GetComponent<Renderer>();
         _playerCollider = GetComponent<BoxCollider2D>();    
         _playerRenderer.material.color = Color.white;
-        hud.UpdateCoinText(coins);
+        GetComponent<playerStats>().hud.UpdateCoinText(coins);
         baseAttack = attack;
         baseDefense = defense;
         baseHealth = health;
@@ -44,10 +42,10 @@ public class PlayerController : playerStats
         isPotionActive = false;
         isImmuneTodamage = false;
 
-        hud.UpdateCurrentHealth(health);
-        hud.UpdateHealthText(health, 100); 
+        GetComponent<playerStats>().hud.UpdateCurrentHealth(health);
+        GetComponent<playerStats>().hud.UpdateHealthText(health, 100);
+        GetComponent<playerStats>().setHudStats();
 
-        //Debug.Log("Speed" + baseSpeed);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         playerAnimState = PlayerAnimStates.Idle;
@@ -62,7 +60,12 @@ public class PlayerController : playerStats
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(isHiding == false)
+        // for testing
+        //if (Input.GetKeyUp("l"))
+        //{
+        //    increaseAllStats();
+        //}
+            if (isHiding == false)
         {
             _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
         }
@@ -119,7 +122,7 @@ public class PlayerController : playerStats
         {
             coins++;
             Destroy(col.gameObject);
-            hud.UpdateCoinText(coins);
+            GetComponent<playerStats>().hud.UpdateCoinText(coins);
         }
     }
 

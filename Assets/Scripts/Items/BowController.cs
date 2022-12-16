@@ -101,7 +101,7 @@ public class BowController : MonoBehaviour, IEquipable
         {
             Debug.Log("Bow Equipped");
             Instantiate(this.weaponItemData.Prefab, player.transform.position, Quaternion.identity, player.transform);
-            player.GetComponent<playerStats>().setAttackDamage(projectile.GetComponent<Projectile_Controller>().GetDamage());
+            player.GetComponent<playerStats>().setAttackDamageWithWeapon(projectile.GetComponent<Projectile_Controller>().GetDamage());
         }
        
     }
@@ -115,7 +115,7 @@ public class BowController : MonoBehaviour, IEquipable
       
         Debug.Log("Bow Un-Equipped");
         uiInventoryController.InventorySO.AddItem(bow.weaponItemData);
-        player.GetComponent<playerStats>().setAttackDamage(0);
+        player.GetComponent<playerStats>().setAttackDamageWithWeapon(0);
         Destroy(bow.gameObject);
                
     }

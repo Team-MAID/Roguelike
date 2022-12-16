@@ -41,7 +41,7 @@ public class Potion : MonoBehaviour
         m_multiplier = 2.0f;
         if (potionType == "SpeedUpPotion")
         {
-            player.GetComponent<playerStats>().setSpeed(m_multiplier);
+            player.GetComponent<playerStats>().setSpeedPotion(m_multiplier);
         }
         else if (potionType == "AttackUpPotion")
         {
@@ -49,7 +49,7 @@ public class Potion : MonoBehaviour
         }
         else if (potionType == "DefenseUpPotion")
         {
-            player.GetComponent<playerStats>().setDefense(m_multiplier);
+            player.GetComponent<playerStats>().setDefensePotion(m_multiplier);
         }
         else if (potionType == "RefillHealthPotion")
         {
@@ -65,7 +65,7 @@ public class Potion : MonoBehaviour
         m_mysteryPotionEffects = (mysteryPotionEffects)temp_randomNumber;
 
         // for testing 
-        //m_mysteryPotionEffects = (mysteryPotionEffects)3;
+        //m_mysteryPotionEffects = (mysteryPotionEffects)6;
         //Debug.Log(temp_randomNumber);
         if (m_mysteryPotionEffects == mysteryPotionEffects.loseHeart)
         {
@@ -74,7 +74,7 @@ public class Potion : MonoBehaviour
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.defenseDown)
         {
-            player.GetComponent<playerStats>().setDefense(m_multiplier);
+            player.GetComponent<playerStats>().setDefensePotion(m_multiplier);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.attackDown)
         {
@@ -82,7 +82,7 @@ public class Potion : MonoBehaviour
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.speedDown)
         {
-            player.GetComponent<playerStats>().setSpeed(m_multiplier);
+            player.GetComponent<playerStats>().setSpeedPotion(m_multiplier);
         }
         else if (m_mysteryPotionEffects == mysteryPotionEffects.coins)
         {

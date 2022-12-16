@@ -34,12 +34,14 @@ public class HealthSystem : MonoBehaviour
 
     public void DecreaseHealth(int t_decreaseHealth)
     {
-        Debug.Log("Health Decreased");
-
-        if (GetComponent<playerStats>().getDefense() != 0.0f)
+        if (GetComponent<playerStats>().getDefense() == 1.0f)
+        {
+            t_decreaseHealth = 0;
+        }
+        else if (GetComponent<playerStats>().getDefense() != 0.0f)
         {
             float temp = (float)t_decreaseHealth * GetComponent<playerStats>().getDefense();
-            t_decreaseHealth = (int)temp;
+            t_decreaseHealth -= (int)temp;
         }
         health -= (int)t_decreaseHealth;
         hud.UpdateCurrentHealth(health);
